@@ -80,7 +80,7 @@ const Services = () => {
      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
    </div>
    <div className="service-img">
-     <img src="assets/tennis.png" alt="Tennis" />
+     <img src="assets/Tennis.png" alt="Tennis" />
    </div>
  </div>
 
@@ -91,7 +91,7 @@ const Services = () => {
      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
    </div>
    <div className="service-img">
-     <img src="assets/E-Sports.png" alt="ESports" />
+     <img src="assets/ESports.png" alt="ESports" />
    </div>
  </div>
  </div>
