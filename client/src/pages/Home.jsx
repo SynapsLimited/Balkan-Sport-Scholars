@@ -62,18 +62,7 @@ const Home = () => {
   // Get the latest post
   const latestPost = posts.length > 0 ? posts[0] : null; // Assuming posts are returned sorted by date in descending order
 
-  // Dynamically load the Spline Viewer script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://unpkg.com/@splinetool/viewer@1.7.2/build/spline-viewer.js';
-    document.body.appendChild(script);
 
-    // Clean up the script when the component unmounts
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   // Animate the counters
   useEffect(() => {
