@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import './../css/home.css';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import PostItem from './../components/PostItem';
 const Home = () => {
@@ -282,27 +282,20 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section className="home-blog-section container">
-        <div className="blog-text-section">
-          <h2>Blog</h2>
-          <p>Lorem ipsum dolor sit amet consectetur. Rhoncus in vel faucibus augue. Tempus nec egestas sapien turpis pharetra eleifend pharetra aliquam amet. Tempor mauris massa diam mi quis ac fusce. Urna ipsum volutpat pretium elit.</p>
-          <a href='/blog' className="btn btn-primary">View All Blogs</a>
-        </div>
-        <div className="blog-slider-section">
-          {latestPost && (
-            <PostItem 
-              postID={latestPost._id}
-              category={latestPost.category}
-              title={latestPost.title}
-              description={latestPost.description}
-              authorID={latestPost.creator}
-              thumbnail={latestPost.thumbnail}
-              createdAt={latestPost.createdAt}
-            />
-          )}
-        </div>
-      </section>
+      // Blog Section
+<section className="home-blog-section container">
+  <div className="blog-text-section">
+    <h2>Blog</h2>
+    <p>Lorem ipsum dolor sit amet consectetur. Rhoncus in vel faucibus augue. Tempus nec egestas sapien turpis pharetra eleifend pharetra aliquam amet. Tempor mauris massa diam mi quis ac fusce. Urna ipsum volutpat pretium elit.</p>
+    <a href='/blog' className="btn btn-primary">View All Blogs</a>
+  </div>
+  <div className="blog-slider-section">
+    {latestPost && (
+      <PostItem post={latestPost} />
+    )}
+  </div>
+</section>
+
     </div>
   );
 };

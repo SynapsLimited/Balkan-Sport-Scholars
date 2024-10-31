@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import './../css/transfers.css';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const Transfers = () => {
   const [transfers, setTransfers] = useState([]);

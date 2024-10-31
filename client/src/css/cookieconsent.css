@@ -5,7 +5,7 @@
     bottom: 20px;
     left: 20px;
     right: 20px;
-    background-color: var(--color-primary-transparent);
+    background-color: var(--color-primary);
     color: #ffffff;
     padding: 30px 30px;
     border-radius: 22px;
@@ -15,11 +15,13 @@
     justify-content: space-between;
     align-items: center;
     font-size: 20px;
+    margin-bottom: 55px;
   }
   
   .cookie-consent__content p {
     margin: 0;
     margin-bottom: 20px;
+    font-size: 15px;
   }
   
   .cookie-consent__link {

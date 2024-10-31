@@ -1,9 +1,17 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+
+
+
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
+
+
+
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -11,7 +19,12 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Players from './pages/Players';
 import Transfers from './pages/Transfers';
+
+
+
 import UserProvider from './context/userContext';
+
+
 import FixedMenu from './components/FixedMenu';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import ScrollToTop from './components/ScrollToTop';
@@ -77,6 +90,7 @@ const App = () => {
   
 
   return (
+    <HelmetProvider>
     <div className={`App ${getBackgroundClass(location.pathname)}`}>
       <LoadingScreen />
       <ScrollToTop />
@@ -132,6 +146,8 @@ const App = () => {
       <LanguageSwitcher />
       <Footer />
     </div>
+    </HelmetProvider>
+
   );
 }
 

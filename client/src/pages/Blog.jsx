@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './../css/blog.css'; // Assuming you have a corresponding CSS file for styling
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import Posts from '../components/Posts';
 import Authors from '../blog/Authors';
 

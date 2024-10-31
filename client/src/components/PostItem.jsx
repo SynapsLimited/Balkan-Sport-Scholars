@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 // Mapping from English category names to Albanian translations
 const categoryTranslationMap = {
+
   Football: { en: 'Football', sq: 'Futboll' },
   Basketball: { en: 'Basketball', sq: 'Basketboll' },
   Volleyball: { en: 'Volleyball', sq: 'Vollejboll' },
