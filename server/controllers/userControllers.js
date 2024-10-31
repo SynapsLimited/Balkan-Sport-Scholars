@@ -31,7 +31,7 @@ const uploadToVercelBlob = async (fileBuffer, fileName) => {
 
 // Define allowed emails
 const allowedEmails = [
-    "contact@adsh2014.al"
+    "info@synapslimited.eu"
 ];
 
 
