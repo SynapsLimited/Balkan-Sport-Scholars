@@ -175,11 +175,11 @@ const Home = () => {
           </a>
           <a href="services" className="service-overview-blob-art">
             <span>English Consulting</span>
-            <img src="/assets/rugby.png" alt="English Consulting" />
+            <img src="/assets/Rugby.png" alt="English Consulting" />
           </a>
           <a href="services" className="service-overview-blob-art">
             <span>Transcription Evaluation</span>
-            <img src="/assets/volleyball.png" alt="Transcription Evaluation" />
+            <img src="/assets/Volleyball.png" alt="Transcription Evaluation" />
           </a>
           <a href="services" className="service-overview-blob-art">
             <span>Student Visa Assistance</span>

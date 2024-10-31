@@ -58,7 +58,7 @@ const Services = () => {
      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
    </div>
    <div className="service-img">
-     <img src="assets/volleyball.png" alt="Volleyball" />
+     <img src="assets/Volleyball.png" alt="Volleyball" />
    </div>
  </div>
 
@@ -69,7 +69,7 @@ const Services = () => {
      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
    </div>
    <div className="service-img">
-     <img src="assets/rugby.png" alt="Rugby" />
+     <img src="assets/Rugby.png" alt="Rugby" />
    </div>
  </div>
 
