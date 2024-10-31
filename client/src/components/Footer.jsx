@@ -64,7 +64,7 @@ const Footer = () => {
           <p>Copyright &copy; Balkan Sport Scholars. All Rights Reserved</p>
           <p>Designed by <a href="http://www.synapslimited.eu" className="footer-copy-designed-by-synaps">Synaps</a></p>
         </div>
-        <a className="blog-log-in-btn" href="/login">Log In</a>
+        <a className="blog-log-in-btn" href="/privacy-policy">Privacy Policy</a>
       </div>
     </footer>
   );
