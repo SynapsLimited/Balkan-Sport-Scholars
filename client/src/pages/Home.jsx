@@ -183,11 +183,11 @@ const Home = () => {
           </a>
           <a href="services" className="service-overview-blob-art">
             <span>Student Visa Assistance</span>
-            <img src="/assets/tennis.png" alt="Student Visa Assistance" />
+            <img src="/assets/Tennis.png" alt="Student Visa Assistance" />
           </a>
           <a href="services" className="service-overview-blob-art">
             <span>General Consulting & Support</span>
-            <img src="/assets/E-Sports.png" alt="General Consulting & Support" />
+            <img src="/assets/ESports.png" alt="General Consulting & Support" />
           </a>
         </div>
         <div className="services-button">
