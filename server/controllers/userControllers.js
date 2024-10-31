@@ -11,8 +11,7 @@ const HttpError = require("../models/errorModel")
 // Define allowed emails
 const allowedEmails = [
     "rahmaniendi26@gmail.com",
-    "synapslimited@gmail.com",
-    "bshehaj92@gmail.com",
+    "bujar@synapslimited.eu",
 ];
 
 

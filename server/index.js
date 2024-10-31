@@ -20,7 +20,7 @@ app.use(
     origin: [
       'http://localhost:3000',
       'http://127.0.0.1:3000',
-      'https://balkan-sport-scholars-client-vercel.app',
+      'https://balkan-sport-scholars-client.vercel.app',
     ], // Allow both localhost and 127.0.0.1
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   })
