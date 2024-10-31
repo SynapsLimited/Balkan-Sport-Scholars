@@ -54,12 +54,12 @@ const CreatePost = () => {
 
   const POST_CATEGORIES = [
     'Uncategorized',
-    'Dairy',
-    'Ice Cream',
-    'Bakery',
-    'Pastry',
-    'Packaging',
-    'Equipment',
+    'Football',
+    'Basketball',
+    'Volleyball',
+    'Rugby',
+    'Tennis',
+    'E-Sports',
     'Other',
   ];
 
