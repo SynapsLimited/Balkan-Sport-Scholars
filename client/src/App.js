@@ -16,6 +16,9 @@ import FixedMenu from './components/FixedMenu';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import ScrollToTop from './components/ScrollToTop';
 
+import CookieConsent from './components/CookieConsent';
+import PrivacyPolicy from './pages/PrivacyPolicy'; // Ensure this page exists
+
 
 // Import blog pages
 import ErrorPage from './blog/ErrorPage';
@@ -78,6 +81,7 @@ const App = () => {
       <LoadingScreen />
       <ScrollToTop />
       <Navbar />
+      <CookieConsent />
       <div className="content-wrapper">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -119,6 +123,9 @@ const App = () => {
           <Route path="transfers/:id/edit" element={<EditTransfer />} />
           <Route path="transfers/:id/delete" element={<DeleteTransfer />} />
           <Route path="transfers/dashboard" element={<DashboardTransfer />} />
+
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
         </Routes>
       </div>
       <FixedMenu />
