@@ -16,7 +16,9 @@ const PostAuthor = ({ authorID, createdAt }) => {
   useEffect(() => {
     const getAuthor = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/${authorID}`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/users/${authorID}`
+        );
         setAuthor(response?.data);
       } catch (error) {
         console.log('Error fetching author:');
@@ -32,7 +34,7 @@ const PostAuthor = ({ authorID, createdAt }) => {
     <Link to={`/posts/users/${authorID}`} className="post-author">
       <div className="post-author-avatar">
         <img
-          src={author?.avatar ? `${process.env.REACT_APP_ASSETS_URL}/uploads/${author.avatar}` : '/default-avatar.png'}
+          src={author?.avatar ? author.avatar : '/default-avatar.png'}
           alt={author?.name || 'Author Avatar'}
         />
       </div>
@@ -40,7 +42,7 @@ const PostAuthor = ({ authorID, createdAt }) => {
         <h5>By: {author?.name || 'Unknown Author'}</h5>
         {createdAt && (
           <small>
-            <ReactTimeAgo date={new Date(createdAt)} locale='en-US' />
+            <ReactTimeAgo date={new Date(createdAt)} locale="en-US" />
           </small>
         )}
       </div>

@@ -406,10 +406,17 @@ input, select, textarea {
 }
 
 .dashboard-post-thumbnail {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
+    width: 80px; /* Adjusted width for better alignment */
+    height: 80px; /* Maintains a square aspect ratio */
+    border-radius: 20px; /* Makes the thumbnail circular */
     overflow: hidden;
+    flex-shrink: 0; /* Prevents the thumbnail from shrinking */
+}
+
+.dashboard-post-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
 }
 
 .dashboard-post-actions {

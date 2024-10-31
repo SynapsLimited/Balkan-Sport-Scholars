@@ -47,7 +47,7 @@ const Blog = () => {
 
       <Posts limit={6} />
 
-      <section className="container blog-authors-section">
+      <section className="blog-authors-section">
         <Authors />
       </section>
     </div>

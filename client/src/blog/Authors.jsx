@@ -8,6 +8,8 @@ const Authors = () => {
   const [authors, setAuthors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const defaultAvatar = `${process.env.PUBLIC_URL}/assets/Avatar-default.png`; // Default avatar path
+
   useEffect(() => {
     const getAuthors = async () => {
       setIsLoading(true);
@@ -28,12 +30,12 @@ const Authors = () => {
   }
 
   return (
-    <section className="authors">
-      <div className="blog-title">
-        <h1>Authors</h1>
+    <section data-aos="fade-up"   className="container authors">
+      <div  className="blog-title">
+        <h1>Autorët</h1>
       </div>
       {authors.length > 0 ? (
-        <div className="authors-container">
+        <div  className="authors-container">
           {authors.map(({ _id: id, avatar, name, posts }) => (
             <Link 
               key={id} 
@@ -42,7 +44,10 @@ const Authors = () => {
               state={{ authorName: name }}
             >
               <div className="author-avatar">
-                <img src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${avatar}`} alt={`Image of ${name}`} />
+                <img 
+                  src={avatar || defaultAvatar}  // Use default avatar if none exists
+                  alt={`Image of ${name}`} 
+                />
               </div>
               <div className="author-info">
                 <h4>{name}</h4>
@@ -52,7 +57,7 @@ const Authors = () => {
           ))}
         </div>
       ) : (
-        <h2 className="error-blog-not-found">No authors found</h2>
+        <h2 className="error-blog-not-found">Su gjetën autorët!</h2>
       )}
     </section>
   );

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, EffectCoverflow, Autoplay } from 'swiper/modules';
+import {
+  Pagination,
+  Navigation,
+  EffectCoverflow,
+  Autoplay,
+} from 'swiper/modules';
 import axios from 'axios';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css';
@@ -11,17 +16,20 @@ import './../css/home.css';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import PostItem from './../components/PostItem';
+
 const Home = () => {
   const [transfers, setTransfers] = useState([]);
-  const [players, setPlayers] = useState([]);  
-  const [posts, setPosts] = useState([]);  // State to store all posts
+  const [players, setPlayers] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [domLoaded, setDomLoaded] = useState(false);
 
   // Fetch Transfers Data
   useEffect(() => {
     const fetchTransfers = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/transfers`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/transfers`
+        );
         setTransfers(response.data);
       } catch (error) {
         console.error('Error fetching transfers:', error);
@@ -35,7 +43,9 @@ const Home = () => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/players`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/players`
+        );
         setPlayers(response.data);
       } catch (error) {
         console.error('Error fetching players:', error);
@@ -49,7 +59,9 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/posts`
+        );
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -62,15 +74,13 @@ const Home = () => {
   // Get the latest post
   const latestPost = posts.length > 0 ? posts[0] : null; // Assuming posts are returned sorted by date in descending order
 
-
-
   // Animate the counters
   useEffect(() => {
-    let valueDisplays = document.querySelectorAll(".num");
+    let valueDisplays = document.querySelectorAll('.num');
     let interval = 2500; // Adjusted duration for a quicker count
     valueDisplays.forEach((valueDisplay) => {
       let startValue = 0;
-      let endValue = parseInt(valueDisplay.getAttribute("data-val"));
+      let endValue = parseInt(valueDisplay.getAttribute('data-val'));
       let duration = Math.floor(interval / endValue);
       let counter = setInterval(function () {
         startValue += 1;
@@ -92,14 +102,21 @@ const Home = () => {
       <Helmet>
         <title>Balkan Sport Scholars</title>
       </Helmet>
-      
+
       {/* Header Section */}
       <header className="hero-container header-home" id="intro">
         <div className="container">
           <div className="center header-template">
-            <h1 style={{marginBottom:"19px", fontSize:"3rem"}}>Balkan Sport Scholars</h1>
-            <p className='hero-p margin-bottom'>“Empowering Balkan Athletes to reach new heights by connecting them with educational opportunities in the US.”</p>
-            <a href="tel:+12523738698" className="btn btn-secondary">Call Us</a>
+            <h1 style={{ marginBottom: '19px', fontSize: '3rem' }}>
+              Balkan Sport Scholars
+            </h1>
+            <p className="hero-p margin-bottom">
+              “Empowering Balkan Athletes to reach new heights by connecting
+              them with educational opportunities in the US.”
+            </p>
+            <a href="tel:+12523738698" className="btn btn-secondary">
+              Call Us
+            </a>
           </div>
         </div>
         <img
@@ -113,35 +130,53 @@ const Home = () => {
       <section className="info-section container">
         <div className="info-left">
           <h2>What is Balkan Sport Scholars?</h2>
-          <p>Balkan Sport Scholars is a recruitment agency dedicated to bridging the gap for talented athletes from the Balkans, a region with limited sports resources, by connecting them with academic and athletic opportunities at top-tier colleges in the United States. We aim to empower athletes to achieve their dreams, unlocking pathways to both educational excellence and athletic advancement in competitive college programs across the US.</p>
-          <a href='/about' className="btn btn-primary">About</a>
+          <p>
+            Balkan Sport Scholars is a recruitment agency dedicated to bridging
+            the gap for talented athletes from the Balkans, a region with limited
+            sports resources, by connecting them with academic and athletic
+            opportunities at top-tier colleges in the United States. We aim to
+            empower athletes to achieve their dreams, unlocking pathways to both
+            educational excellence and athletic advancement in competitive
+            college programs across the US.
+          </p>
+          <a href="/about" className="btn btn-primary">
+            About
+          </a>
         </div>
         <div className="info-right">
           <img
-            src={`${process.env.PUBLIC_URL}/assets/Balkan Sport Scholars Jersey 1.png`} // Update this path as needed
+            src={`${process.env.PUBLIC_URL}/assets/Balkan Sport Scholars Jersey 1.png`}
             alt="Balkan Sport Scholars Jersey"
           />
         </div>
       </section>
 
       {/* Facts Section */}
-      <h1 className='center facts-title'>Facts about Balkan Sport Scholars</h1>
+      <h1 className="center facts-title">Facts about Balkan Sport Scholars</h1>
       <section className="wrapper-counter">
         <div className="container-counter">
           <span className="text">Sports</span>
-          <span className="num" data-val="24">0</span>
+          <span className="num" data-val="24">
+            0
+          </span>
         </div>
         <div className="container-counter">
           <span className="text">Agents</span>
-          <span className="num" data-val="3">0</span>
+          <span className="num" data-val="3">
+            0
+          </span>
         </div>
         <div className="container-counter">
           <span className="text">Transfers</span>
-          <span className="num" data-val="10">0</span>
+          <span className="num" data-val="10">
+            0
+          </span>
         </div>
         <div className="container-counter">
           <span className="text">Locations</span>
-          <span className="num" data-val="2">0</span>
+          <span className="num" data-val="2">
+            0
+          </span>
         </div>
       </section>
 
@@ -150,7 +185,12 @@ const Home = () => {
         <div className="services-overview-title">
           <h1>Services</h1>
           <p>
-            Our comprehensive services at Balkan Sport Scholars are designed to guide athletes from the Balkans through every step of their journey to US college sports. From personalized placement and scholarship support to eligibility preparation and mentorship, we ensure each athlete has the tools and resources to succeed academically and athletically.
+            Our comprehensive services at Balkan Sport Scholars are designed to
+            guide athletes from the Balkans through every step of their journey
+            to US college sports. From personalized placement and scholarship
+            support to eligibility preparation and mentorship, we ensure each
+            athlete has the tools and resources to succeed academically and
+            athletically.
           </p>
         </div>
         <div className="services-overview-blobs">
@@ -180,7 +220,9 @@ const Home = () => {
           </a>
         </div>
         <div className="services-button">
-          <a href="/services" className="btn btn-background">Services</a>
+          <a href="/services" className="btn btn-background">
+            Services
+          </a>
         </div>
       </section>
 
@@ -188,8 +230,14 @@ const Home = () => {
       <section className="container image-slider-section-home">
         <div className=" services-overview-title">
           <h1>Transfers</h1>
-          <p style={{padding:"20px"}}>
-          At Balkan Sport Scholars, we're proud to share the journeys of our athletes who've made the leap from the Balkans to top US colleges. Each success story reflects hard work, resilience, and a dream realized, with our athletes now competing at high levels, earning scholarships, and making the most of their college experience both on and off the field.          </p>
+          <p style={{ padding: '20px' }}>
+            At Balkan Sport Scholars, we're proud to share the journeys of our
+            athletes who've made the leap from the Balkans to top US colleges.
+            Each success story reflects hard work, resilience, and a dream
+            realized, with our athletes now competing at high levels, earning
+            scholarships, and making the most of their college experience both
+            on and off the field.
+          </p>
         </div>
         <div className="image-slider-container">
           {domLoaded && (
@@ -211,10 +259,10 @@ const Home = () => {
                 <SwiperSlide key={index}>
                   <div className="image-slide-wrapper">
                     <img
-                      src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${transfer.image}`}
+                      src={transfer.image}
                       alt={`Slide ${index + 1}`}
                       className="slide-image"
-                      loading="lazy" // Optional: Enables lazy loading
+                      loading="lazy"
                     />
                   </div>
                 </SwiperSlide>
@@ -223,7 +271,9 @@ const Home = () => {
           )}
         </div>
         <div className="services-button center margin-top">
-          <a href="/transfers" className="btn btn-primary">Transfers</a>
+          <a href="/transfers" className="btn btn-primary">
+            Transfers
+          </a>
         </div>
       </section>
 
@@ -231,8 +281,11 @@ const Home = () => {
       <section className="container players-slider-section">
         <div className="services-overview-title">
           <h1>Players</h1>
-          <p style={{padding:"20px"}}>
-            Lorem ipsum dolor sit amet consectetur. Rhoncus in vel faucibus augue. Tempus nec egestas sapien turpis pharetra eleifend pharetra aliquam amet. Tempor mauris massa diam mi quis ac fusce. Urna ipsum volutpat pretium elit.
+          <p style={{ padding: '20px' }}>
+            Lorem ipsum dolor sit amet consectetur. Rhoncus in vel faucibus
+            augue. Tempus nec egestas sapien turpis pharetra eleifend pharetra
+            aliquam amet. Tempor mauris massa diam mi quis ac fusce. Urna ipsum
+            volutpat pretium elit.
           </p>
         </div>
         <div className="players-slider-container">
@@ -249,27 +302,40 @@ const Home = () => {
                 pauseOnMouseEnter: true, // Pause autoplay on hover
               }}
               loop={true}
-              
             >
               {players.map((player, index) => (
                 <SwiperSlide key={index}>
                   <div className="player-slide-wrapper">
                     <img
-                      src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${player.image}`}
+                      src={player.image}
                       alt={player.name}
                       className="player-img"
-                      loading="lazy" // Optional: Enables lazy loading
+                      loading="lazy"
                     />
                     <div className="player-info">
                       <h1>{player.name}</h1>
                       <h2>{player.clubname}</h2>
                       <ul>
-                        <li><strong>Date of Birth:</strong> {new Date(player.dob).toLocaleDateString()}</li>
-                        <li><strong>Sport:</strong> {player.sport}</li>
-                        <li><strong>Position:</strong> {player.position}</li>
-                        <li><strong>Nationality:</strong> {player.nationality}</li>
+                        <li>
+                          <strong>Date of Birth:</strong>{' '}
+                          {new Date(player.dob).toLocaleDateString()}
+                        </li>
+                        <li>
+                          <strong>Sport:</strong> {player.sport}
+                        </li>
+                        <li>
+                          <strong>Position:</strong> {player.position}
+                        </li>
+                        <li>
+                          <strong>Nationality:</strong> {player.nationality}
+                        </li>
                       </ul>
-                      <Link to={`/players/${player._id}`} className="btn btn-secondary">Read more</Link>
+                      <Link
+                        to={`/players/${player._id}`}
+                        className="btn btn-secondary"
+                      >
+                        Read more
+                      </Link>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -278,24 +344,30 @@ const Home = () => {
           )}
         </div>
         <div className="services-button center">
-          <a href="/players" style={{marginTop:"50px"}} className="btn btn-primary">Players</a>
+          <a href="/players" style={{ marginTop: '50px' }} className="btn btn-primary">
+            Players
+          </a>
         </div>
       </section>
 
-      // Blog Section
-<section className="home-blog-section container">
-  <div className="blog-text-section">
-    <h2>Blog</h2>
-    <p>Lorem ipsum dolor sit amet consectetur. Rhoncus in vel faucibus augue. Tempus nec egestas sapien turpis pharetra eleifend pharetra aliquam amet. Tempor mauris massa diam mi quis ac fusce. Urna ipsum volutpat pretium elit.</p>
-    <a href='/blog' className="btn btn-primary">View All Blogs</a>
-  </div>
-  <div className="blog-slider-section">
-    {latestPost && (
-      <PostItem post={latestPost} />
-    )}
-  </div>
-</section>
-
+      {/* Blog Section */}
+      <section className="home-blog-section container">
+        <div className="blog-text-section">
+          <h2>Blog</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur. Rhoncus in vel faucibus
+            augue. Tempus nec egestas sapien turpis pharetra eleifend pharetra
+            aliquam amet. Tempor mauris massa diam mi quis ac fusce. Urna ipsum
+            volutpat pretium elit.
+          </p>
+          <a href="/blog" className="btn btn-primary">
+            View All Blogs
+          </a>
+        </div>
+        <div className="blog-slider-section">
+          {latestPost && <PostItem post={latestPost} />}
+        </div>
+      </section>
     </div>
   );
 };
