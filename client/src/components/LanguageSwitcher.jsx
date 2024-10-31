@@ -1,4 +1,5 @@
-// LanguageSwitcher.jsx
+// src/components/LanguageSwitcher.jsx
+
 import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import './../css/languageswitcher.css'; // The CSS you provided
@@ -10,15 +11,43 @@ const LanguageSwitcher = () => {
   const [isChecked, setIsChecked] = useState(false); // Default to English (unchecked)
   const { currentUser } = useContext(UserContext); // Access currentUser from context
 
+  // List of languages
+  const languages = [
+    { label: 'EN', languageCode: 'en' },
+    { label: 'AL', languageCode: 'sq' },
+  ];
+
   useEffect(() => {
-    // Set the initial state based on the current language
-    setIsChecked(i18n.language === 'al');
-  }, [i18n.language]);
+    // Get the saved language from localStorage
+    const savedLanguage = localStorage.getItem('preferredLanguage');
+    if (savedLanguage) {
+      try {
+        const lang = JSON.parse(savedLanguage);
+        i18n.changeLanguage(lang.languageCode);
+        setIsChecked(lang.languageCode === 'sq');
+      } catch (error) {
+        console.error('Failed to parse saved language:', error);
+        // If parsing fails, default to English
+        i18n.changeLanguage('en');
+        setIsChecked(false);
+        // Save default language to localStorage
+        localStorage.setItem('preferredLanguage', JSON.stringify({ label: 'EN', languageCode: 'en' }));
+      }
+    } else {
+      // If no saved language, default to English
+      i18n.changeLanguage('en');
+      setIsChecked(false);
+      // Save default language to localStorage
+      localStorage.setItem('preferredLanguage', JSON.stringify({ label: 'EN', languageCode: 'en' }));
+    }
+  }, [i18n]);
 
   const toggleLanguage = () => {
-    const newLanguage = isChecked ? 'en' : 'al';
-    i18n.changeLanguage(newLanguage);
+    const newLanguage = isChecked ? languages[0] : languages[1];
+    i18n.changeLanguage(newLanguage.languageCode);
     setIsChecked(!isChecked);
+    // Save the selected language to localStorage
+    localStorage.setItem('preferredLanguage', JSON.stringify(newLanguage));
   };
 
   return (

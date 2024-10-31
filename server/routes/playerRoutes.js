@@ -1,55 +1,45 @@
+// routes/playerRoutes.js
+
 const { Router } = require('express');
+const multer = require('multer');
+const storage = multer.memoryStorage(); // Store files in memory for Vercel Blob
+const upload = multer({ storage });
+
 const {
-    createPlayer,
-    getPlayers,
-    getPlayer,
-    editPlayer,
-    deletePlayer
+  createPlayer,
+  getPlayers,
+  getPlayer,
+  editPlayer,
+  deletePlayer,
 } = require('../controllers/playerControllers');
 const authMiddleware = require('../middleware/authMiddleware');
-const archiver = require('archiver');
-const path = require('path');
-const Player = require('../models/playerModel'); // Adjust the path to your Player model if necessary
 
 const router = Router();
 
-router.post('/', authMiddleware, createPlayer);    // Protected route to create a player
-router.get('/', getPlayers);                       // Public route to get all players
-router.get('/:id', getPlayer);                     // Public route to get a single player by ID
-router.patch('/:id', authMiddleware, editPlayer);  // Protected route to edit a player
-router.delete('/:id', authMiddleware, deletePlayer); // Protected route to delete a player
+// For handling multiple file uploads (image and documents)
+router.post(
+  '/',
+  authMiddleware,
+  upload.fields([
+    { name: 'image', maxCount: 1 },
+    { name: 'documents', maxCount: 10 },
+  ]),
+  createPlayer
+);
 
-// Route to download all player documents as a ZIP file
-router.get('/:id/documents/download', async (req, res) => {
-    const playerId = req.params.id;
+router.get('/', getPlayers);
+router.get('/:id', getPlayer);
 
-    try {
-        // Fetch the player and their documents
-        const player = await Player.findById(playerId);
-        const documents = player.documents; // Assuming this is an array of document paths
+router.patch(
+  '/:id',
+  authMiddleware,
+  upload.fields([
+    { name: 'image', maxCount: 1 },
+    { name: 'documents', maxCount: 10 },
+  ]),
+  editPlayer
+);
 
-        // Create a ZIP archive
-        const archive = archiver('zip', {
-            zlib: { level: 9 } // Set compression level
-        });
-
-        // Set the response to download the file
-        res.attachment(`${player.name}_documents.zip`);
-
-        archive.pipe(res);
-
-        // Append each document to the ZIP
-        documents.forEach((doc) => {
-            const filePath = path.join(__dirname, '..', 'uploads', doc); // Adjust the file path as needed
-            archive.file(filePath, { name: path.basename(doc) });
-        });
-
-        // Finalize the archive (this is when the file gets sent)
-        await archive.finalize();
-    } catch (error) {
-        console.error('Error creating ZIP file:', error);
-        res.status(500).send('Error downloading documents');
-    }
-});
+router.delete('/:id', authMiddleware, deletePlayer);
 
 module.exports = router;

@@ -1,4 +1,10 @@
+// routes/transferRoutes.js
+
 const { Router } = require('express');
+const multer = require('multer');
+const storage = multer.memoryStorage(); // Store files in memory for Vercel Blob
+const upload = multer({ storage });
+
 const {
   createTransfer,
   getTransfers,
@@ -7,9 +13,6 @@ const {
   deleteTransfer,
 } = require('../controllers/transferControllers');
 const authMiddleware = require('../middleware/authMiddleware');
-const multer = require('multer');
-const storage = multer.memoryStorage(); // Store files in memory for Vercel Blob
-const upload = multer({ storage });
 
 const router = Router();
 

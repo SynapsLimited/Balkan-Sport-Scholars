@@ -1,3 +1,5 @@
+// src/pages/CreatePost.jsx
+
 import React, { useState, useContext, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -20,7 +22,6 @@ const CreatePost = () => {
   const { currentUser } = useContext(UserContext);
   const token = currentUser?.token;
 
-  // Redirect to login page if the user isn't logged in
   useEffect(() => {
     if (!token) {
       navigate('/login');
@@ -53,12 +54,12 @@ const CreatePost = () => {
 
   const POST_CATEGORIES = [
     'Uncategorized',
-    'Football',
-    'Basketball',
-    'Volleyball',
-    'Tennis',
-    'Rugby',
-    'ESports',
+    'Dairy',
+    'Ice Cream',
+    'Bakery',
+    'Pastry',
+    'Packaging',
+    'Equipment',
     'Other',
   ];
 
@@ -80,27 +81,20 @@ const CreatePost = () => {
     }
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/posts`,
-        postData,
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/posts`, postData, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' },
+      });
       if (response.status === 201) {
         navigate('/blog');
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'An error occurred');
+      setError(err.response.data.message);
     }
   };
 
   return (
-    <section className="create-post">
+    <section data-aos="fade-up" className="create-post">
       <div className="container">
         <h2>Create Post</h2>
         {error && <p className="form-error-message">{error}</p>}
@@ -112,11 +106,7 @@ const CreatePost = () => {
             onChange={(e) => setTitle(e.target.value)}
             autoFocus
           />
-          <select
-            name="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
+          <select name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
             {POST_CATEGORIES.map((cat) => (
               <option key={cat}>{cat}</option>
             ))}
@@ -132,19 +122,19 @@ const CreatePost = () => {
               className="custom-file-input"
               type="file"
               onChange={(e) => setThumbnail(e.target.files[0])}
-              accept="image/png, image/jpeg, image/jpg"
+              accept="png, jpg, jpeg"
             />
           </div>
 
-          <div className="custom-checkbox-container">
-            <label>
-              <input
-                type="checkbox"
-                checked={addTranslation}
-                onChange={() => setAddTranslation(!addTranslation)}
-              />
-              Add translation in English
-            </label>
+      <div className='custom-checkbox-container'>
+          <label>
+            <input
+              type="checkbox"
+              checked={addTranslation}
+              onChange={() => setAddTranslation(!addTranslation)}
+            />
+            Add translation in English
+          </label>
           </div>
 
           {addTranslation && (

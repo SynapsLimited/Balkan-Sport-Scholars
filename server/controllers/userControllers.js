@@ -1,17 +1,37 @@
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const fs = require('fs')
-const path = require('path')
-const {v4: uuid} = require("uuid")
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/userModel');
+const HttpError = require("../models/errorModel");
+const { put } = require('@vercel/blob'); // Import the Vercel Blob library
+const multer = require('multer');
+
+// Setup multer to store files in memory for Vercel Blob
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+const uploadToVercelBlob = async (fileBuffer, fileName) => {
+    try {
+        const { url } = await put(fileName, fileBuffer, {
+            access: 'public', // Make sure the file is publicly accessible
+            token: process.env.BLOB_READ_WRITE_TOKEN, // Blob storage token
+            headers: {
+                Authorization: `Bearer ${process.env.VERCEL_ACCESS_TOKEN}` // Vercel API token for authorization
+            }
+        });
+        console.log("Uploaded successfully to Vercel Blob: ", url); // Log URL
+        return url; // Return the uploaded file URL
+    } catch (error) {
+        console.error("Error uploading file to Vercel Blob:", error);
+        throw new Error("Failed to upload file to Vercel Blob");
+    }
+};
 
 
-const User = require('../models/userModel')
-const HttpError = require("../models/errorModel")
+
 
 // Define allowed emails
 const allowedEmails = [
-    "rahmaniendi26@gmail.com",
-    "bujar@synapslimited.eu",
+    "contact@adsh2014.al"
 ];
 
 
@@ -117,57 +137,54 @@ const getUser = async (req, res, next) => {
 
 // ======================= Change User Avatar (profile picture)
 // POST : api/users/change-avatar
-//UNPROTECTED
+// PROTECTED
 
 const changeAvatar = async (req, res, next) => {
     try {
-        console.log("Received request files:", req.files); // Log the received files
+        const file = req.file; // Access the file uploaded by Multer
 
-        if (!req.files || !req.files.avatar) {
-            return next(new HttpError("Please choose an image.", 422));
+        if (!file) {
+            console.log("No file received");
+            return res.status(422).json({ message: "No avatar file provided." });
         }
 
-        // find user from database
+        console.log("File received: ", file.originalname);
+
+        // Multer stores the file in memory as a buffer
+        const avatarBuffer = file.buffer; // Get buffer from memory
+        const avatarFileName = `avatars/${Date.now()}.jpg`; // Generate a unique file name
+
+        // Upload to Vercel Blob
+        const avatarUrl = await uploadToVercelBlob(avatarBuffer, avatarFileName);
+        console.log("Uploaded to Vercel Blob. URL: ", avatarUrl);
+
+        // Find the user in the database
         const user = await User.findById(req.user.id);
         if (!user) {
-            return next(new HttpError("User not found.", 404));
+            console.log("User not found");
+            return res.status(404).json({ message: "User not found." });
         }
 
-        // delete old avatar if exists
-        if (user.avatar) {
-            fs.unlink(path.join(__dirname, '..', 'uploads', user.avatar), (err) => {
-                if (err) {
-                    return next(new HttpError(err));
-                }
-            });
-        }
+        // Update the avatar and avatarPublicId fields
+        user.avatar = avatarUrl;  // Set the new avatar URL
+        user.avatarPublicId = avatarFileName;  // Set the public ID to track the file
 
-        const { avatar } = req.files;
+        // Save the user with the new avatar URL in MongoDB
+        const updatedUser = await user.save();
+        console.log("User updated in MongoDB: ", updatedUser);  // Ensure this log shows the updated document
 
-        // check file size
-        if (avatar.size > 2000000) {
-            return next(new HttpError("Profile picture too big. Should be less than 2MB", 422));
-        }
-
-        let fileName = avatar.name;
-        let splittedFilename = fileName.split('.');
-        let newFilename = `${splittedFilename[0]}-${uuid()}.${splittedFilename[splittedFilename.length - 1]}`;
-        
-        avatar.mv(path.join(__dirname, '..', 'uploads', newFilename), async (err) => {
-            if (err) {
-                return next(new HttpError(err));
-            }
-
-            const updatedAvatar = await User.findByIdAndUpdate(req.user.id, { avatar: newFilename }, { new: true });
-            if (!updatedAvatar) {
-                return next(new HttpError("Avatar couldn't be changed", 422));
-            }
-            res.status(200).json(updatedAvatar);
-        });
+        // Return the new avatar URL in the response
+        return res.status(200).json({ avatar: updatedUser.avatar });
     } catch (error) {
-        return next(new HttpError(error));
+        console.error("Error in changing avatar:", error);
+        return res.status(500).json({ message: "Failed to update avatar." });
     }
 };
+
+
+
+
+
 
 
 
@@ -227,23 +244,12 @@ const editUser = async (req, res, next) => {
 
 const getAuthors = async (req, res, next) => {
     try {
-        // Fetch authors from the database, excluding the password field
         const authors = await User.find().select('-password');
-        
-        // Send the authors as a JSON response
         res.json(authors);
-    } catch (error) {
-        // Log the error (optional, but useful for debugging)
-        console.error('Error fetching authors:', error);
-
-        // Create a new error object with a custom message and status code
-        const httpError = new HttpError('Fetching authors failed, please try again later.', 500);
-
-        // Pass the error to the next middleware (usually an error handling middleware)
-        return next(httpError);
+    }   catch (error) {
+        return next(new HttpError(error))
     }
 }
-
 
 
 
