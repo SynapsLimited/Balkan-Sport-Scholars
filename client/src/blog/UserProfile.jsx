@@ -1,8 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaEdit } from "react-icons/fa";
-import { FaCheck } from "react-icons/fa";
-import './../css/blog.css'; // Assuming you have a corresponding CSS file for styling
+import { FaEdit, FaCheck } from "react-icons/fa";
+import './../css/blog.css';
 import { UserContext } from '../context/userContext';
 import axios from 'axios';
 
@@ -48,17 +47,24 @@ const UserProfile = () => {
   }, [currentUser.id, token]);
 
   const changeAvatarHandler = async () => {
-    setIsAvatarTouched(false);
     try {
-      const postData = new FormData();
-      postData.set('avatar', avatar);
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/change-avatar`, postData, {
-        withCredentials: true,
-        headers: { Authorization: `Bearer ${token}` },
+      if (!avatar) return;
+
+      const formData = new FormData();
+      formData.append('avatar', avatar);
+
+      // Call backend to upload the avatar and update user profile
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/users/change-avatar`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
       });
-      setAvatarPreview(response?.data.avatar);
+
+      setError('');
     } catch (error) {
-      console.log(error);
+      console.error('Error changing avatar:', error);
+      setError('Failed to update avatar.');
     }
   };
 
@@ -86,20 +92,21 @@ const UserProfile = () => {
 
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
-    setAvatar(file);
-    setAvatarPreview(URL.createObjectURL(file));
-    setIsAvatarTouched(true);
+    if (file) {
+      setAvatar(file);
+      setAvatarPreview(URL.createObjectURL(file));
+      setIsAvatarTouched(true);
+    }
   };
 
   return (
-    <section className="profile">
+    <section data-aos="fade-up" className="profile">
       <div className="container profile-container">
-        <Link to={`/myposts/${currentUser.id}`} className="btn btn-secondary">Dashboard</Link>
 
         <div className="profile-details">
           <div className="avatar-wrapper">
             <div className="profile-avatar">
-              <img src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${avatarPreview}`} alt="" />
+              <img src={avatarPreview} alt="User Avatar" />
             </div>
             {/* Form to update avatar */}
             <form className="avatar-form">
@@ -114,16 +121,22 @@ const UserProfile = () => {
                 <FaEdit /> 
               </label>
             </form>
-            {isAvatarTouched && <button className="btn btn-primary profile-avatar-btn" onClick={changeAvatarHandler}><FaCheck/></button>}
+            {isAvatarTouched && (
+              <button 
+                className="btn btn-primary profile-avatar-btn" 
+                onClick={changeAvatarHandler}
+                type="button"
+              >
+                <FaCheck />
+              </button>
+            )}
           </div>
 
           <h1>{currentUser.name}</h1>
 
           {/* Form to update user details */}
           <form className="form profile-form" onSubmit={updateUserDetails}>
-            {error && <p className="form-error-message">
-              {error}
-            </p>}
+            {error && <p className="form-error-message">{error}</p>}
             <input type="text" placeholder="Full Name" value={name} onChange={e => setName(e.target.value)} />
             <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
             <input type="password" placeholder="Current Password" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} />
