@@ -1,0 +1,365 @@
+/* ================== Header for Players ============= */
+
+.header-player {
+    text-align: center;
+    margin-bottom: 4rem; /* Reduced margin for better spacing */
+}
+
+.player-home-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: -30px; /* Adjusted for better alignment */
+}
+
+.player-title {
+    text-align: center;
+    padding: 3rem 2rem 2rem; /* Adjusted padding for better layout */
+}
+
+.player-title-filtered {
+    text-align: center;
+    margin-top: 4rem; /* Reduced margin */
+    margin-bottom: 2rem;
+}
+
+.player-title p {
+    margin-top: 15px; /* Adjusted for better spacing */
+}
+
+
+/* ================== Player List ============= */
+
+.players-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.players-container {
+    margin-top: 1rem;
+}
+
+.player {
+    background: var(--color-white-transparent);
+    padding: 1rem;
+    border-radius: 22px;
+    padding-bottom: 2rem;
+    transition: var(--transition);
+    cursor: default;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.player p, h2, h3, h4, h5, h6 {
+    color: var(--color-background);
+}
+
+.player:hover {
+    box-shadow: 4px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+.player-thumbnail {
+    border-radius: 22px;
+    overflow: hidden;
+    height: auto;
+}
+
+.player-content {
+    margin-top: 1.5rem; 
+}
+
+.player-content h3 {
+    margin: 1rem 0 0.6rem;
+}
+
+.player-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 2rem;
+}
+
+.player-text {
+    font-size: 0.85rem;
+}
+
+.read-more-container {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+
+/* ================== Player Detail ============= */
+
+.player-detail {
+    margin-top: 10rem;
+    width: var(--form-width);
+    background: var(--color-white-transparent);
+    margin-inline: auto;
+    border-radius: 22px;
+    padding: 2rem;
+}
+
+.player-detail-header {
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem; /* Increased margin for better spacing */
+}
+
+.player-detail-header p {
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 1.4rem;
+}
+
+.player-detail-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.player-detail-thumbnail {
+    margin: 1rem 0;
+    height: fit-content;
+    max-height: 30rem;
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.player-detail p {
+    margin-bottom: 1.2rem; /* Increased margin between paragraphs */
+}
+
+.player-documents {
+    margin-bottom: 2.5rem; /* Added margin for spacing between sections */
+}
+
+.player-video {
+    margin-bottom: 2.5rem; /* Added margin for spacing between sections */
+}
+
+.player-video iframe {
+    min-height: 200px;
+    max-height: 600px;
+    border-radius: 22px;
+}
+
+/* ================== Responsive Design ============= */
+
+/* Tablet */
+@media screen and (max-width: 1100px) {
+    .player-detail {
+        width: 90%;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .player-detail-buttons {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .player-video iframe {
+        width: 100%;
+        max-width: 100%;
+        
+        border-radius: 22px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 800px) {
+    .player-detail {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .player-detail-buttons {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .player-video iframe {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        border-radius: 22px;
+    }
+}
+
+
+/* ================== Create & Edit Player ============= */
+
+.create-player, .edit-player {
+    margin-top: 3rem;
+    width: 80%; /* Increased width for better usability */
+    max-width: 800px; /* Added max-width for larger screens */
+    margin-inline: auto;
+    min-height: calc(100vh - 12rem); /* Adjusted height to ensure background covers the entire viewport */
+    display: grid;
+    place-items: center;
+    padding-bottom: 50px; /* Reduced margin for better spacing */
+}
+
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Slightly increased gap for better readability */
+    filter: drop-shadow(3px 4px 5px rgba(26, 26, 26, 0.374));
+    width: 100%; /* Ensure form takes full container width */
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.8rem 1.2rem; /* Increased padding for better usability */
+    border-radius: 22px;
+    resize: none;
+    font-size: 1rem; /* Increased font size for better readability */
+}
+
+.form-error-message {
+    background: var(--color-primary);
+    color: var(--color-background);
+    font-size: 0.9rem; /* Slightly larger for emphasis */
+    padding: 0.8rem 1rem;
+    border-radius: 22px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.btn-submit {
+    width: 50%; /* Increased width for better alignment */
+    height: 45px; /* Slightly taller button */
+    align-self: center;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem; /* Increased font size for better usability */
+}
+
+/* Custom File Input */
+.custom-file-input-container {
+    margin-top: 1rem;
+}
+
+.custom-file-input {
+    font-size: 1rem; /* Increased font size */
+    border-radius: 22px;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.custom-file-input::file-selector-button {
+    padding: 0.5rem 1.5rem; /* Increased padding */
+    font-size: 1rem; /* Increased font size */
+    border-radius: 22px;
+    border: 1px solid var(--color-white);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+}
+
+.custom-file-input::file-selector-button:hover {
+    background: var(--color-background);
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+
+
+
+/* ================== Responsive Design ============= */
+
+/* Tablet */
+@media screen and (max-width: 1100px) {
+    .players-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .player-detail {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .player-detail-buttons {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .dashboard-player {
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .dashboard-player-info {
+        gap: 1.5rem;
+    }
+
+    .dashboard-player-thumbnail {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+    }
+
+    .create-player, .edit-player {
+        width: 100%;
+    }
+  
+    .btn-submit {
+        width: 50%;
+        text-align: center;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 800px) {
+    .players-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .player-detail {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .player-detail-buttons {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .dashboard-player {
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .dashboard-player-info {
+        gap: 1.5rem;
+    }
+
+    .dashboard-player-thumbnail {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+    }
+
+    .create-player, .edit-player {
+        width: 100%;
+    }
+  
+    .btn-submit {
+        width: 50%;
+    }
+}

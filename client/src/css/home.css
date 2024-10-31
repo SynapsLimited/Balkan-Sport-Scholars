@@ -1,0 +1,509 @@
+/*========================== Information Section ===================================*/
+
+.info-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.info-left {
+  flex: 1;
+}
+
+.info-left h2 {
+  text-align: left;
+  color: var(--color-background);
+}
+
+.info-left p {
+  margin-bottom: 50px;
+  color: var(--color-background);
+}
+
+.info-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-right img {
+  max-width: 400px;
+  height: auto;
+  margin-left: 100px;
+}
+
+/*========================== Facts Section ===================================*/
+
+.facts-title{
+  margin-top: 100px;
+  margin-bottom: 70px;
+}
+.wrapper-counter {
+  position: relative;
+  top: 40%;
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+  padding: 3.5rem 1.5rem;
+}
+
+.container-counter {
+  width: 28vmin;
+  height: 30vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1em 0;
+  position: relative;
+  font-size: 16px;
+  border-radius: 0.5em;
+  background-color: var(--color-background);
+  box-shadow: 4px 5px 4px 0 rgba(90, 91, 95, 0.25);
+  border-bottom: 10px solid var(--color-primary);
+  transition: var(--transition);
+}
+
+.container-counter:hover {
+  transform: scale(1.1);
+}
+
+span.num {
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 3em;
+}
+
+span.text {
+  color: var(--color-primary);
+  font-size: 1.2em;
+  text-align: center;
+  padding: 1em 0;
+  font-weight: 700;
+  line-height: 0;
+}
+
+/*====================  Services Overview Section  =============================*/
+
+.services-overview-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center align both content and image */
+  padding: 30px 30px; /* Add padding top and bottom */
+}
+
+.services-overview-title {
+  align-self: center; /* Center the title */
+  padding-top: 20px; /* Space from the top */
+  text-align: center; /* Center align text */
+  margin-bottom: 4rem; /* Add margin bottom to separate from blobs */
+}
+
+.services-overview-title h1 {
+  font-size: 2.4rem; /* Increase font size */
+  margin:30px;
+}
+
+.services-overview-blobs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* Increase gap between blobs */
+  margin: 0; /* Remove margin-left */
+  margin-bottom: 60px;
+}
+
+.service-overview-blob-art {
+  background: var(--color-primary-transparent);
+  border-radius: 20px; /* Rounded corners for the blob */
+  padding: 20px; /* Padding inside the blob */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none; /* Remove underline from the link */
+  color: var(--color-background); /* Text color */
+  font-weight: 1000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1); /* Shadow for the blob */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.service-overview-blob-art:hover {
+  transform: translateY(-5px); /* Slightly raise the blob on hover */
+  box-shadow: 0px 8px 3px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.service-overview-blob-art img {
+  max-width: 200px; /* Increase based on your icon size */
+  margin-bottom: 10px; /* Space between icon and text */
+}
+
+/*====================  Transfers Section ==================================*/
+
+.image-slider-section-home {
+  padding: 100px 0;
+}
+
+.image-slider-container {
+  width: 100%;
+  max-width: 1024px; /* Adjust as needed */
+  margin: 0 auto; /* Center the slider */
+}
+
+.swiper-container {
+  width: 80%;
+  aspect-ratio: 16 / 9; /* Adjust based on design */
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.image-slide-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.slide-image:hover {
+  transform: scale(1.02);
+}
+
+.services-button.center {
+  display: flex;
+  justify-content: center;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+/*====================  Players Slider Section ==================================*/
+
+.players-slider-section {
+  padding: 50px 30px;
+}
+
+.players-slider-container {
+  width: 100%;
+  max-width: 1024px; /* Adjust as needed */
+  margin: 0 auto; /* Center the slider */
+}
+
+.player-slide-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background: var(--color-white-transparent);
+  border-radius: 22px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  transition: var(--transition);
+  border: solid 1.2px var(--color-primary-transparent);
+}
+
+.player-slide-wrapper:hover {
+  transform: scale(1.02);
+}
+
+.player-img {
+  width: 40%; /* Adjust width as needed */
+  border-radius: 22px;
+  box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.player-img:hover {
+  transform: scale(1.02);
+}
+
+.player-info {
+  flex: 1;
+  padding-left: 100px;
+  color: var(--color-background);
+}
+
+.player-info h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.player-info h2 {
+  font-size: 1.3rem;
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.player-info ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.player-info ul li {
+  margin-bottom: 10px;
+}
+
+/*========================== Blog Section ===================================*/
+
+.home-blog-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 100px; /* Add space between the text and the image */
+  text-align: left;
+  margin-top: 50px;
+}
+
+.blog-text-section {
+  flex: 1;
+}
+
+.blog-text-section h2 {
+  text-align: left;
+  color: var(--color-background);
+  margin-bottom: 20px;
+}
+
+.blog-text-section p {
+  margin-bottom: 50px;
+  color: var(--color-background);
+}
+
+.blog-slider-section {
+  flex: 1;
+  display: flex;
+  justify-content: right;
+  align-items: left;
+  text-align: left;
+}
+
+.blog-slider-section img {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 10px; /* Corrected from '10 px' to '10px' */
+  border-radius: 22px;
+}
+
+/*==================== Swiper Navigation Buttons and Pagination ====================*/
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff; /* Change navigation button color */
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.8); /* Change pagination bullet color */
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff; /* Active pagination bullet color */
+}
+
+/*==================== Responsive Adjustments ============================*/
+
+@media screen and (max-width: 1024px) {
+  .wrapper-counter {
+    width: 85vw;
+    gap: 30px;
+    left: 10%;
+  }
+  .container-counter {
+    height: 26vmin;
+    width: 26vmin;
+    font-size: 12px;
+  }
+
+  .services-overview-blobs {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px;
+  }
+  .players-slider-section {
+    padding: 0px;
+  }
+
+  .player-img {
+    width: 50%; /* Make image full width */
+    margin-bottom: 20px; /* Space between image and info */
+  }
+
+  .player-info {
+    padding-left: 0; /* Remove left padding */
+    width: 100%; /* Make player info full width */
+    text-align: center;
+  }
+
+  .player-info ul {
+    text-align: center;
+  }
+
+  .player-info h2 {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .image-slider-section-home {
+    padding: 20px 0; /* Reduce padding to allow more space for the image */
+  }
+
+  .image-slide-wrapper {
+    padding: 0; /* Remove any padding around the image */
+    margin: 0; /* Remove margins to allow image to take full width */
+    width: 100%;
+    padding-right: 40px;
+  }
+
+  .image-slide-wrapper img {
+    margin: 0;
+  }
+
+  .info-section {
+    flex-direction: column;
+    text-align: center;
+    align-items: center; /* Center-align items */
+  }
+
+  .info-left {
+    order: 2;
+    text-align: center; /* Center text */
+  }
+
+  .info-left h2 {
+    text-align: center;
+    font-size: 35px;
+  }
+
+  .info-right {
+    order: 1;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Center image */
+  }
+
+  .info-right img {
+    margin-left: 0; /* Remove left margin */
+    max-width: 280px;
+  }
+
+  .wrapper-counter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center; /* Horizontally center the items */
+    align-items: center; /* Vertically center the items */
+  }
+  .container-counter {
+    flex: 0 0 calc(50% - 40px); /* Maintain 2 items per row */
+    max-width: calc(50% - 40px); /* Adjusted maximum width */
+    height: 30vmin;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .services-overview-blobs {
+    grid-template-columns: 1fr; /* 1 column */
+    gap: 20px;
+  }
+
+  .service-overview-blob-art img {
+    max-width: 150px; /* Adjust the icon size for mobile */
+  }
+
+  .home-blog-section {
+    flex-direction: column;
+    text-align: center;
+    align-items: center; /* Center-align items */
+    gap: 20px; /* Adjust gap for mobile view */
+  }
+
+  .blog-text-section {
+    order: 1; /* Make sure the text section is first */
+    text-align: center; /* Center text */
+  }
+
+  .blog-text-section h2 {
+    text-align: center;
+  }
+
+  .blog-slider-section {
+    order: 2; /* Image comes after the title */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Center image */
+  }
+
+  .blog-slider-section img {
+    margin-left: 0; /* Remove left margin for mobile view */
+    max-width: 280px;
+  }
+
+  .player-info ul,
+  .player-info h2,
+  .player-info h1 {
+    text-align: center;
+  }
+
+ .player-slide-wrapper {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items */
+    text-align: center;
+    padding-left: 0;
+    padding: 20px;
+  }
+
+  .player-img {
+    width: 300px; /* Make image full width */
+    margin-bottom: 20px; /* Space between image and info */
+  }
+
+  .player-info {
+    padding-left: 0; /* Remove left padding */
+    width: 100%; /* Make player info full width */
+  }
+
+  .player-info ul {
+    text-align: center; /* Align text to the left */
+  }
+
+  .slide-image {
+    width: 735px;
+  }
+  
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper-counter {
+    gap: 15px;
+    left: 10%;
+  }
+  .container-counter {
+    flex: 0 0 100%; /* Make each item full width for smaller screens */
+    max-width: 100%; /* Ensure it takes up the full width */
+    height: 25vmin;
+    font-size: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide-image {
+    width: 420px;
+  }
+}

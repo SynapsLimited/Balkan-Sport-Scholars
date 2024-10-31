@@ -1,0 +1,494 @@
+/* ================  Hero Adjustments   ============================== */
+
+.header-about {
+    text-align: center;
+    margin-bottom: 8rem;
+}
+
+strong {
+    color: var(--color-primary);
+}
+
+b {
+    color: var(--color-secondary);
+}
+
+
+  
+  /* ================  Presentation Section   ============================== */
+
+
+  .presentation-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* You can adjust this value to manage space between elements */
+    margin-top: 100px;
+  }
+  
+  .presentation-text,
+  .presentation-image {
+    flex: 1; /* This allows both children to grow and take up equal space */
+    min-width: 250px; /* Minimum width before wrapping */
+  }
+  
+  .presentation-text h2,
+  .presentation-text p {
+    text-align: left;
+    margin-left: 20px; /* Adjust as needed for your design */
+  }
+  
+
+  
+
+  .presentation-image {
+    transition: var(--transition);
+    filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, 0.4)); /* Initial drop shadow */
+    margin-left: 40px;
+    max-width: 400px;
+  }
+
+  .presentation-image:hover {
+    filter: drop-shadow(5px 6px 2px rgba(0, 0, 0, 0.4)); /* Initial drop shadow */
+    transform: scale(1.03);
+  }
+
+ /* ================  Card Section   ============================== */
+ .card-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* Adjust the space between the cards */
+  flex-wrap: wrap; /* Wrap the items for responsiveness */
+  margin-top: 150px;
+}
+
+.card {
+  background-color: var(--color-white-transparent);
+  color: var(--color-background);
+  border-radius: 50px;
+  padding: 50px;
+  box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.4); /* Optional shadow for depth */
+  text-align: center;
+  flex-basis: calc(33.333% - 20px); /* Adjust the width of the cards */
+  max-width: calc(33.333% - 50px); /* Maximum width of the cards */
+  box-sizing: border-box; /* Include padding and border in the element's width and height */
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: 6px 8px 2px rgba(0, 0, 0, 0.4); /* Optional shadow for depth */
+  transform: scale(1.05);
+}
+
+.card h1 {
+  margin-top: 0;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px; /* Adjust the space between icon and text */
+}
+
+
+  
+  .card-content img {
+    margin-top: 10px;
+    width: 100px; /* Maintain the aspect ratio of the image */
+    height: auto; /* Maintain the aspect ratio of the image */
+    transition: var(--transition);
+  }
+
+  .card-content img:hover {
+    transform: scale(1.05);
+    filter: invert(10%) sepia(50%) saturate(1000%) hue-rotate(180deg)
+  }
+
+
+
+  /* ===================== Team Section ===================================== */
+  
+  .team-section {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+  }
+
+  .team-title-container {
+    text-align: center;
+    margin-top: 5rem; /* Space between title and team cards */
+    color: var(--color-background); /* Assuming you have a primary color variable */
+    letter-spacing: 2px;
+
+}
+
+
+
+  .team-wrapper {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-container {
+    height: 400px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+}
+
+.team-card {
+    width: 80px;
+    border-radius: .75rem;
+    background-size: cover;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin: 0 10px;
+    display: flex;
+    align-items: flex-end;
+    transition: .6s cubic-bezier(.28,-0.03,0,.99);
+    box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
+}
+
+.team-card > .row {
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.team-card > .row > .icon {
+    background: #223;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    opacity: 0;
+}
+
+.team-card > .row > .description {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    height: 80px;
+    width: 520px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition-delay: .3s;
+    transition: all .3s ease;
+}
+
+.description p {
+    color: #b0b0ba;
+    padding-top: 5px;
+}
+
+.description h4 {
+    text-transform: uppercase;
+}
+
+.team-wrapper input {
+    display: none;
+}
+
+.team-wrapper input:checked + label {
+    width: 600px;
+}
+
+.team-wrapper input:checked + label .description {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.team-wrapper input:checked + label .icon {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.team-card[for="c1"] {
+    background-image: url('');
+}
+.team-card[for="c2"] {
+    background-image: url('');
+}
+.team-card[for="c3"] {
+    background-image: url('');
+}
+.team-card[for="c4"] {
+    background-image: url('');
+}
+
+
+
+
+
+  /* ================  Tablet   ============================== */
+
+
+  
+@media screen and (max-width: 1024px) {
+
+
+
+    .presentation-text h1 img {
+      margin: 0 auto; /* Center image in the h1 on smaller screens */
+      height: 80px;
+      width: 100px;
+    }
+
+    .team-title-container {
+      margin-top: 8rem;
+      margin-bottom: -8rem;
+  
+  }
+
+    .team-wrapper {
+        height: 40vh;
+        margin-bottom: 10rem;
+    }
+
+    .team-card {
+        
+        flex-basis: auto;
+        min-width: 300px;
+        height: 100px;
+        padding: 30px;
+      }
+      
+
+      .team-card > .row {
+        margin-top: 20px;
+        flex-direction: column-reverse; 
+       }
+
+      .team-card > .row > .icon {
+        order: 2; /* Push icon to the bottom */
+        background: #223;
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 15px;
+           
+        }
+
+        .team-wrapper {
+          margin-top: 400px;
+        }
+      
+        .team-container {
+          min-height: 280px;
+          height: 600px;
+          width: auto;
+          flex-direction: column;
+          gap: 50px;
+        }
+
+   
+
+      
+        .slide {
+          width: 300px;
+          align-items: flex-start;
+        }
+      
+        .slide > .row {
+          flex-direction: column;
+        }
+      
+        .slide > .row > .icon-1,
+        .icon-2,
+        .icon-3 {
+          width: 80px;
+           }
+      
+        .slide {
+          height: 80px;
+        }
+      
+        .slide > .row > .description {
+          height: 40px;
+          width: 40px;
+          flex-direction: row;
+          transform: translateY(0px);
+          justify-content: left;
+        }
+      
+        .team-wrapper input:checked + label {
+          height: 1200px;
+          width: 500px;
+          min-width: 200px;
+        }
+        .card-section {
+          display: grid; /* Change from flex to grid */
+          grid-template-columns: repeat(2, 1fr); /* Create two columns */
+          gap: 30px; /* Maintain gap between cards */
+          margin-top: 150px;
+        }
+        
+        .card {
+          flex-basis: auto; /* Remove this line, as grid will manage sizing */
+          max-width: none; /* Remove max-width constraint */
+        }
+
+        .card-content p{
+          font-size: 20px;
+        }
+
+
+    
+}
+
+
+  /* ================  Mobile   ============================== */
+
+
+  @media screen and (max-width: 768px) {
+
+    .presentation-section {
+      flex-direction: column;
+      
+    }
+
+    
+  
+    .presentation-text h2,
+    .presentation-text p {
+      margin-left: 0; /* Align text properly on smaller screens */
+      text-align: center;
+    }
+
+    .presentation-text h2 {
+      font-size: 7rem;
+    }
+  
+    .presentation-text h2 img {
+      margin: 0 auto; /* Center image in the h1 on smaller screens */
+      height: 100px;
+      width: 120px;
+    }
+    .presentation-section h2 {
+      text-align: center; /* Center the h2 text */
+      font-size: 2rem; /* Increase the font size */
+      margin-bottom: 50px; /* Add some margin below the h2 */
+    }
+
+    .presentation-image {
+      margin-left: 0;
+    }
+    
+    .card-section {
+      display: flex; /* Change back to flex for mobile */
+      flex-direction: column; /* Ensure cards stack vertically */
+      align-items: center; /* Center-align cards */
+      gap: 30px; /* Maintain gap between cards */
+    }
+  
+    .card {
+      max-width: 90%; /* Increase the card width to 90% of the container */
+      flex-basis: auto; /* Allow the card to grow */
+      padding: 30px; /* Adjust padding as needed */
+    }
+
+
+      .team-title-container h2{
+       font-size: 2rem;
+    
+    }
+
+      .team-section { 
+
+        margin-bottom: 17rem;
+      }
+    
+      .team-card {
+        
+        flex-basis: auto;
+        min-width: 300px;
+        height: 100px;
+        padding: 30px;
+      }
+      
+
+      .team-card > .row {
+        margin-top: 20px;
+        flex-direction: column-reverse; 
+       }
+
+      .team-card > .row > .icon {
+        order: 2; /* Push icon to the bottom */
+        background: #223;
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 15px;
+           
+        }
+
+        .team-wrapper {
+          margin-top: 400px;
+        }
+      
+        .team-container {
+          min-height: 280px;
+          height: 600px;
+          width: auto;
+          flex-direction: column;
+          gap: 50px;
+        }
+
+   
+
+      
+        .slide {
+          width: 300px;
+          align-items: flex-start;
+        }
+      
+        .slide > .row {
+          flex-direction: column;
+        }
+      
+        .slide > .row > .icon-1,
+        .icon-2,
+        .icon-3 {
+          width: 80px;
+           }
+      
+        .slide {
+          height: 80px;
+        }
+      
+        .slide > .row > .description {
+          height: 40px;
+          width: 40px;
+          flex-direction: row;
+          transform: translateY(0px);
+          justify-content: left;
+        }
+      
+        .team-wrapper input:checked + label {
+          height: 1200px;
+          width: 300px;
+          min-width: 200px;
+        }
+      
+
+  }
+  
+
+
+
