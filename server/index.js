@@ -16,13 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // CORS configuration
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'https://balkan-sport-scholars-client.vercel.app', // Correct URL
-  ],
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  origin: '*', // Allow all origins
+  // Note: Using '*' with credentials is not allowed. Remove 'credentials: true' if using '*'.
 }));
+
 
 
 // Route handlers
