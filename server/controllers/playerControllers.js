@@ -31,12 +31,7 @@ const deleteFromVercelBlob = async (fileUrl) => {
       return;
     }
 
-    const parsedUrl = new URL(fileUrl);
-    const pathname = parsedUrl.pathname;
-    const fileName = pathname.substring(pathname.lastIndexOf('/') + 1);
-
-    console.log(`Deleting file: ${fileName}`);
-
+    const fileName = fileUrl.split('/').pop();
     const response = await fetch(`https://api.vercel.com/v2/blob/files/${fileName}`, {
       method: 'DELETE',
       headers: {
@@ -45,9 +40,7 @@ const deleteFromVercelBlob = async (fileUrl) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`Vercel Blob DELETE Error: ${response.status} - ${errorText}`);
-      throw new Error(`Failed to delete from Vercel Blob Storage: ${response.statusText}`);
+      throw new Error('Failed to delete from Vercel Blob Storage');
     }
 
     console.log(`Deleted successfully from Vercel Blob: ${fileName}`);
@@ -325,8 +318,6 @@ const editPlayer = async (req, res, next) => {
 // ======================== Delete Player
 // DELETE: /api/players/:id
 // PROTECTED
-// controllers/playerControllers.js
-
 const deletePlayer = async (req, res, next) => {
   try {
     const playerId = req.params.id;
@@ -346,7 +337,8 @@ const deletePlayer = async (req, res, next) => {
 
     console.log(`Player found: ${player.name}`);
 
-    // Delete image
+    // If deleteFromVercelBlob is removed, ensure it's no longer called
+    /*
     if (player.image) {
       console.log(`Deleting image: ${player.image}`);
       try {
@@ -360,7 +352,6 @@ const deletePlayer = async (req, res, next) => {
       console.log('No image to delete.');
     }
 
-    // Delete documents
     if (player.documentUrls && player.documentUrls.length > 0) {
       for (let url of player.documentUrls) {
         if (url) {
@@ -377,6 +368,7 @@ const deletePlayer = async (req, res, next) => {
     } else {
       console.log('No documents to delete.');
     }
+    */
 
     // Delete the player from the database
     await Player.findByIdAndDelete(playerId);
@@ -388,7 +380,6 @@ const deletePlayer = async (req, res, next) => {
     return next(new HttpError("Couldn't delete player.", 400));
   }
 };
-
 
 
 // ======================== Get all Players
