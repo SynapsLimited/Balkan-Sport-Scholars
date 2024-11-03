@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
               <div className="social-row">
                 <img src={`${process.env.PUBLIC_URL}/assets/email.png`} alt="Email" />
-                <a href="mailto:contact@balkansportscholars.com" className="footer-link">contact@balkansportscholars.com</a>
+                <a href="mailto:balkansportscholars@gmail.com" className="footer-link">balkansportscholars@gmail.com</a>
               </div>
             </div>
           </div>
@@ -42,19 +42,19 @@ const Footer = () => {
             <div className="socials-container">
               <div className="social-row">
                 <img src={`${process.env.PUBLIC_URL}/assets/instagram.png`} alt="Instagram" />
-                <a href="https://www.instagram.com" className="footer-link">Instagram</a>
+                <a href="https://www.instagram.com/balkansportscholars/" className="footer-link">Instagram</a>
               </div>
               <div className="social-row">
                 <img src={`${process.env.PUBLIC_URL}/assets/facebook.png`} alt="Facebook" />
-                <a href="https://www.facebook.com" className="footer-link">Facebook</a>
+                <a href="https://www.facebook.com/profile.php?id=61551249830619" className="footer-link">Facebook</a>
               </div>
               <div className="social-row">
                 <img src={`${process.env.PUBLIC_URL}/assets/youtube.png`} alt="YouTube" />
-                <a href="https://www.youtube.com" className="footer-link">YouTube</a>
+                <a href="https://www.youtube.com/@BalkanSportScholars" className="footer-link">YouTube</a>
               </div>
               <div className="social-row">
                 <img src={`${process.env.PUBLIC_URL}/assets/linkedin.png`} alt="LinkedIn" />
-                <a href="https://www.linkedin.com" className="footer-link">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/endirahmani/" className="footer-link">LinkedIn</a>
               </div>
             </div>
           </div>

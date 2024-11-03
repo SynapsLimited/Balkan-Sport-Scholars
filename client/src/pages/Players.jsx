@@ -32,10 +32,10 @@ const Players = () => {
 <title>Balkan Sport Scholars - Players</title>
 </Helmet>
 <header className="hero-container header-players" id="intro">
-        <div className="container">
+        <div className="">
           <div className="center header-template">
             <h1 className='margin-bottom'>Players</h1>
-            <p className='margin-bottom hero-p'>Lorem ipsum dolor sit amet consectetur. Sit eget nisi egestas sit integer phasellus nibh commodo. </p>
+            <p className='margin-bottom hero-p'>Our Current Players page features the talented athletes we're proudly supporting on their journey to US college sports. These individuals are dedicated, driven, and ready to make their mark, and we're honored to help them reach their goals through tailored guidance and support.</p>
             <a href="/contact" className="btn btn-secondary">Contact</a>
           </div>
         </div>
@@ -46,7 +46,7 @@ const Players = () => {
         />
       </header>
             <div className="blog-title-filtered">
-                <h1>Players</h1>
+                <h1>Current Players</h1>
             </div>
             {players.length > 0 ? (
                 <div className="container players-container">

@@ -9,10 +9,10 @@ const Contact = () => {
                 <title>Balkan Sport Scholars - Contact</title>
             </Helmet>
        <header className="hero-container header-contact" id="intro">
-    <div className="container">
+    <div className="">
       <div className="center header-template">
         <h1 className='margin-bottom'>Contact</h1>
-        <p className='margin-bottom hero-p'>Lorem ipsum dolor sit amet consectetur. Sit eget nisi egestas sit integer phasellus nibh commodo. </p>
+        <p className='margin-bottom hero-p'>Our Contact page is your direct link to the Balkan Sport Scholars team. Whether you have questions or are ready to start your journey, we're here to provide guidance and support every step of the way.</p>
         <a href="tel:+12523738698" className="btn btn-secondary">Call Us</a>
       </div>
     </div>
@@ -39,15 +39,15 @@ const Contact = () => {
                     <img src="/assets/phone-call.png" alt="Phone" />
                     <a href="tel:+12523738698"><h4>+1 (252) 373 8698</h4></a>
                     <img src="/assets/email.png" alt="Email" />
-                    <a href="mailto:contact@balkansportsscholars.com"><h4>contact@balkansportsscholars.com</h4></a>
+                    <a href="mailto:balkansportscholars@gmail.com"><h4>balkansportscholars@gmail.com</h4></a>
                 </div>
                 <div className="blob socials-blob">
                     <h2>Socials</h2>
                     <div className="social-icons">
-                        <a href="https://www.facebook.com" className="contact-link"><img src="/assets/facebook.png" alt="Facebook" /></a>
-                        <a href="https://www.instagram.com" className="contact-link"><img src="/assets/instagram.png" alt="Instagram" /></a>
-                        <a href="https://www.linkedin.com" className="contact-link"><img src="/assets/linkedin.png" alt="LinkedIn" /></a>
-                        <a href="https://www.youtube.com" className="contact-link"><img src="/assets/youtube.png" alt="YouTube" /></a>
+                        <a href="https://www.facebook.com/profile.php?id=61551249830619" className="contact-link"><img src="/assets/facebook.png" alt="Facebook" /></a>
+                        <a href="https://www.instagram.com/balkansportscholars/" className="contact-link"><img src="/assets/instagram.png" alt="Instagram" /></a>
+                        <a href="https://www.linkedin.com/in/endirahmani/" className="contact-link"><img src="/assets/linkedin.png" alt="LinkedIn" /></a>
+                        <a href="https://www.youtube.com/@BalkanSportScholars" className="contact-link"><img src="/assets/youtube.png" alt="YouTube" /></a>
                     </div>
                 </div>
             </section>

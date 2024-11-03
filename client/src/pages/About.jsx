@@ -11,10 +11,10 @@ const About = () => {
                 <title>Balkan Sport Scholars - About Us</title>
             </Helmet>
       <header className="hero-container header-about" id="intro">
-        <div className="container">
+        <div className="">
           <div className="center header-template">
             <h1 className='margin-bottom'>About</h1>
-            <p className='hero-p margin-bottom'>Lorem ipsum dolor sit amet consectetur. Sit eget nisi egestas sit integer phasellus nibh commodo. </p>
+            <p className='hero-p margin-bottom'>Balkan Sport Scholars is dedicated to helping talented athletes from the Balkans unlock life-changing opportunities at top US colleges. With personalized guidance, we connect athletes to academic and athletic pathways that align with their goals, supporting them at every step as they transition to life as student-athletes in the US. </p>
             <a href="/contact" className="btn btn-secondary">Contact</a>
           </div>
         </div>
@@ -28,8 +28,7 @@ const About = () => {
         <div className="presentation-text">
           <h2 className='margin-bottom'>What about <br /> <strong>Balkan Sports Scholars?</strong></h2>
           <p>
-          Lorem ipsum dolor sit amet consectetur. Cras vulputate id ipsum facilisis pellentesque. Lacus ut in lorem a. Porta ullamcorper velit dolor ultricies in. Urna adipiscing rhoncus vitae donec tellus diam ridiculus purus. Ligula amet luctus a sodales. Eget volutpat consectetur sed nascetur a convallis. Diam ultrices sagittis laoreet etiam suspendisse iaculis sed.
-          </p>
+          Balkan Sport Scholars is a recruitment agency focused on transforming the futures of athletes from the Balkans by connecting them with academic and athletic opportunities at top US colleges. Founded on the belief that talent should never be limited by resources, we provide athletes with the tools, guidance, and support needed to compete at the collegiate level while securing a world-class education.          </p>
         </div>
         <div className="presentation-image">
           <img src="assets/BSS Logo transparent 1.png" alt="Visual representation" />

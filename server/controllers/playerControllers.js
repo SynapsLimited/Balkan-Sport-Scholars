@@ -337,38 +337,25 @@ const deletePlayer = async (req, res, next) => {
 
     console.log(`Player found: ${player.name}`);
 
-    // If deleteFromVercelBlob is removed, ensure it's no longer called
-    /*
+    // Delete image
     if (player.image) {
       console.log(`Deleting image: ${player.image}`);
-      try {
-        await deleteFromVercelBlob(player.image);
-        console.log('Image deleted successfully.');
-      } catch (imageError) {
-        console.error('Error deleting image from Vercel Blob:', imageError);
-        return next(new HttpError('Failed to delete player image.', 400));
-      }
+      await deleteFromVercelBlob(player.image);
     } else {
       console.log('No image to delete.');
     }
 
+    // Delete documents
     if (player.documentUrls && player.documentUrls.length > 0) {
       for (let url of player.documentUrls) {
         if (url) {
           console.log(`Deleting document: ${url}`);
-          try {
-            await deleteFromVercelBlob(url);
-            console.log('Document deleted successfully.');
-          } catch (docError) {
-            console.error('Error deleting document from Vercel Blob:', docError);
-            return next(new HttpError('Failed to delete player documents.', 400));
-          }
+          await deleteFromVercelBlob(url);
         }
       }
     } else {
       console.log('No documents to delete.');
     }
-    */
 
     // Delete the player from the database
     await Player.findByIdAndDelete(playerId);

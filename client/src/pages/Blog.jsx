@@ -12,10 +12,10 @@ const Blog = () => {
                 <title>Balkan Sport Scholars - Blog</title>
             </Helmet>
             <header className="hero-container header-blog" id="intro">
-    <div className="container">
+    <div className="">
       <div className="center header-template">
         <h1 className='margin-bottom'>Blog</h1>
-        <p className='margin-bottom hero-p'>Lorem ipsum dolor sit amet consectetur. Sit eget nisi egestas sit integer phasellus nibh commodo. </p>
+        <p className='margin-bottom hero-p'>Our Blog page offers insights, advice, and updates on the world of college sports recruiting. From success stories to tips on navigating the recruitment process, we aim to empower athletes and families with valuable information for their journey to US college athletics.</p>
         <a href="/contact" className="btn btn-secondary">Contact</a>
       </div>
     </div>

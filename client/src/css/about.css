@@ -135,7 +135,7 @@ b {
 }
 
 .team-container {
-    height: 400px;
+    height: 350px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: start;
@@ -162,7 +162,7 @@ b {
 }
 
 .team-card > .row > .icon {
-    background: #223;
+    background: var(--color-white-transparent);
     color: white;
     border-radius: 50%;
     width: 50px;
@@ -192,7 +192,7 @@ b {
 }
 
 .description h4 {
-    text-transform: uppercase;
+    color: var(--color-primary);
 }
 
 .team-wrapper input {
@@ -214,16 +214,16 @@ b {
 }
 
 .team-card[for="c1"] {
-    background-image: url('');
+    background-image: url('./../../public/assets/About - Endi.jpg');
 }
 .team-card[for="c2"] {
-    background-image: url('');
+    background-image: url('./../../public/assets/About - Sokol.jpg');
 }
 .team-card[for="c3"] {
-    background-image: url('');
+    background-image: url('./../../public/assets/About - Roland.jpg');
 }
 .team-card[for="c4"] {
-    background-image: url('');
+    background-image: url('./../../public/assets/About - Synaps.jpg');
 }
 
 

@@ -1,3 +1,5 @@
+// src/components/Home.jsx
+
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
@@ -16,12 +18,46 @@ import './../css/home.css';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import PostItem from './../components/PostItem';
+import { motion } from 'framer-motion'; // Import motion
+import { useTranslation } from 'react-i18next'; // Import useTranslation
+
+const stats = [
+  { title: "Sports", value: 24 },
+  { title: "Agents", value: 3 },
+  { title: "Transfers", value: 10 },
+  { title: "Locations", value: 2 },
+];
 
 const Home = () => {
+  const { t } = useTranslation(); // Initialize translation
   const [transfers, setTransfers] = useState([]);
   const [players, setPlayers] = useState([]);
   const [posts, setPosts] = useState([]);
   const [domLoaded, setDomLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); // Define isVisible
+  const [latestPost, setLatestPost] = useState(null); // Optional: For blog posts
+  const [isLoading, setIsLoading] = useState(false); // Optional: For blog posts
+  const [error, setError] = useState(null); // Optional: For blog posts
+
+  // Observe when stats section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const target = document.getElementById("stats-section");
+    if (target) observer.observe(target);
+
+    return () => {
+      if (target) observer.unobserve(target);
+    };
+  }, []);
 
   // Fetch Transfers Data
   useEffect(() => {
@@ -59,20 +95,25 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/posts`
         );
         setPosts(response.data);
+        if (response.data.length > 0) {
+          setLatestPost(response.data[0]);
+        } else {
+          setError(t('blog.posts.noPosts'));
+        }
       } catch (error) {
         console.error('Error fetching posts:', error);
+        setError(t('blog.posts.error'));
       }
+      setIsLoading(false);
     };
 
     fetchPosts();
-  }, []);
-
-  // Get the latest post
-  const latestPost = posts.length > 0 ? posts[0] : null; // Assuming posts are returned sorted by date in descending order
+  }, [t]);
 
   // Animate the counters
   useEffect(() => {
@@ -105,7 +146,7 @@ const Home = () => {
 
       {/* Header Section */}
       <header className="hero-container header-home" id="intro">
-        <div className="container">
+        <div className="">
           <div className="center header-template">
             <h1 style={{ marginBottom: '19px', fontSize: '3rem' }}>
               Balkan Sport Scholars
@@ -151,34 +192,34 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Facts Section */}
-      <h1 className="center facts-title">Facts about Balkan Sport Scholars</h1>
-      <section className="wrapper-counter">
-        <div className="container-counter">
-          <span className="text">Sports</span>
-          <span className="num" data-val="24">
-            0
-          </span>
+      {/* Stats Section */}
+      <div id="stats-section" className="stats-section-container">
+        <h1 className="stats-title">Facts about BSS</h1>
+        <div className="stats-blobs">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              className="stat-box"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="stat-title-container">
+                <h3 className="stat-title">{stat.title}</h3>
+                <div className="stat-underline"></div>
+              </div>
+              <motion.span
+                className="stat-value"
+                initial={{ opacity: 0 }}
+                animate={isVisible ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+              >
+                {isVisible ? <Counter from={0} to={stat.value} /> : "0"}
+              </motion.span>
+            </motion.div>
+          ))}
         </div>
-        <div className="container-counter">
-          <span className="text">Agents</span>
-          <span className="num" data-val="3">
-            0
-          </span>
-        </div>
-        <div className="container-counter">
-          <span className="text">Transfers</span>
-          <span className="num" data-val="10">
-            0
-          </span>
-        </div>
-        <div className="container-counter">
-          <span className="text">Locations</span>
-          <span className="num" data-val="2">
-            0
-          </span>
-        </div>
-      </section>
+      </div>
 
       {/* Services Overview Section */}
       <section className="container services-overview-section">
@@ -195,28 +236,38 @@ const Home = () => {
         </div>
         <div className="services-overview-blobs">
           <a href="services" className="service-overview-blob-art">
-            <span>Manager Contacts</span>
-            <img src="/assets/Football.png" alt="Manager Contacts" />
+            <span>Athlete Assessment & 
+            Profiling</span>
+            <img src="/assets/Football.png" alt="Athlete Assessment & 
+Profiling" />
           </a>
           <a href="services" className="service-overview-blob-art">
-            <span>Manager Negotiations</span>
-            <img src="/assets/Basketball.png" alt="Manager Negotiations" />
+            <span>College Matching & 
+Placement</span>
+            <img src="/assets/Basketball.png" alt="College Matching & 
+Placement" />
           </a>
           <a href="services" className="service-overview-blob-art">
-            <span>English Consulting</span>
-            <img src="/assets/Rugby.png" alt="English Consulting" />
+            <span>Scholarship Guidance</span>
+            <img src="/assets/Rugby.png" alt="Scholarship Guidance" />
           </a>
           <a href="services" className="service-overview-blob-art">
-            <span>Transcription Evaluation</span>
-            <img src="/assets/Volleyball.png" alt="Transcription Evaluation" />
+            <span>NCAA/NAIA/NJCAA 
+Eligibility Support</span>
+            <img src="/assets/Volleyball.png" alt="NCAA/NAIA/NJCAA 
+Eligibility Support" />
           </a>
           <a href="services" className="service-overview-blob-art">
-            <span>Student Visa Assistance</span>
-            <img src="/assets/Tennis.png" alt="Student Visa Assistance" />
+            <span>Application & 
+Visa Assistance</span>
+            <img src="/assets/Tennis.png" alt="Application & 
+Visa Assistance" />
           </a>
           <a href="services" className="service-overview-blob-art">
-            <span>General Consulting & Support</span>
-            <img src="/assets/ESports.png" alt="General Consulting & Support" />
+            <span>Networking &
+Mentorship</span>
+            <img src="/assets/ESports.png" alt="Networking &
+Mentorship" />
           </a>
         </div>
         <div className="services-button">
@@ -282,10 +333,7 @@ const Home = () => {
         <div className="services-overview-title">
           <h1>Players</h1>
           <p style={{ padding: '20px' }}>
-            Lorem ipsum dolor sit amet consectetur. Rhoncus in vel faucibus
-            augue. Tempus nec egestas sapien turpis pharetra eleifend pharetra
-            aliquam amet. Tempor mauris massa diam mi quis ac fusce. Urna ipsum
-            volutpat pretium elit.
+          Our Current Players page features the talented athletes we're proudly supporting on their journey to US college sports. These individuals are dedicated, driven, and ready to make their mark, and we're honored to help them reach their goals through tailored guidance and support.
           </p>
         </div>
         <div className="players-slider-container">
@@ -355,21 +403,41 @@ const Home = () => {
         <div className="blog-text-section">
           <h2>Blog</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur. Rhoncus in vel faucibus
-            augue. Tempus nec egestas sapien turpis pharetra eleifend pharetra
-            aliquam amet. Tempor mauris massa diam mi quis ac fusce. Urna ipsum
-            volutpat pretium elit.
+          Our Blog page offers insights, advice, and updates on the world of college sports recruiting. From success stories to tips on navigating the recruitment process, we aim to empower athletes and families with valuable information for their journey to US college athletics."
           </p>
           <a href="/blog" className="btn btn-primary">
             View All Blogs
           </a>
         </div>
         <div className="blog-slider-section">
-          {latestPost && <PostItem post={latestPost} />}
+          {isLoading ? (
+            <p>{t('blog.posts.loading')}</p>
+          ) : error ? (
+            <p>{error}</p>
+          ) : latestPost ? (
+            <PostItem post={latestPost} />
+          ) : (
+            <p>{t('blog.posts.noPosts')}</p>
+          )}
         </div>
       </section>
     </div>
   );
 };
+
+function Counter({ from, to }) {
+  const [count, setCount] = useState(from);
+
+  useEffect(() => {
+    if (count < to) {
+      // Adjusting the speed based on the target value
+      const duration = to <= 99 ? 100 : 20; // If the value is small (like 30), slow it down
+      const timer = setTimeout(() => setCount(count + 1), duration);
+      return () => clearTimeout(timer);
+    }
+  }, [count, to]);
+
+  return <>{count}</>;
+}
 
 export default Home;

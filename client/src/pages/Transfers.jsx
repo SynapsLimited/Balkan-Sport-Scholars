@@ -55,12 +55,11 @@ const Transfers = () => {
         <title>Balkan Sport Scholars - Transfers</title>
       </Helmet>
       <header className="hero-container hero-container header-transfers" id="intro">
-        <div className="container">
+        <div className="">
           <div className="center header-template">
             <h1 className="margin-bottom">Transfers</h1>
             <p className="margin-bottom hero-p">
-              Lorem ipsum dolor sit amet consectetur. Sit eget nisi egestas sit
-              integer phasellus nibh commodo.
+            Our Transfers page celebrates the success stories of Balkan Sport Scholars athletes who have transitioned to US colleges. Each story highlights the achievements, growth, and new opportunities these athletes have embraced, showcasing the impact of their hard work and our dedicated support.
             </p>
             <a href="/contact" className="btn btn-secondary">
               Contact

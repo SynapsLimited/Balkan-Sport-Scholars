@@ -37,57 +37,109 @@
   margin-left: 100px;
 }
 
-/*========================== Facts Section ===================================*/
+/*================ Stats Section =================*/
+  
+  /* Container for the entire stats section */
+  .stats-section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+  }
+  
+  /* Title for the section */
+  .stats-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #393939; /* Secondary color */
+  }
+  
+  /* Stats Blob Container */
+  .stats-blobs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  
+  /* Individual Stat Box */
+  .stat-box {
+    position: relative; /* Required for positioning the pseudo-element */
+    background-color: var(--color-background);
+    color: white;
+    padding: 40px;
+    border-radius: 22px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    /* Remove the original border */
+  }
+  
+  .stat-box::before {
+    content: '';
+    position: absolute;
+    top: 6px; /* Border thickness */
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1.5px solid var(--color-primary);
+    border-radius: 19px; /* Adjust based on the parent’s border-radius minus border thickness */
+    pointer-events: none; /* Ensures the border doesn't interfere with content interaction */
+    box-sizing: border-box;
+  }
+  
+  
+  .stat-box:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(42, 42, 42, 0.4); /* Adjust shadow to match the design */
+  }
+  
+  /* Stat title and underline */
+  .stat-title-container {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .stat-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+  }
+  
+  .stat-underline {
+    width: 50px;
+    height: 2px;
+    background-color: white;
+    margin: 0 auto;
+  }
+  
+  /* Stat value (number) */
+  .stat-value {
+    font-size: 2.5rem;
+    font-family: 'Manjari', sans-serif;
+    font-weight: 400;
+  }
+  
+  /* Paragraph under the stats section */
+  .stats-paragraph {
+    max-width: 600px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--color-secondary);
+  }
 
-.facts-title{
-  margin-top: 100px;
-  margin-bottom: 70px;
-}
-.wrapper-counter {
-  position: relative;
-  top: 40%;
-  display: flex;
-  justify-content: space-around;
-  margin: 2rem 0;
-  padding: 3.5rem 1.5rem;
-}
 
-.container-counter {
-  width: 28vmin;
-  height: 30vmin;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 1em 0;
-  position: relative;
-  font-size: 16px;
-  border-radius: 0.5em;
-  background-color: var(--color-background);
-  box-shadow: 4px 5px 4px 0 rgba(90, 91, 95, 0.25);
-  border-bottom: 10px solid var(--color-primary);
-  transition: var(--transition);
-}
-
-.container-counter:hover {
-  transform: scale(1.1);
-}
-
-span.num {
-  color: #ffffff;
-  display: grid;
-  place-items: center;
-  font-weight: 600;
-  font-size: 3em;
-}
-
-span.text {
-  color: var(--color-primary);
-  font-size: 1.2em;
-  text-align: center;
-  padding: 1em 0;
-  font-weight: 700;
-  line-height: 0;
-}
+  .text-secondary {
+    color: var(--color-secondary);
+  }
 
 /*====================  Services Overview Section  =============================*/
 

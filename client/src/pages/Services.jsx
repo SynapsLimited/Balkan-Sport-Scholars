@@ -12,7 +12,7 @@ const Services = () => {
     <div className="container">
       <div className="center header-template">
         <h1 className='margin-bottom'>Services</h1>
-        <p className='margin-bottom hero-p'>Lorem ipsum dolor sit amet consectetur. Sit eget nisi egestas sit integer phasellus nibh commodo. </p>
+        <p className='margin-bottom hero-p'>Our services at Balkan Sport Scholars are designed to support every step of an athlete’s journey from the Balkans to US college sports. </p>
         <a href="/contact" className="btn btn-secondary">Contact</a>
       </div>
     </div>
@@ -26,14 +26,14 @@ const Services = () => {
    {/* Services Introduction */}
    <div className="services-intro">
    <h1>Services</h1>
-   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius, eligendi. Magnam voluptate ducimus doloremque.</p>
+   <p>From personalized recruitment and scholarship assistance to eligibility guidance and mentorship, we provide the resources athletes need to succeed academically and athletically in their new environments.</p>
  </div>
 
  {/* Service 1 */}
  <div className="service-item item-right">
    <div className="service-text">
-     <h1>Manager Contacts</h1>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
+     <h1>Athlete Assessment & Profiling</h1>
+     <p>We evaluate each athlete's skills, academic standing, and athletic potential to create a personalized profile that highlights their strengths for college recruitment.</p>
    </div>
    <div className="service-img">
      <img src="assets/football.png" alt="Football" />
@@ -43,8 +43,8 @@ const Services = () => {
  {/* Service 2 */}
  <div className="service-item reverse">
    <div className="service-text">
-     <h1>Manager Negotiations</h1>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
+     <h1>College Matching & Placement</h1>
+     <p>Our team connects athletes with colleges that best align with their academic goals, athletic level, and career aspirations, maximizing their opportunities for scholarships and success..</p>
    </div>
    <div className="service-img">
      <img src="assets/basketball.png" alt="Basketball" />
@@ -54,8 +54,8 @@ const Services = () => {
  {/* Service 3 */}
  <div className="service-item item-right">
    <div className="service-text">
-     <h1>English Consulting</h1>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
+     <h1>Scholarship Guidance</h1>
+     <p>We guide athletes through the scholarship application process, helping them secure the best possible financial aid packages and athletic scholarships.</p>
    </div>
    <div className="service-img">
      <img src="assets/Volleyball.png" alt="Volleyball" />
@@ -65,8 +65,8 @@ const Services = () => {
  {/* Service 4 */}
  <div className="service-item reverse">
    <div className="service-text">
-     <h1>Transcription Evaluation</h1>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
+     <h1>NCAA/NAIA/NJCAA Eligibility Support</h1>
+     <p>We assist athletes in meeting eligibility requirements for NCAA and NAIA programs, ensuring they’re prepared to compete at the collegiate level in compliance with US college sports regulations.</p>
    </div>
    <div className="service-img">
      <img src="assets/Rugby.png" alt="Rugby" />
@@ -76,8 +76,8 @@ const Services = () => {
  {/* Service 5 */}
  <div className="service-item item-right">
    <div className="service-text">
-     <h1>Student Visa Assistance</h1>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
+     <h1>Application & Visa Assistance</h1>
+     <p>We provide support with the entire college application process, including essay guidance, document preparation, and F-1 student visa applications.</p>
    </div>
    <div className="service-img">
      <img src="assets/Tennis.png" alt="Tennis" />
@@ -87,8 +87,8 @@ const Services = () => {
  {/* Service 6 */}
  <div className="service-item reverse">
    <div className="service-text">
-     <h1>General Consulting & Support</h1>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, optio accusamus laborum repudiandae asperiores.</p>
+     <h1>Networking & Mentorship </h1>
+     <p>Through a network of former athletes, college coaches, and sports industry experts, we provide mentorship and career guidance, helping athletes build valuable connections in the US sports ecosystem..</p>
    </div>
    <div className="service-img">
      <img src="assets/ESports.png" alt="ESports" />

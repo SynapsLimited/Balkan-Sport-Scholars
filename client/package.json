@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.3",
     "emailjs-com": "^3.2.0",
+    "framer-motion": "^11.11.11",
     "i18n": "^0.15.1",
     "i18next": "^23.12.2",
     "javascript-time-ago": "^2.5.10",
