@@ -1,8 +1,6 @@
-// index.js or server.js
-
 const express = require('express');
 const cors = require('cors');
-const { connect } = require('mongoose');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 const userRoutes = require('./routes/userRoutes');
@@ -12,6 +10,9 @@ const transferRoutes = require('./routes/transferRoutes'); // Import transfer ro
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 const app = express();
+
+// Enable Mongoose debug mode for detailed logs
+mongoose.set('debug', true);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,8 +41,11 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-connect(process.env.MONGO_URI)
+// Connect to MongoDB and start the server
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => {
+    console.log('Connected to MongoDB');
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
   })
   .catch((error) => {

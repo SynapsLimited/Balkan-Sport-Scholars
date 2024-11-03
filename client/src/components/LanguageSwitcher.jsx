@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import './../css/languageswitcher.css'; // The CSS you provided
+import './../css/languageswitcher.css'; // Ensure this CSS file styles the switcher appropriately
 import './../i18n'; // Import the i18n configuration
 import { UserContext } from '../context/userContext'; // Import UserContext
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
-  const [isChecked, setIsChecked] = useState(false); // Default to English (unchecked)
+  const [isChecked, setIsChecked] = useState(false); // Default to Albanian (checked)
   const { currentUser } = useContext(UserContext); // Access currentUser from context
 
   // List of languages
@@ -31,14 +31,20 @@ const LanguageSwitcher = () => {
         i18n.changeLanguage('en');
         setIsChecked(false);
         // Save default language to localStorage
-        localStorage.setItem('preferredLanguage', JSON.stringify({ label: 'EN', languageCode: 'en' }));
+        localStorage.setItem(
+          'preferredLanguage',
+          JSON.stringify({ label: 'EN', languageCode: 'en' })
+        );
       }
     } else {
-      // If no saved language, default to English
-      i18n.changeLanguage('en');
-      setIsChecked(false);
+      // If no saved language, default to Albanian
+      i18n.changeLanguage('sq');
+      setIsChecked(true);
       // Save default language to localStorage
-      localStorage.setItem('preferredLanguage', JSON.stringify({ label: 'EN', languageCode: 'en' }));
+      localStorage.setItem(
+        'preferredLanguage',
+        JSON.stringify({ label: 'AL', languageCode: 'sq' })
+      );
     }
   }, [i18n]);
 

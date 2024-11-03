@@ -16,7 +16,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 const router = Router();
 
-// For handling multiple file uploads (image and documents)
+// Create Player
 router.post(
   '/',
   authMiddleware,
@@ -27,9 +27,13 @@ router.post(
   createPlayer
 );
 
+// Get All Players
 router.get('/', getPlayers);
+
+// Get Single Player
 router.get('/:id', getPlayer);
 
+// Edit Player
 router.patch(
   '/:id',
   authMiddleware,
@@ -40,6 +44,7 @@ router.patch(
   editPlayer
 );
 
+// Delete Player
 router.delete('/:id', authMiddleware, deletePlayer);
 
 module.exports = router;

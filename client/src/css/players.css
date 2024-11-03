@@ -144,6 +144,115 @@
     border-radius: 22px;
 }
 
+
+.documents-naming {
+    margin-top: 20px;
+  }
+  
+  .document-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .document-item p {
+    margin-right: 10px;
+  }
+  
+  .document-item input {
+    flex: 1;
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .document-item button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .document-item button:hover {
+    background-color: #c82333;
+  }
+
+
+  /* players.css */
+
+/* Container for document naming */
+.documents-naming {
+    margin-top: 20px;
+  }
+  
+  /* Individual document item */
+  .document-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Filename display */
+  .document-item p {
+    margin-right: 10px;
+    flex: 1;
+  }
+  
+  /* Input for document name */
+  .document-item input {
+    flex: 2;
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  /* Remove button styling */
+  .document-item .btn-remove-document {
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 22px;
+    cursor: pointer;
+  }
+  
+  .btn-remove-document:hover {
+    background-color: #c82333;
+
+  }
+  
+  /* Optional: Style for the "Name Each Document" header */
+  .documents-naming h4 {
+    margin-bottom: 10px;
+  }
+
+  
+/* Container for document naming */
+.player-documents {
+    margin-top: 20px;
+  }
+  
+  /* Documents list */
+  .documents-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Individual document item */
+  .document-item {
+    margin-bottom: 10px;
+  }
+  
+  /* Document button styling */
+  .document-button {
+    margin: 0 auto;
+  }
+    
+
+  
+  
+  
+
 /* ================== Responsive Design ============= */
 
 /* Tablet */
@@ -363,3 +472,30 @@ input, select, textarea {
         width: 50%;
     }
 }
+
+
+
+/* Add spacing between Document Name and Document Name (English) */
+.document-names {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust the gap value as needed */
+    margin-top: 0.5rem; /* Optional: Add some top margin */
+    margin-bottom: 40px;
+  }
+  
+  /* Optional: If you prefer horizontal spacing instead of vertical */
+  .document-names-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem; /* Adjust the gap value as needed */
+    margin-top: 0.5rem; /* Optional: Add some top margin */
+  }
+  
+  /* Ensure responsiveness */
+  @media (max-width: 600px) {
+    .document-names-horizontal {
+      flex-direction: column;
+    }
+  }
+  

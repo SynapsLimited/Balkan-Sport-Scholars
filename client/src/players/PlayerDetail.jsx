@@ -1,10 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+// src/components/PlayerDetail.jsx
+
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import Loader from '../components/Loader';
 import axios from 'axios';
+import { UserContext } from '../context/userContext';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
+import './../css/players.css';
 
 const PlayerDetail = () => {
   const { id } = useParams();
+  const { currentUser } = useContext(UserContext);
+  const { t } = useTranslation(); // Destructure t from useTranslation
+  const token = currentUser?.token;
+
   const [player, setPlayer] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,35 +22,24 @@ const PlayerDetail = () => {
     const getPlayer = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/players/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/players/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setPlayer(response.data);
       } catch (error) {
-        setError(error.message);
+        setError(
+          error.response?.data?.message ||
+            t('Player does not exist')
+        );
+        console.error('Error fetching player:', error);
       }
       setIsLoading(false);
     };
 
     getPlayer();
-  }, [id]);
-
-  const downloadDocuments = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/players/${id}/documents/download`, {
-        responseType: 'blob', // Important to handle binary data
-      });
-
-      // Create a download link and trigger the download
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${player.name}_documents.zip`); // Use player's name for the ZIP file
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (error) {
-      console.error('Error downloading documents:', error);
-    }
-  };
+  }, [id, token, t]);
 
   if (isLoading) {
     return <Loader />;
@@ -50,6 +48,23 @@ const PlayerDetail = () => {
   if (error) {
     return <p className="error">{error}</p>;
   }
+
+  // Function to collect all documents
+  const getDocuments = () => {
+    const docs = [];
+    if (player.documentUrls && player.documentUrls.length > 0) {
+      for (let i = 0; i < player.documentUrls.length; i++) {
+        docs.push({
+          name: player.documentNames[i],
+          name_en: player.documentNames_en[i],
+          url: player.documentUrls[i],
+        });
+      }
+    }
+    return docs;
+  };
+
+  const documents = player ? getDocuments() : [];
 
   return (
     <section className="container player-detail">
@@ -61,70 +76,111 @@ const PlayerDetail = () => {
           </div>
 
           <div className="player-detail-thumbnail">
-            <img src={player.image} alt={player.name} />
+            {player.image ? (
+              <img src={player.image} alt={player.name} />
+            ) : (
+              <p>{t('No image available.')}</p>
+            )}
           </div>
-          <p className="center">
-            <strong>Sport:</strong> {player.sport}
-          </p>
-          <p className="center">
-            <strong>Position:</strong> {player.position}
-          </p>
-          <p className="center">
-            <strong>Nationality:</strong> {player.nationality}
-          </p>
-          <p className="center">
-            <strong>Height:</strong> {player.height} cm
-          </p>
-          <p className="center">
-            <strong>Weight:</strong> {player.weight} kg
-          </p>
-          <p className="center">
-            <strong>Preferred Foot/Hand:</strong> {player.preferredFootHand}
-          </p>
-          <h3 className="margin-top center margin-bottom">About</h3>
-          <p className="center" dangerouslySetInnerHTML={{ __html: player.description }}></p>
 
-          <h3 className="margin-top center margin-bottom">Documents</h3>
+          {/* Player Attributes */}
+          <div className="player-attributes">
+            <p>
+              <strong>{t('Sport')}:</strong>{' '}
+              {player.sport_en || player.sport}
+            </p>
+            <p>
+              <strong>{t('Position')}:</strong>{' '}
+              {player.position_en || player.position}
+            </p>
+            <p>
+              <strong>{t('Nationality')}:</strong>{' '}
+              {player.nationality_en || player.nationality}
+            </p>
+            <p>
+              <strong>{t('Height (cm)')}:</strong> {player.height} cm
+            </p>
+            <p>
+              <strong>{t('Weight (kg)')}:</strong> {player.weight} kg
+            </p>
+            <p>
+              <strong>{t('Preferred Foot/Hand')}:</strong>{' '}
+              {player.preferredFootHand_en || player.preferredFootHand}
+            </p>
+          </div>
+
+          {/* About Section */}
+          <h3 className="margin-top center margin-bottom">{t('About')}</h3>
+          <p
+            className="center"
+            dangerouslySetInnerHTML={{
+              __html: player.description_en || player.description,
+            }}
+          ></p>
+
+          {/* Documents Section */}
+          <h3 className="margin-top center margin-bottom">{t('Documents')}</h3>
           <div className="player-documents center margin-top">
-            <button onClick={downloadDocuments} className="btn btn-primary">
-              Download All Documents
-            </button>
+            {documents.length > 0 ? (
+              <ul className="documents-list">
+                {documents.map((doc, index) => (
+                  <li key={index} className="document-item">
+                    <a
+                      href={doc.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary document-button"
+                    >
+                      {doc.name_en || doc.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>{t('No documents available.')}</p>
+            )}
           </div>
 
-          <h3 className="margin-top center margin-bottom">Highlights</h3>
-          <div className="player-video">
+          {/* Highlights Section */}
+          <h3 className="margin-top center margin-bottom">{t('Highlights')}</h3>
+          <div className="player-video center margin-top">
             {player.videoLink ? (
               <iframe
                 width="560"
                 height="315"
                 src={player.videoLink}
-                title="Player Highlights"
+                title={t('Player Highlights')}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             ) : (
-              <p>No video available</p>
+              <p>{t('No video available')}</p>
+            )}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="multiple-buttons center margin-top">
+            <Link to="/players" className="btn btn-primary">
+              {t('Back to Players')}
+            </Link>
+            <a href="tel:+12523738698" className="btn btn-background">
+              {t('Contact Agent')}
+            </a>
+            {player.videoLink && (
+              <a href={player.videoLink} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                {t('Watch Highlights')}
+              </a>
+            )}
+            {currentUser && currentUser.role === 'admin' && (
+              <Link to={`/edit-player/${player._id}`} className="btn btn-edit">
+                {t('Edit Player')}
+              </Link>
             )}
           </div>
         </div>
       ) : (
-        <p>Player details not found.</p>
-      )}
-      {player && (
-        <div className="multiple-buttons">
-          <a href="/players" className="btn btn-primary center margin-top">
-            Back to Players
-          </a>
-          <a href="tel:+12523738698" className="btn btn-background center">
-            Contact Agent
-          </a>
-          {player.videoLink && (
-            <a href={player.videoLink} className="btn btn-secondary center">
-              Watch Highlights
-            </a>
-          )}
-        </div>
+        <p>{t('Player details not found.')}</p>
       )}
     </section>
   );

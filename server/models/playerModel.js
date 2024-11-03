@@ -22,10 +22,35 @@ const playerSchema = new Schema(
     description_en: { type: String },
     videoLink: { type: String },
     image: { type: String },
-    documents: [{ type: String }],
+
+    // Separate arrays for documents
+    documentNames: {
+      type: [String],
+      default: [],
+      validate: [arrayLimit, '{PATH} exceeds the limit of 10 documents'],
+    },
+    documentNames_en: {
+      type: [String],
+      default: [],
+      validate: [arrayLimit, '{PATH} exceeds the limit of 10 documents'],
+    },
+    documentUrls: {
+      type: [String],
+      default: [],
+      validate: [arrayLimit, '{PATH} exceeds the limit of 10 documents'],
+    },
+
     creator: { type: Schema.Types.ObjectId, ref: 'User' },
   },
-  { timestamps: true }
+  { 
+    timestamps: true,
+    strict: true // Ensure strict mode is enabled
+  }
 );
+
+// Custom validator to limit the number of documents to 10
+function arrayLimit(val) {
+  return val.length <= 10;
+}
 
 module.exports = model('Player', playerSchema);

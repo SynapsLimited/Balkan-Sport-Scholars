@@ -1,8 +1,7 @@
 // controllers/playerControllers.js
 
 const Player = require('../models/playerModel');
-const User = require('../models/userModel');
-const HttpError = require('../models/errorModel');
+const HttpError = require('../models/errorModel'); // Custom error model
 const { put } = require('@vercel/blob'); // Vercel Blob storage
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args)); // For node-fetch
 
@@ -47,6 +46,7 @@ const deleteFromVercelBlob = async (fileUrl) => {
     console.log(`Deleted successfully from Vercel Blob: ${fileName}`);
   } catch (error) {
     console.error('Error deleting file from Vercel Blob:', error);
+    throw new Error('Failed to delete file from Vercel Blob');
   }
 };
 
@@ -75,29 +75,64 @@ const createPlayer = async (req, res, next) => {
       videoLink,
     } = req.body;
 
+    // Validation: Name is required
     if (!name) {
       return next(new HttpError('Name is required.', 422));
     }
 
     // Handle image upload
     let imageUrl = null;
-    if (req.files['image']) {
+    if (req.files['image'] && req.files['image'][0]) {
       const imageBuffer = req.files['image'][0].buffer;
       const imageName = `players/images/${Date.now()}-${req.files['image'][0].originalname}`;
       imageUrl = await uploadToVercelBlob(imageBuffer, imageName);
     }
 
     // Handle documents upload
-    let documentsUrls = [];
+    let documentNames = [];
+    let documentNames_en = [];
+    let documentUrls = [];
+
     if (req.files['documents']) {
-      for (const file of req.files['documents']) {
+      const documentFiles = req.files['documents'];
+      let names = req.body.documentNames;
+      let namesEn = req.body.documentNames_en;
+
+      // Normalize to arrays
+      names = Array.isArray(names) ? names : [names];
+      namesEn = Array.isArray(namesEn) ? namesEn : [namesEn];
+
+      // Validation: Ensure names arrays match files count
+      if (names.length !== documentFiles.length || namesEn.length !== documentFiles.length) {
+        return next(new HttpError('Number of document names does not match number of documents.', 422));
+      }
+
+      // Validation: Limit to 10 documents
+      if (documentFiles.length > 10) {
+        return next(new HttpError('Cannot upload more than 10 documents.', 422));
+      }
+
+      // Upload each document
+      for (let i = 0; i < documentFiles.length; i++) {
+        const file = documentFiles[i];
+        const name = names[i].trim() || file.originalname;
+        const nameEn = namesEn[i].trim() || '';
+
+        if (!name) {
+          return next(new HttpError(`Document name at index ${i} is empty.`, 422));
+        }
+
         const fileBuffer = file.buffer;
         const fileName = `players/documents/${Date.now()}-${file.originalname}`;
         const fileUrl = await uploadToVercelBlob(fileBuffer, fileName);
-        documentsUrls.push(fileUrl);
+
+        documentNames.push(name);
+        documentNames_en.push(nameEn);
+        documentUrls.push(fileUrl);
       }
     }
 
+    // Create the new player
     const newPlayer = await Player.create({
       name,
       clubname,
@@ -117,41 +152,19 @@ const createPlayer = async (req, res, next) => {
       description_en,
       videoLink,
       image: imageUrl,
-      documents: documentsUrls,
-      creator: req.user.id,
+      documentNames,
+      documentNames_en,
+      documentUrls,
+      creator: req.user.id, // Assuming authMiddleware sets req.user
     });
+
+    // Logging the newly created player
+    console.log('New Player Created:', newPlayer);
 
     res.status(201).json(newPlayer);
   } catch (error) {
+    console.error('Error in createPlayer:', error);
     return next(new HttpError(error.message || 'Something went wrong', 500));
-  }
-};
-
-// ======================== Get all Players
-// GET: /api/players
-// UNPROTECTED
-const getPlayers = async (req, res, next) => {
-  try {
-    const players = await Player.find().sort({ updatedAt: -1 });
-    res.status(200).json(players);
-  } catch (error) {
-    return next(new HttpError(error.message || 'Failed to fetch players', 500));
-  }
-};
-
-// ======================== Get single Player
-// GET: /api/players/:id
-// UNPROTECTED
-const getPlayer = async (req, res, next) => {
-  try {
-    const playerId = req.params.id;
-    const player = await Player.findById(playerId);
-    if (!player) {
-      return next(new HttpError('Player not found.', 404));
-    }
-    res.status(200).json(player);
-  } catch (error) {
-    return next(new HttpError('Player does not exist', 404));
   }
 };
 
@@ -179,12 +192,15 @@ const editPlayer = async (req, res, next) => {
       description,
       description_en,
       videoLink,
+      removeDocuments, // Array of URLs to remove
     } = req.body;
 
+    // Validation: Name is required
     if (!name) {
       return next(new HttpError('Name is required.', 422));
     }
 
+    // Fetch the existing player
     const oldPlayer = await Player.findById(playerId);
     if (!oldPlayer) {
       return next(new HttpError('Player not found.', 404));
@@ -192,65 +208,109 @@ const editPlayer = async (req, res, next) => {
 
     // Handle image update
     let imageUrl = oldPlayer.image;
-    if (req.files['image']) {
+    if (req.files['image'] && req.files['image'][0]) {
       const imageBuffer = req.files['image'][0].buffer;
       const imageName = `players/images/${Date.now()}-${req.files['image'][0].originalname}`;
       imageUrl = await uploadToVercelBlob(imageBuffer, imageName);
 
-      // Delete old image
+      // Delete old image from Vercel Blob
       if (oldPlayer.image) {
         await deleteFromVercelBlob(oldPlayer.image);
       }
     }
 
-    // Handle documents update
-    let documentsUrls = oldPlayer.documents;
-    if (req.files['documents']) {
-      // Delete old documents
-      if (oldPlayer.documents && oldPlayer.documents.length > 0) {
-        for (const docUrl of oldPlayer.documents) {
-          await deleteFromVercelBlob(docUrl);
-        }
-      }
+    // Initialize documents arrays
+    let documentNames = [...oldPlayer.documentNames];
+    let documentNames_en = [...oldPlayer.documentNames_en];
+    let documentUrls = [...oldPlayer.documentUrls];
 
-      // Upload new documents
-      documentsUrls = [];
-      for (const file of req.files['documents']) {
-        const fileBuffer = file.buffer;
-        const fileName = `players/documents/${Date.now()}-${file.originalname}`;
-        const fileUrl = await uploadToVercelBlob(fileBuffer, fileName);
-        documentsUrls.push(fileUrl);
+    // Handle document removals
+    if (removeDocuments && Array.isArray(removeDocuments)) {
+      for (const url of removeDocuments) {
+        const index = documentUrls.indexOf(url);
+        if (index !== -1) {
+          // Delete from Vercel Blob
+          await deleteFromVercelBlob(url);
+          // Remove from arrays
+          documentNames.splice(index, 1);
+          documentNames_en.splice(index, 1);
+          documentUrls.splice(index, 1);
+        }
       }
     }
 
-    const updatedPlayer = await Player.findByIdAndUpdate(
-      playerId,
-      {
-        name,
-        clubname,
-        dob,
-        sex,
-        sport,
-        sport_en,
-        position,
-        position_en,
-        nationality,
-        nationality_en,
-        height,
-        weight,
-        preferredFootHand,
-        preferredFootHand_en,
-        description,
-        description_en,
-        videoLink,
-        image: imageUrl,
-        documents: documentsUrls,
-      },
-      { new: true }
-    );
+    // Handle new documents upload
+    if (req.files['documents']) {
+      const documentFiles = req.files['documents'];
+      let names = req.body.documentNames;
+      let namesEn = req.body.documentNames_en;
+
+      // Normalize to arrays
+      names = Array.isArray(names) ? names : [names];
+      namesEn = Array.isArray(namesEn) ? namesEn : [namesEn];
+
+      // Validation: Ensure names arrays match files count
+      if (names.length !== documentFiles.length || namesEn.length !== documentFiles.length) {
+        return next(new HttpError('Number of document names does not match number of documents.', 422));
+      }
+
+      // Validation: Ensure total documents do not exceed 10
+      if (documentUrls.length + documentFiles.length > 10) {
+        return next(new HttpError('Cannot have more than 10 documents.', 422));
+      }
+
+      // Upload each new document
+      for (let i = 0; i < documentFiles.length; i++) {
+        const file = documentFiles[i];
+        const name = names[i].trim() || file.originalname;
+        const nameEn = namesEn[i].trim() || '';
+
+        if (!name) {
+          return next(new HttpError(`Document name at index ${i} is empty.`, 422));
+        }
+
+        const fileBuffer = file.buffer;
+        const fileName = `players/documents/${Date.now()}-${file.originalname}`;
+        const fileUrl = await uploadToVercelBlob(fileBuffer, fileName);
+
+        documentNames.push(name);
+        documentNames_en.push(nameEn);
+        documentUrls.push(fileUrl);
+      }
+    }
+
+    // Update the player with new data
+    oldPlayer.name = name;
+    oldPlayer.clubname = clubname;
+    oldPlayer.dob = dob;
+    oldPlayer.sex = sex;
+    oldPlayer.sport = sport;
+    oldPlayer.sport_en = sport_en;
+    oldPlayer.position = position;
+    oldPlayer.position_en = position_en;
+    oldPlayer.nationality = nationality;
+    oldPlayer.nationality_en = nationality_en;
+    oldPlayer.height = height;
+    oldPlayer.weight = weight;
+    oldPlayer.preferredFootHand = preferredFootHand;
+    oldPlayer.preferredFootHand_en = preferredFootHand_en;
+    oldPlayer.description = description;
+    oldPlayer.description_en = description_en;
+    oldPlayer.videoLink = videoLink;
+    oldPlayer.image = imageUrl;
+    oldPlayer.documentNames = documentNames;
+    oldPlayer.documentNames_en = documentNames_en;
+    oldPlayer.documentUrls = documentUrls;
+
+    // Save the updated player
+    const updatedPlayer = await oldPlayer.save();
+
+    // Logging the updated player
+    console.log('Player Updated:', updatedPlayer);
 
     res.status(200).json(updatedPlayer);
   } catch (error) {
+    console.error('Error in editPlayer:', error);
     return next(new HttpError(error.message || "Couldn't update player", 500));
   }
 };
@@ -277,9 +337,9 @@ const deletePlayer = async (req, res, next) => {
     }
 
     // Delete documents
-    if (player.documents && player.documents.length > 0) {
-      for (const docUrl of player.documents) {
-        await deleteFromVercelBlob(docUrl);
+    for (let url of player.documentUrls) {
+      if (url) {
+        await deleteFromVercelBlob(url);
       }
     }
 
@@ -288,7 +348,37 @@ const deletePlayer = async (req, res, next) => {
 
     res.status(200).json({ message: 'Player deleted successfully' });
   } catch (error) {
+    console.error('Error in deletePlayer:', error);
     return next(new HttpError("Couldn't delete player.", 400));
+  }
+};
+
+// ======================== Get all Players
+// GET: /api/players
+// UNPROTECTED
+const getPlayers = async (req, res, next) => {
+  try {
+    const players = await Player.find().sort({ updatedAt: -1 });
+    res.status(200).json(players);
+  } catch (error) {
+    return next(new HttpError(error.message || 'Failed to fetch players', 500));
+  }
+};
+
+// ======================== Get single Player
+// GET: /api/players/:id
+// UNPROTECTED
+const getPlayer = async (req, res, next) => {
+  try {
+    const playerId = req.params.id;
+    const player = await Player.findById(playerId);
+    if (!player) {
+      return next(new HttpError('Player not found.', 404));
+    }
+    res.status(200).json(player);
+  } catch (error) {
+    console.error('Error in getPlayer:', error);
+    return next(new HttpError('Player does not exist', 404));
   }
 };
 
