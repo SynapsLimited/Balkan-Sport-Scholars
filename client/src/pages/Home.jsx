@@ -408,7 +408,7 @@ Mentorship" />
       {/* Blog Section */}
       <section className="home-blog-section container">
         <div className="blog-text-section">
-          <h2>Blog</h2>
+          <h1>Blog</h1>
           <p>
           Our Blog page offers insights, advice, and updates on the world of college sports recruiting. From success stories to tips on navigating the recruitment process, we aim to empower athletes and families with valuable information for their journey to US college athletics."
           </p>
