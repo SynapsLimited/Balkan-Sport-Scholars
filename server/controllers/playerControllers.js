@@ -337,18 +337,13 @@ const deletePlayer = async (req, res, next) => {
     }
 
     // Delete documents
-    for (let url of player.documentUrls) {
-      if (url) {
-        await deleteFromVercelBlob(url);
+    if (player.documents && player.documents.length > 0) {
+      for (const docUrl of player.documents) {
+        await deleteFromVercelBlob(docUrl);
       }
     }
-
-    // Delete the player from the database
-    await Player.findByIdAndDelete(playerId);
-
     res.status(200).json({ message: 'Player deleted successfully' });
   } catch (error) {
-    console.error('Error in deletePlayer:', error);
     return next(new HttpError("Couldn't delete player.", 400));
   }
 };
