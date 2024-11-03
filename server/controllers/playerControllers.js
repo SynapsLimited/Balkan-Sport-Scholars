@@ -31,7 +31,12 @@ const deleteFromVercelBlob = async (fileUrl) => {
       return;
     }
 
-    const fileName = fileUrl.split('/').pop();
+    const parsedUrl = new URL(fileUrl);
+    const pathname = parsedUrl.pathname;
+    const fileName = pathname.substring(pathname.lastIndexOf('/') + 1);
+
+    console.log(`Deleting file: ${fileName}`);
+
     const response = await fetch(`https://api.vercel.com/v2/blob/files/${fileName}`, {
       method: 'DELETE',
       headers: {
@@ -40,7 +45,9 @@ const deleteFromVercelBlob = async (fileUrl) => {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to delete from Vercel Blob Storage');
+      const errorText = await response.text();
+      console.error(`Vercel Blob DELETE Error: ${response.status} - ${errorText}`);
+      throw new Error(`Failed to delete from Vercel Blob Storage: ${response.statusText}`);
     }
 
     console.log(`Deleted successfully from Vercel Blob: ${fileName}`);
