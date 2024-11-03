@@ -36,7 +36,7 @@ const Services = () => {
      <p>We evaluate each athlete's skills, academic standing, and athletic potential to create a personalized profile that highlights their strengths for college recruitment.</p>
    </div>
    <div className="service-img">
-     <img src="assets/football.png" alt="Football" />
+     <img src="assets/Football.png" alt="Football" />
    </div>
  </div>
 
@@ -47,7 +47,7 @@ const Services = () => {
      <p>Our team connects athletes with colleges that best align with their academic goals, athletic level, and career aspirations, maximizing their opportunities for scholarships and success..</p>
    </div>
    <div className="service-img">
-     <img src="assets/basketball.png" alt="Basketball" />
+     <img src="assets/Basketball.png" alt="Basketball" />
    </div>
  </div>
 
