@@ -318,6 +318,8 @@ const editPlayer = async (req, res, next) => {
 // ======================== Delete Player
 // DELETE: /api/players/:id
 // PROTECTED
+// controllers/playerControllers.js
+
 const deletePlayer = async (req, res, next) => {
   try {
     const playerId = req.params.id;
@@ -340,7 +342,13 @@ const deletePlayer = async (req, res, next) => {
     // Delete image
     if (player.image) {
       console.log(`Deleting image: ${player.image}`);
-      await deleteFromVercelBlob(player.image);
+      try {
+        await deleteFromVercelBlob(player.image);
+        console.log('Image deleted successfully.');
+      } catch (imageError) {
+        console.error('Error deleting image from Vercel Blob:', imageError);
+        return next(new HttpError('Failed to delete player image.', 400));
+      }
     } else {
       console.log('No image to delete.');
     }
@@ -350,7 +358,13 @@ const deletePlayer = async (req, res, next) => {
       for (let url of player.documentUrls) {
         if (url) {
           console.log(`Deleting document: ${url}`);
-          await deleteFromVercelBlob(url);
+          try {
+            await deleteFromVercelBlob(url);
+            console.log('Document deleted successfully.');
+          } catch (docError) {
+            console.error('Error deleting document from Vercel Blob:', docError);
+            return next(new HttpError('Failed to delete player documents.', 400));
+          }
         }
       }
     } else {
@@ -367,6 +381,7 @@ const deletePlayer = async (req, res, next) => {
     return next(new HttpError("Couldn't delete player.", 400));
   }
 };
+
 
 
 // ======================== Get all Players
