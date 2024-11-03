@@ -321,32 +321,53 @@ const editPlayer = async (req, res, next) => {
 const deletePlayer = async (req, res, next) => {
   try {
     const playerId = req.params.id;
+    console.log(`Attempting to delete player with ID: ${playerId}`);
+
     if (!playerId) {
+      console.log('No player ID provided.');
       return next(new HttpError('Player unavailable.', 400));
     }
 
     // Find the player by ID
     const player = await Player.findById(playerId);
     if (!player) {
+      console.log(`Player with ID ${playerId} not found.`);
       return next(new HttpError('Player not found.', 404));
     }
 
+    console.log(`Player found: ${player.name}`);
+
     // Delete image
     if (player.image) {
+      console.log(`Deleting image: ${player.image}`);
       await deleteFromVercelBlob(player.image);
+    } else {
+      console.log('No image to delete.');
     }
 
     // Delete documents
-    if (player.documents && player.documents.length > 0) {
-      for (const docUrl of player.documents) {
-        await deleteFromVercelBlob(docUrl);
+    if (player.documentUrls && player.documentUrls.length > 0) {
+      for (let url of player.documentUrls) {
+        if (url) {
+          console.log(`Deleting document: ${url}`);
+          await deleteFromVercelBlob(url);
+        }
       }
+    } else {
+      console.log('No documents to delete.');
     }
+
+    // Delete the player from the database
+    await Player.findByIdAndDelete(playerId);
+    console.log(`Player with ID ${playerId} deleted successfully.`);
+
     res.status(200).json({ message: 'Player deleted successfully' });
   } catch (error) {
+    console.error('Error in deletePlayer:', error);
     return next(new HttpError("Couldn't delete player.", 400));
   }
 };
+
 
 // ======================== Get all Players
 // GET: /api/players
