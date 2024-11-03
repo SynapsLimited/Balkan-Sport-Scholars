@@ -1,11 +1,15 @@
+// src/pages/Dashboard.jsx
+
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Loader from '../components/Loader';
 import DeletePost from './DeletePost';
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -50,7 +54,7 @@ const Dashboard = () => {
   return (
     <section className="dashboard">
       <div className="blog-title-filtered">
-        <h1>Dashboard</h1>
+        <h1>{t('dashboard')}</h1>
       </div>
 
       {posts.length ? (
@@ -65,10 +69,10 @@ const Dashboard = () => {
               </div>
               <div className="dashboard-post-actions">
                 <Link to={`/posts/${post._id}`} className="btn btn-background">
-                  View
+                  {t('viewPost')}
                 </Link>
                 <Link to={`/posts/${post._id}/edit`} className="btn btn-primary">
-                  Edit
+                  {t('editPost')}
                 </Link>
                 <DeletePost postId={post._id} />
               </div>
@@ -76,7 +80,7 @@ const Dashboard = () => {
           ))}
         </div>
       ) : (
-        <h2 className="center"> You have no posts yet! </h2>
+        <h2 className="center">{t('noUserPosts')}</h2>
       )}
     </section>
   );

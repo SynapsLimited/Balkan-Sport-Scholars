@@ -1,10 +1,14 @@
+// src/components/Authors.jsx
+
 import React, { useEffect, useState } from 'react';
-import './../css/blog.css'; 
+import './../css/blog.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../components/Loader';
+import { useTranslation } from 'react-i18next';
 
 const Authors = () => {
+  const { t } = useTranslation();
   const [authors, setAuthors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,12 +34,12 @@ const Authors = () => {
   }
 
   return (
-    <section data-aos="fade-up"   className="container authors">
-      <div  className="blog-title">
-        <h1>Autorët</h1>
+    <section data-aos="fade-up" className="container authors">
+      <div className="blog-title">
+        <h1>{t('authors')}</h1>
       </div>
       {authors.length > 0 ? (
-        <div  className="authors-container">
+        <div className="authors-container">
           {authors.map(({ _id: id, avatar, name, posts }) => (
             <Link 
               key={id} 
@@ -46,18 +50,18 @@ const Authors = () => {
               <div className="author-avatar">
                 <img 
                   src={avatar || defaultAvatar}  // Use default avatar if none exists
-                  alt={`Image of ${name}`} 
+                  alt={t('imageOf', { name })}
                 />
               </div>
               <div className="author-info">
                 <h4>{name}</h4>
-                <p>{posts} {posts === 1 ? 'post' : 'posts'}</p>
+                <p>{posts} {posts === 1 ? t('post') : t('posts')}</p>
               </div>
             </Link>
           ))}
         </div>
       ) : (
-        <h2 className="error-blog-not-found">Su gjetën autorët!</h2>
+        <h2 className="error-blog-not-found">{t('noAuthorsFound')}</h2>
       )}
     </section>
   );

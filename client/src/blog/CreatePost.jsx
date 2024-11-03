@@ -5,9 +5,11 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { UserContext } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 const CreatePost = () => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [titleEn, setTitleEn] = useState('');
   const [category, setCategory] = useState('Uncategorized');
@@ -96,19 +98,19 @@ const CreatePost = () => {
   return (
     <section data-aos="fade-up" className="create-post">
       <div className="container">
-        <h2>Create Post</h2>
-        {error && <p className="form-error-message">{error}</p>}
+        <h2>{t('createPost')}</h2>
+        {error && <p className="form-error-message">{t('formError')}: {error}</p>}
         <form className="form create-post-form" onSubmit={createPost}>
           <input
             type="text"
-            placeholder="Title"
+            placeholder={t('title')}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             autoFocus
           />
           <select name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
             {POST_CATEGORIES.map((cat) => (
-              <option key={cat}>{cat}</option>
+              <option key={cat}>{t(cat)}</option>
             ))}
           </select>
           <ReactQuill
@@ -126,22 +128,22 @@ const CreatePost = () => {
             />
           </div>
 
-      <div className='custom-checkbox-container'>
-          <label>
-            <input
-              type="checkbox"
-              checked={addTranslation}
-              onChange={() => setAddTranslation(!addTranslation)}
-            />
-            Add translation in English
-          </label>
+          <div className='custom-checkbox-container'>
+            <label>
+              <input
+                type="checkbox"
+                checked={addTranslation}
+                onChange={() => setAddTranslation(!addTranslation)}
+              />
+              {t('addTranslation')}
+            </label>
           </div>
 
           {addTranslation && (
             <>
               <input
                 type="text"
-                placeholder="Title in English"
+                placeholder={t('titleInEnglish')}
                 value={titleEn}
                 onChange={(e) => setTitleEn(e.target.value)}
               />
@@ -150,13 +152,13 @@ const CreatePost = () => {
                 formats={formats}
                 value={descriptionEn}
                 onChange={setDescriptionEn}
-                placeholder="Description in English"
+                placeholder={t('descriptionInEnglish')}
               />
             </>
           )}
 
           <button type="submit" className="btn btn-primary btn-submit">
-            Create
+            {t('create')}
           </button>
         </form>
       </div>

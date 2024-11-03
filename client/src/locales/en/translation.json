@@ -59,7 +59,36 @@
     "productNotFound": "Product not found",
     "categoryLabel": "Category",
     "variationsLabel": "Variations",
-    "backToProducts": "Back to Products"
+    "backToProducts": "Back to Products",
+
+    "postsByAuthor": "Posts by ",
+    "noPostsFound": "No posts found!",
+    "authors": "Authors",
+    "imageOf": "Image of {name}",
+    "noAuthorsFound": "No authors found!",
+    "categoryDisplayName": "{category}",
+    "categories": "Categories",
+    "createPost": "Create Post",
+    "formError": "Form Error",
+    "title": "Title",
+    "category": "Category",
+    "description": "Description",
+    "thumbnailUpload": "Upload Thumbnail",
+    "addTranslation": "Add translation in English",
+    "titleInEnglish": "Title in English",
+    "descriptionInEnglish": "Description in English",
+    "create": "Create",
+    "dashboard": "Dashboard",
+    "viewPost": "View",
+    "editPost": "Edit",
+    "noUserPosts": "You have no posts yet!",
+    "loading": "Loading...",
+    "authorPosts": "Posts by { authorName }",
+    "notFoundError": "No posts found!",
+    "blogTitle": "Blog Title",
+    "noCategoryPosts": "No posts found in this category",
+    "otherCategories": "Other Categories",
+    "defaultAvatarAlt": "Default Avatar"
   
 
 

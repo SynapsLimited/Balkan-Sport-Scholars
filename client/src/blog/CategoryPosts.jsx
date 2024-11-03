@@ -70,11 +70,13 @@ const CategoryPosts = () => {
           <h1>Kategori</h1>
         </div>
         <ul className="blog-categories">
-          {Object.keys(categoryTranslationMap).map((key) => (
-            <li key={key} className="btn btn-secondary">
-              <Link to={`/posts/categories/${key}`}>{categoryTranslationMap[key]}</Link>
-            </li>
-          ))}
+          <li className="btn btn-secondary"><Link to="/posts/categories/Football">Football</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Basketball">Basketball</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Volleyball">Volleyball</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Tennis">Tennis</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Rugby">Rugby</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/ESports">ESports</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Other">Other</Link></li>
         </ul>
       </section>
     </section>
