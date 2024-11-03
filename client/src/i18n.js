@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 
 // Import your translation files
 import translationEN from './locales/en/translation.json';
-import translationAL from './locales/al/translation.json';
+import translationAL from './locales/sq/translation.json';
 
 const resources = {
   en: {

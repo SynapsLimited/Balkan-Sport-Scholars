@@ -39,6 +39,9 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false); // Optional: For blog posts
   const [error, setError] = useState(null); // Optional: For blog posts
 
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
   // Observe when stats section comes into view
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -328,12 +331,16 @@ Mentorship" />
         </div>
       </section>
 
-      {/* Players Slider Section */}
-      <section className="container players-slider-section">
+  {/* Players Slider Section */}
+  <section className="container players-slider-section">
         <div className="services-overview-title">
           <h1>Players</h1>
           <p style={{ padding: '20px' }}>
-          Our Current Players page features the talented athletes we're proudly supporting on their journey to US college sports. These individuals are dedicated, driven, and ready to make their mark, and we're honored to help them reach their goals through tailored guidance and support.
+            Our Current Players page features the talented athletes we're
+            proudly supporting on their journey to US college sports. These
+            individuals are dedicated, driven, and ready to make their mark, and
+            we're honored to help them reach their goals through tailored
+            guidance and support.
           </p>
         </div>
         <div className="players-slider-container">
@@ -345,9 +352,9 @@ Mentorship" />
               navigation
               pagination={{ clickable: true }}
               autoplay={{
-                delay: 3000, // Slide every 3 seconds
-                disableOnInteraction: false, // Disable autoplay when user interacts
-                pauseOnMouseEnter: true, // Pause autoplay on hover
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
               loop={true}
             >
@@ -361,28 +368,28 @@ Mentorship" />
                       loading="lazy"
                     />
                     <div className="player-info">
-                      <h1>{player.name}</h1>
-                      <h2>{player.clubname}</h2>
+                      <h1>{currentLanguage === 'en' ? player.name_en || player.name : player.name}</h1>
+                      <h2>{currentLanguage === 'en' ? player.clubname_en || player.clubname : player.clubname}</h2>
                       <ul>
                         <li>
-                          <strong>Date of Birth:</strong>{' '}
+                          <strong>{t('Date of Birth')}:</strong>{' '}
                           {new Date(player.dob).toLocaleDateString()}
                         </li>
                         <li>
-                          <strong>Sport:</strong> {player.sport}
+                          <strong>{t('Sport')}:</strong> {currentLanguage === 'en' ? player.sport_en || player.sport : player.sport}
                         </li>
                         <li>
-                          <strong>Position:</strong> {player.position}
+                          <strong>{t('Position')}:</strong> {currentLanguage === 'en' ? player.position_en || player.position : player.position}
                         </li>
                         <li>
-                          <strong>Nationality:</strong> {player.nationality}
+                          <strong>{t('Nationality')}:</strong> {currentLanguage === 'en' ? player.nationality_en || player.nationality : player.nationality}
                         </li>
                       </ul>
                       <Link
                         to={`/players/${player._id}`}
                         className="btn btn-secondary"
                       >
-                        Read more
+                        {t('Read more')}
                       </Link>
                     </div>
                   </div>
@@ -393,7 +400,7 @@ Mentorship" />
         </div>
         <div className="services-button center">
           <a href="/players" style={{ marginTop: '50px' }} className="btn btn-primary">
-            Players
+            {t('Players')}
           </a>
         </div>
       </section>

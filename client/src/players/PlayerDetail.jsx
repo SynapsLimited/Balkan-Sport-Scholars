@@ -1,5 +1,3 @@
-// src/components/PlayerDetail.jsx
-
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Loader from '../components/Loader';
@@ -11,8 +9,9 @@ import './../css/players.css';
 const PlayerDetail = () => {
   const { id } = useParams();
   const { currentUser } = useContext(UserContext);
-  const { t } = useTranslation(); // Destructure t from useTranslation
+  const { t, i18n } = useTranslation(); // Destructure t from useTranslation
   const token = currentUser?.token;
+  const currentLanguage = i18n.language;
 
   const [player, setPlayer] = useState(null);
   const [error, setError] = useState(null);
@@ -55,8 +54,7 @@ const PlayerDetail = () => {
     if (player.documentUrls && player.documentUrls.length > 0) {
       for (let i = 0; i < player.documentUrls.length; i++) {
         docs.push({
-          name: player.documentNames[i],
-          name_en: player.documentNames_en[i],
+          name: currentLanguage === 'en' ? player.documentNames_en[i] || player.documentNames[i] : player.documentNames[i],
           url: player.documentUrls[i],
         });
       }
@@ -71,8 +69,8 @@ const PlayerDetail = () => {
       {player ? (
         <div className="player-detail-container">
           <div className="player-detail-header">
-            <h1>{player.name}</h1>
-            <p>{player.clubname}</p>
+            <h1>{currentLanguage === 'en' ? player.name_en || player.name : player.name}</h1>
+            <p>{currentLanguage === 'en' ? player.clubname_en || player.clubname : player.clubname}</p>
           </div>
 
           <div className="player-detail-thumbnail">
@@ -87,15 +85,15 @@ const PlayerDetail = () => {
           <div className="player-attributes">
             <p>
               <strong>{t('Sport')}:</strong>{' '}
-              {player.sport_en || player.sport}
+              {currentLanguage === 'en' ? player.sport_en || player.sport : player.sport}
             </p>
             <p>
               <strong>{t('Position')}:</strong>{' '}
-              {player.position_en || player.position}
+              {currentLanguage === 'en' ? player.position_en || player.position : player.position}
             </p>
             <p>
               <strong>{t('Nationality')}:</strong>{' '}
-              {player.nationality_en || player.nationality}
+              {currentLanguage === 'en' ? player.nationality_en || player.nationality : player.nationality}
             </p>
             <p>
               <strong>{t('Height (cm)')}:</strong> {player.height} cm
@@ -105,7 +103,7 @@ const PlayerDetail = () => {
             </p>
             <p>
               <strong>{t('Preferred Foot/Hand')}:</strong>{' '}
-              {player.preferredFootHand_en || player.preferredFootHand}
+              {currentLanguage === 'en' ? player.preferredFootHand_en || player.preferredFootHand : player.preferredFootHand}
             </p>
           </div>
 
@@ -114,7 +112,7 @@ const PlayerDetail = () => {
           <p
             className="center"
             dangerouslySetInnerHTML={{
-              __html: player.description_en || player.description,
+              __html: currentLanguage === 'en' ? player.description_en || player.description : player.description,
             }}
           ></p>
 
@@ -131,7 +129,7 @@ const PlayerDetail = () => {
                       rel="noopener noreferrer"
                       className="btn btn-primary document-button"
                     >
-                      {doc.name_en || doc.name}
+                      {doc.name}
                     </a>
                   </li>
                 ))}

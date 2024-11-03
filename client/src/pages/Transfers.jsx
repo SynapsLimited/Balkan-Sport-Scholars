@@ -14,10 +14,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import './../css/transfers.css';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 const Transfers = () => {
+  const { t, i18n } = useTranslation();
   const [transfers, setTransfers] = useState([]);
   const [videos, setVideos] = useState([]);
+  const currentLanguage = i18n.language;
 
   useEffect(() => {
     const fetchTransfers = async () => {
@@ -52,17 +55,17 @@ const Transfers = () => {
   return (
     <div>
       <Helmet>
-        <title>Balkan Sport Scholars - Transfers</title>
+        <title>Balkan Sport Scholars - {t('transfers.pageTitle')}</title>
       </Helmet>
       <header className="hero-container hero-container header-transfers" id="intro">
         <div className="">
           <div className="center header-template">
-            <h1 className="margin-bottom">Transfers</h1>
+            <h1 className="margin-bottom">{t('transfers.headerTitle')}</h1>
             <p className="margin-bottom hero-p">
-            Our Transfers page celebrates the success stories of Balkan Sport Scholars athletes who have transitioned to US colleges. Each story highlights the achievements, growth, and new opportunities these athletes have embraced, showcasing the impact of their hard work and our dedicated support.
+              {t('transfers.headerDescription')}
             </p>
             <a href="/contact" className="btn btn-secondary">
-              Contact
+              {t('common.contact')}
             </a>
           </div>
         </div>
@@ -74,7 +77,7 @@ const Transfers = () => {
       </header>
 
       <div className="services-overview-title margin-top">
-        <h1>Transfers</h1>
+        <h1>{t('transfers.sectionTitle')}</h1>
       </div>
       <section className="container image-slider-section center">
         <Swiper
@@ -104,15 +107,25 @@ const Transfers = () => {
           {transfers.map((transfer, index) => (
             <SwiperSlide key={index}>
               <div className="image-slide">
-                <h2 className="player-name">{transfer.fullName}</h2>
+                <h2 className="player-name">
+                  {transfer.fullName}
+                </h2>
                 <img src={transfer.image} alt={`Slide ${index + 1}`} />
                 <div className="slide-content">
                   <div className="clubs">
-                    <h2 className="previous-club">{transfer.previousClub}</h2>
+                    <h2 className="previous-club">
+                      {transfer.previousClub}
+                    </h2>
                     <span className="arrow">→</span>
-                    <h2 className="current-club">{transfer.currentClub}</h2>
+                    <h2 className="current-club">
+                      {transfer.currentClub}
+                    </h2>
                   </div>
-                  <p>{transfer.description}</p>
+                  <p>
+                    {currentLanguage === 'en'
+                      ? transfer.description_en || transfer.description
+                      : transfer.description}
+                  </p>
                 </div>
               </div>
             </SwiperSlide>
@@ -122,7 +135,7 @@ const Transfers = () => {
 
       <section className="container video-slider-section">
         <div className="services-overview-title">
-          <h1>Highlights</h1>
+          <h1>{t('transfers.highlights')}</h1>
         </div>
         <Swiper
           spaceBetween={100}

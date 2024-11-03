@@ -4,14 +4,17 @@ import { UserContext } from '../context/userContext';
 import axios from 'axios';
 import Loader from '../components/Loader';
 import DeleteTransfer from './DeleteTransfer';
+import { useTranslation } from 'react-i18next';
 
 const DashboardTransfer = () => {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [transfers, setTransfers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const { currentUser } = useContext(UserContext);
   const token = currentUser?.token;
+  const currentLanguage = i18n.language;
 
   useEffect(() => {
     if (!token) {
@@ -34,7 +37,6 @@ const DashboardTransfer = () => {
       } catch (error) {
         console.log(error);
       }
-
       setIsLoading(false);
     };
 
@@ -48,7 +50,7 @@ const DashboardTransfer = () => {
   return (
     <section className="dashboard">
       <div className="blog-title-filtered">
-        <h1>Transfers Dashboard</h1>
+        <h1>{t('transfers.dashboardTitle')}</h1>
       </div>
 
       {transfers.length ? (
@@ -59,14 +61,16 @@ const DashboardTransfer = () => {
                 <div className="dashboard-transfer-thumbnail">
                   <img src={transfer.image} alt="" />
                 </div>
-                <h4>{transfer.fullName}</h4>
+                <h4>
+                  {transfer.fullName}
+                </h4>
               </div>
               <div className="dashboard-transfer-actions">
                 <Link
                   to={`/transfers/${transfer._id}/edit`}
                   className="btn btn-primary"
                 >
-                  Edit
+                  {t('common.edit')}
                 </Link>
                 <DeleteTransfer transferId={transfer._id} />
               </div>
@@ -74,7 +78,7 @@ const DashboardTransfer = () => {
           ))}
         </div>
       ) : (
-        <h2 className="center"> You have no transfers yet! </h2>
+        <h2 className="center">{t('transfers.noTransfers')}</h2>
       )}
     </section>
   );

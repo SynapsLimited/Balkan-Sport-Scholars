@@ -41,7 +41,29 @@
   "Player details not found.": "Player details not found.",
   "View Current Document": "View Current Document",
   "Remove": "Remove",
-  "Player deleted successfully": "Player deleted successfully"
+  "Player deleted successfully": "Player deleted successfully",
+
+    "transfers": {
+      "dashboardTitle": "Transfers Dashboard",
+      "noTransfers": "You have no transfers yet!",
+      "pageTitle": "Transfers",
+      "headerTitle": "Transfers",
+      "headerDescription": "Our Transfers page celebrates the success stories of Balkan Sport Scholars athletes who have transitioned to US colleges. Each story highlights the achievements, growth, and new opportunities these athletes have embraced, showcasing the impact of their hard work and our dedicated support.",
+      "sectionTitle": "Transfers",
+      "highlights": "Highlights"
+    },
+    "common": {
+      "edit": "Edit",
+      "contact": "Contact"
+    },
+    "productNotFound": "Product not found",
+    "categoryLabel": "Category",
+    "variationsLabel": "Variations",
+    "backToProducts": "Back to Products"
+  
+
+
 
   }
+
   
