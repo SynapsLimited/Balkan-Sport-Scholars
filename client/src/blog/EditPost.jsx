@@ -1,13 +1,13 @@
-// src/pages/EditPost.jsx
-
 import React, { useState, useEffect, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const EditPost = () => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [titleEn, setTitleEn] = useState('');
   const [category, setCategory] = useState('Uncategorized');
@@ -81,10 +81,11 @@ const EditPost = () => {
         }
       } catch (error) {
         console.log(error);
+        setError(t('editPost.noPostData'));
       }
     };
     getPost();
-  }, [id]);
+  }, [id, t]);
 
   const editPost = async (e) => {
     e.preventDefault();
@@ -115,19 +116,19 @@ const EditPost = () => {
         navigate('/blog');
       }
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.response?.data?.message || t('editPost.deleteError'));
     }
   };
 
   return (
     <section data-aos="fade-up" className="create-post">
       <div className="container">
-        <h2>Edit Post</h2>
+        <h2>{t('editPost.editPostTitle')}</h2>
         {error && <p className="form-error-message">{error}</p>}
         <form className="form create-post-form" onSubmit={editPost}>
           <input
             type="text"
-            placeholder="Title"
+            placeholder={t('editPost.title')}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             autoFocus
@@ -155,22 +156,22 @@ const EditPost = () => {
             />
           </div>
 
-      <div className='custom-checkbox-container'>
-          <label>
-            <input
-              type="checkbox"
-              checked={addTranslation}
-              onChange={() => setAddTranslation(!addTranslation)}
-            />
-            Add translation in English
-          </label>
+          <div className='custom-checkbox-container'>
+            <label>
+              <input
+                type="checkbox"
+                checked={addTranslation}
+                onChange={() => setAddTranslation(!addTranslation)}
+              />
+              {t('editPost.addTranslation')}
+            </label>
           </div>
 
           {addTranslation && (
             <>
               <input
                 type="text"
-                placeholder="Title in English"
+                placeholder={t('editPost.titleEn')}
                 value={titleEn}
                 onChange={(e) => setTitleEn(e.target.value)}
               />
@@ -179,13 +180,13 @@ const EditPost = () => {
                 formats={formats}
                 value={descriptionEn}
                 onChange={setDescriptionEn}
-                placeholder="Description in English"
+                placeholder={t('editPost.descriptionEn') || "Description in English"}
               />
             </>
           )}
 
           <button type="submit" className="btn btn-primary btn-submit">
-            Update
+            {t('editPost.updateButton')}
           </button>
         </form>
       </div>

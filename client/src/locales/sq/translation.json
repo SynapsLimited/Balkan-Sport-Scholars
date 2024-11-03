@@ -1,9 +1,8 @@
 {
-    "welcome": "Mireseerdhet",
-    "home": "Kreu",
-    "about": "Rreth Nesh",
-    "contact": "Kontakt",
-
+  "welcome": "Mireseerdhet",
+  "home": "Kreu",
+  "about": "Rreth Nesh",
+  "contact": "Kontakt",
   "Create Player": "Krijo Lojtar",
   "Edit Player": "Edito Lojtar",
   "Name": "Emri",
@@ -18,7 +17,7 @@
   "Nationality": "Shtetësia",
   "Height (cm)": "Gjatësia (cm)",
   "Weight (kg)": "Pesha (kg)",
-  "Preferred Foot/Hand": "Këmbë e Preferuar/Shtanga",
+  "Preferred Foot/Hand": "Këmba/Dora e Preferuar",
   "Description": "Përshkrimi",
   "Add translation in English": "Shto përkthim në Anglisht",
   "Sport in English": "Sporti në Anglisht",
@@ -34,14 +33,579 @@
   "Update": "Përditëso",
   "Back to Players": "Kthehu te Lojtarët",
   "Contact Agent": "Kontakto Agjentin",
-  "Watch Highlights": "Shiko Theksimet",
+  "Watch Highlights": "Shiko Video Përmbledhjen",
   "No documents available.": "Nuk ka dokumente të disponueshme.",
   "No image available.": "Nuk ka imazh të disponueshëm.",
   "Player details not found.": "Detajet e lojtarit nuk u gjetën.",
   "Documents": "Dokumentet",
   "View Current Document": "Shiko Dokumentin Aktual",
   "Remove": "Hiq",
-  "Player deleted successfully": "Lojtari u fshi me sukses"
-
+  "Player deleted successfully": "Lojtari u fshi me sukses",
+  "transfers": {
+    "dashboardTitle": "Paneli i Transferimeve",
+    "noTransfers": "Nuk keni asnjë transferim ende!",
+    "pageTitle": "Transferimet",
+    "headerTitle": "Transferimet",
+    "headerDescription": "Faqja jonë e Transferimeve feston historitë e suksesit të sportistëve të Balkan Sport Scholars që janë transferuar në kolegje në SHBA. Çdo histori thekson arritjet, rritjen dhe mundësitë e reja që këta sportistë kanë përqafuar, duke treguar ndikimin e punës së tyre të palodhur dhe mbështetjen tonë të përkushtuar.",
+    "sectionTitle": "Transferimet",
+    "highlights": "Thekson",
+    "createTransfer": "Krijo Transfer",
+    "editTransfer": "Redakto Transfer",
+    "fullName": "Emri i Plotë",
+    "previousClub": "Klubi i Mëparshëm",
+    "currentClub": "Klubi Aktual",
+    "description": "Përshkrim",
+    "addTranslation": "Shto përkthim në Anglisht",
+    "descriptionEn": "Përshkrim në Anglisht",
+    "youtubeLink": "Lidhje YouTube",
+    "create": "Krijo",
+    "update": "Përditëso",
+    "noTransfersAvailable": "Nuk ka transferime në dispozicion.",
+    "imageAlt": "Imazhi i {{name}}"
+  },
+  "productNotFound": "Produkti nuk u gjet",
+  "categoryLabel": "Kategoria",
+  "variationsLabel": "Variacionet",
+  "backToProducts": "Kthehu te Produktet",
+  "postsByAuthor": "Postimet nga ",
+  "noPostsFound": "Asnjë postim nuk u gjet!",
+  "authors": "Autorët",
+  "imageOf": "Imazh i {name}",
+  "noAuthorsFound": "Asnjë autor nuk u gjet!",
+  "categoryDisplayName": "{category}",
+  "categories": "Kategoritë",
+  "createPost": "Krijo Postim",
+  "formError": "Gabim në Formular",
+  "title": "Titulli",
+  "category": "Kategoria",
+  "description": "Përshkrimi",
+  "thumbnailUpload": "Ngarko Imazhin",
+  "addTranslation": "Shto përkthim në anglisht",
+  "titleInEnglish": "Titulli në anglisht",
+  "descriptionInEnglish": "Përshkrimi në anglisht",
+  "create": "Krijo",
+  "dashboard": "Paneli",
+  "viewPost": "Shiko",
+  "editPostOne": "Redakto",
+  "noUserPosts": "Ju nuk keni asnjë postim ende!",
+  "loading": "Duke ngarkuar...",
+  "authorPosts": "Postimet nga { authorName }",
+  "notFoundError": "Asnjë postim nuk u gjet!",
+  "blogTitle": "Titulli i Blogut",
+  "noCategoryPosts": "Asnjë postim nuk u gjet në këtë kategori",
+  "otherCategories": "Kategori të Tjera",
+  "defaultAvatarAlt": "Avatar i Parazgjedhur",
+  "deletePost": {
+    "deleteButton": "Fshi",
+    "deleteResponse": "Përgjigja e fshirjes:",
+    "deleteSuccess": "Postimi fshihet me sukses. Rinarkohet faqja...",
+    "deleteError": "Nuk mund të fshij postimin."
+  },
+  "editPost": {
+    "editPostTitle": "Redakto",
+    "title": "Titulli",
+    "titleEn": "Titulli në Anglisht",
+    "category": "Kategoria",
+    "addTranslation": "Shto përkthim në Anglisht",
+    "updateButton": "Përditëso",
+    "noPostData": "Nuk u gjet asnjë të dhënë për postimin."
+  },
+  "errorPage": {
+    "goBack": "Kthehu Prapa",
+    "pageNotFound": "Faqja nuk u gjet."
+  },
+  "login": {
+    "signIn": "Kyçu",
+    "email": "Email",
+    "password": "Fjalëkalimi",
+    "loginButton": "Kyçu",
+    "noAccount": "Nuk ke një llogari?",
+    "signUp": "Regjistrohu"
+  },
+  "register": {
+    "signUp": "Regjistrohu",
+    "fullName": "Emri i Plotë",
+    "email": "Email",
+    "password": "Fjalëkalimi",
+    "confirmPassword": "Konfirmo Fjalëkalimin",
+    "registerButton": "Regjistrohu",
+    "haveAccount": "Ke tashmë një llogari?",
+    "signIn": "Kyçu",
+    "unexpectedError": "Gabim i papritur. Ju lutem provoni përsëri."
+  },
+  "postDetail": {
+    "backToArticles": "Kthehu te Artikujt",
+    "postNotFound": "Postimi nuk u gjet.",
+    "authorNotFound": "Autori nuk u gjet."
+  },
+  "userProfile": {
+    "updateDetails": "Përditëso Detajet e Mia",
+    "fullName": "Emri i Plotë",
+    "email": "Email",
+    "currentPassword": "Fjalëkalimi Aktual",
+    "newPassword": "Fjalëkalimi i Ri",
+    "confirmNewPassword": "Konfirmo Fjalëkalimin e Ri",
+    "updateAvatar": "Përditëso Avatarin",
+    "updateAvatarButton": "Përditëso Avatarin",
+    "updateDetailsButton": "Përditëso detajet e mia",
+    "authorNotFound": "Autori nuk u gjet.",
+    "failedToUpdateAvatar": "Dështoi përditësimi i avatarit.",
+    "errorChangingAvatar": "Gabim gjatë ndryshimit të avatarit:",
+    "unexpectedError": "Ndodhi një gabim i papritur."
+  },
+  "common": {
+    "edit": "Redakto",
+    "contact": "Kontakto",
+    "error": "Gabim",
+    "networkError": "Nuk u mor përgjigje nga serveri. Ju lutem kontrolloni lidhjen tuaj të rrjetit.",
+    "readMore": "Lexo më shumë",
+    "servicesButton": "Shërbimet",
+    "playersButton": "Lojtarët",
+    "transfersButton": "Transferimet",
+    "aboutButton": "Rreth Nesh",
+    "blogButton": "Blogu",
+    "callUs": "Telefono",
+    "delete": "Fshij"
+  },
+  "contactForm": {
+    "description": "Plotësoni formularin më poshtë dhe do t'ju kontaktojmë sa më shpejt të jetë e mundur.",
+    "placeholders": {
+      "name": "Emri *",
+      "surname": "Mbiemri *",
+      "country": "Shteti *",
+      "email": "Email *",
+      "phoneNumber": "Numri i telefonit *",
+      "clubName": "Emri i klubit (Opsionale)",
+      "message": "Mesazhi *"
+    },
+    "alerts": {
+      "formSubmitted": "Formulari u dërgua!",
+      "formFailed": "Dërgimi i formularit dështoi. Ju lutemi provoni përsëri më vonë."
+    },
+    "submitButton": "Dërgo"
+  },
+  "cookieConsent": {
+    "message": "Ne përdorim cookies për të përmirësuar përvojën tuaj në faqen tonë. Duke vazhduar të shfletoni këtë faqe, ju pranoni përdorimin tonë të cookies.",
+    "learnMore": "Mëso më shumë",
+    "buttons": {
+      "accept": "Prano",
+      "decline": "Refuzo"
+    }
+  },
+  "fixedMenu": {
+    "menu": {
+      "profile": "Profili",
+      "logout": "Dil",
+      "blog": "Blog",
+      "allPosts": "Të gjitha postimet",
+      "authors": "Autorët",
+      "create": "Krijo",
+      "dashboard": "Paneli i Kontrollit",
+      "transfers": "Transferimet",
+      "allTransfers": "Të gjitha transferimet",
+      "createTransfer": "Krijo transfer",
+      "players": "Lojtarët",
+      "allPlayers": "Të gjithë lojtarët"
+    }
+  },
+  "footer": {
+    "quote": "Empowering Balkan athletes to reach new heights",
+    "location": "Vendndodhja",
+    "contact": "Kontaktoni",
+    "socials": "Rrjetet Sociale",
+    "locations": {
+      "newYork": "New York, SHBA",
+      "tirana": "Tiranë, Shqipëri"
+    },
+    "contactInfo": {
+      "phone": "+1 (252) 373 8698",
+      "email": "balkansportscholars@gmail.com"
+    },
+    "socialLinks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn"
+    },
+    "copy": {
+      "rights": "Copyright © Balkan Sport Scholars. Të gjitha të drejtat e rezervuara",
+      "designedBy": "Dizenjuar nga Synaps"
+    },
+    "privacyPolicy": "Politika e Privatësisë"
+  },
+  "navbar": {
+    "links": {
+      "home": "Kreu",
+      "about": "Rreth Nesh",
+      "services": "Shërbimet",
+      "transfers": "Transferimet",
+      "players": "Lojtarët",
+      "blog": "Blog",
+      "contact": "Kontakt"
+    }
+  },
+  "altTexts": {
+    "bssLogo": "Logoja e BSS",
+    "america": "Amerika",
+    "europe": "Evropa",
+    "phoneNumber": "Numri i telefonit",
+    "email": "Email",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "youtube": "YouTube",
+    "linkedin": "LinkedIn"
+  },
+  "about": {
+    "title": "Balkan Sport Scholars - Rreth Nesh",
+    "header": {
+      "h1": "Rreth Nesh",
+      "p": "Balkan Sport Scholars është e përkushtuar për të ndihmuar atletë të talentuar nga Ballkani të hapin mundësi që ndryshojnë jetën në kolegjet më të mira amerikane. Me udhëzime të personalizuara, ne lidhim atletët me rrugë akademike dhe atletike që përputhen me qëllimet e tyre, duke i mbështetur ata në çdo hap ndërsa kalojnë në jetën si atletë-studentë në SHBA.",
+      "contact": "Kontakto"
+    },
+    "presentationSection": {
+      "h2": "Kush janë <strong>Balkan Sports Scholars?</strong>",
+      "p": "Balkan Sport Scholars është një agjenci rekrutimi e fokusuar në transformimin e të ardhmes së atletëve nga Ballkani duke i lidhur ata me mundësi akademike dhe atletike në kolegjet më të mira amerikane. E themeluar mbi besimin se talenti nuk duhet kurrë të kufizohet nga burimet, ne ofrojmë atletëve mjetet, udhëzimet dhe mbështetjen e nevojshme për të konkurruar në nivelin kolegjor ndërsa sigurojnë një arsim të nivelit botëror."
+    },
+    "presentationImageAlt": "Përfaqësim vizual",
+    "cards": {
+      "mission": {
+        "h1": "Misioni",
+        "p": "Të hapim rrugën për atletët e talentuar që të sigurojnë bursat që u mundësojnë të ndjekin sportet e tyre dhe edukimin njëkohësisht në universitete dhe kolegje prestigjioze në Shtetet e Bashkuara.",
+        "alt": "Ikonë Misioni"
+      },
+      "vision": {
+        "h1": "Vizion",
+        "p": "Ne shikojmë një rajon Ballkan ku atletët e rinj kanë mbështetjen dhe burimet që u nevojiten për të shkëlqyer si në sportet e tyre të zgjedhura ashtu edhe në akademi. Ne besojmë se sporti dhe edukimi duhet të shkojnë dorë për dore, jo të jenë të pamundur të bashkëngjitura.",
+        "alt": "Ikonë Vizioni"
+      },
+      "values": {
+        "h1": "Vlera",
+        "p": "Balkan Sport Scholars është ndërtuar mbi vlera të mundësisë, përkushtimit dhe integritetit. Ne besojmë në fuqizimin e atletëve përmes aksesit të barabartë në edukim dhe sporte, duke i udhëhequr ata me mbështetje të vërtetë dhe një përkushtim për shkëlqim ndërsa ndjekin ëndrrat e tyre në SHBA.",
+        "alt": "Ikonë Vlera"
+      }
+    },
+    "teamSection": {
+      "title": "Agjentët Tanë",
+      "agents": [
+        {
+          "name": "Endi Rahmani",
+          "role": "Agjent"
+        },
+        {
+          "name": "Sokol Ymeraj",
+          "role": "Agjent"
+        },
+        {
+          "name": "Roland Peqini",
+          "role": "Agjent"
+        },
+        {
+          "name": "Synaps",
+          "role": "Marketing"
+        }
+      ]
+    }
+  },
+  "blog": {
+    "title": "Balkan Sport Scholars - Blogu",
+    "header": {
+      "h1": "Blogu",
+      "p": "Faqja jonë e Blogut ofron njohuri, këshilla dhe përditësime mbi botën e rekrutimit në sportet kolegjore. Nga historitë e suksesit deri tek këshillat për navigimin e procesit të rekrutimit, ne synojmë të fuqizojmë atletët dhe familjet me informacion të vlefshëm për udhëtimin e tyre në atletikën e kolegjeve amerikane.",
+      "contact": "Kontakto"
+    },
+    "latest": {
+      "h1": "Më të rejat nga Balkan Sports Scholars",
+      "p": "Lajme nga ne dhe bota në të gjitha disiplinat sportive që ndajnë histori dhe përvoja të lojtarëve, trajnerëve dhe klubave."
+    },
+    "categories": {
+      "h1": "Kategoritë",
+      "Football": "Futboll",
+      "Basketball": "Basketboll",
+      "Volleyball": "Volejboll",
+      "Tennis": "Tenis",
+      "Rugby": "Rugbi",
+      "ESports": "ESporte",
+      "Other": "Tjetër"
+    },
+    "posts": {
+      "loading": "Po ngarkohet...",
+      "noPosts": "Asnjë Postim i Disponueshëm",
+      "error": "Ndodhi një gabim gjatë marrjes së postimeve."
+    }
+  },
+  "contact": {
+    "title": "Balkan Sport Scholars - Kontakto",
+    "header": {
+      "h1": "Kontakto",
+      "p": "Faqja jonë e kontaktit është lidhja juaj direkte me ekipin e Balkan Sport Scholars. Në qoftë se keni pyetje apo jeni gati të filloni udhëtimin tuaj, ne jemi këtu për të ofruar udhëzime dhe mbështetje në çdo hap të rrugës.",
+      "callUs": "Telefono"
+    },
+    "overviewTitle": "Detajet e Kontaktit",
+    "sections": {
+      "location": {
+        "h2": "Vendndodhja",
+        "balkans": "Ballkani",
+        "america": "Amerika",
+        "altEurope": "Evropa",
+        "altAmerica": "Amerika"
+      },
+      "contactInfo": {
+        "h2": "Kontakto",
+        "phone": "+1 (252) 373-8698",
+        "email": "balkansportscholars@gmail.com",
+        "altPhone": "Telefon",
+        "altEmail": "Email"
+      },
+      "socials": {
+        "h2": "Rrjetet Sociale",
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube"
+      }
+    },
+    "contactNow": "Kontakto Tani!"
+  },
+  "home": {
+    "title": "Balkan Sport Scholars",
+    "header": {
+      "h1": "Balkan Sport Scholars",
+      "p": "“Empowering Balkan Athletes to reach new heights by connecting them with educational opportunities in the US.”",
+      "callUs": "Telefono"
+    },
+    "infoSection": {
+      "h2": "Çfarë është Balkan Sport Scholars?",
+      "p": "Balkan Sport Scholars është një agjenci rekrutimi e përkushtuar për të mbyllur hendekun për atletë të talentuar nga Ballkani, një rajon me burime të kufizuara sportive, duke i lidhur ata me mundësi akademike dhe atletike në kolegjet më të mira në Shtetet e Bashkuara. Ne synojmë të fuqizojmë atletët për të arritur ëndrrat e tyre, duke hapur rrugë për shkëlqimin arsimor dhe përparimin atletik në programet konkurruese kolegjor në SHBA.",
+      "about": "Rreth Nesh"
+    },
+    "statsSection": {
+      "title": "Fakte për BSS",
+      "stats": {
+        "Sports": "Sportet",
+        "Agents": "Agjentët",
+        "Transfers": "Transferimet",
+        "Locations": "Vendndodhjet"
+      }
+    },
+    "servicesOverview": {
+      "title": "Shërbimet",
+      "p": "Shërbimet tona gjithëpërfshirëse në Balkan Sport Scholars janë dizajnuar për të udhëhequr atletët nga Ballkani në çdo hap të udhëtimit të tyre drejt sportit të kolegjeve amerikane. Nga vendosja e personalizuar dhe mbështetja për bursat deri te përgatitja për përshtatshmëri dhe mentorimi, ne sigurojmë që çdo atlet të ketë mjetet dhe burimet për të pasur sukses akademik dhe atletik.",
+      "serviceBlobs": {
+        "athleteAssessment": "Vlerësimi dhe Profilimi i Atletëve",
+        "collegeMatching": "Përshtatja dhe Vendosja në Kolegje",
+        "scholarshipGuidance": "Udhëzimi për Bursat",
+        "eligibilitySupport": "Mbështetja për Përshtatshmëri në NCAA/NAIA/NJCAA",
+        "applicationVisa": "Ndihma për Aplikimet dhe Vizat",
+        "networkingMentorship": "Rrjetëzimi dhe Mentorimi"
+      },
+      "servicesButton": "Shërbimet"
+    },
+    "transfersSection": {
+      "title": "Transferimet",
+      "p": "Në Balkan Sport Scholars, jemi krenarë të ndajmë udhëtimet e atletëve tanë që kanë bërë hapin nga Ballkani në kolegjet më të mira amerikane. Çdo histori suksesi reflekton punë të vështirë, rezistencë dhe një ëndërr të realizuar, me atletët tanë që tani garojnë në nivele të larta, marrin bursat dhe shfrytëzojnë më së miri përvojën e tyre të kolegjit si në fushë ashtu edhe jashtë saj.",
+      "button": "Transferimet"
+    },
+    "playersSection": {
+      "title": "Lojtarët",
+      "p": "Faqja jonë e Atletëve të Tanishëm paraqet atletët e talentuar që po i mbështesim me krenari në udhëtimin e tyre drejt sportit të kolegjeve amerikane. Këta individë janë të përkushtuar, të motivuar dhe gati të bëjnë dallimin e tyre, dhe ne jemi nderuar të ndihmojmë ata të arrijnë qëllimet e tyre përmes udhëzimeve të personalizuara dhe mbështetjes.",
+      "readMore": "Lexo më shumë",
+      "playersButton": "Lojtarët"
+    },
+    "blogSection": {
+      "h1": "Blogu",
+      "p": "Faqja jonë e Blogut ofron njohuri, këshilla dhe përditësime mbi botën e rekrutimit në sportet kolegjore. Nga historitë e suksesit deri tek këshillat për navigimin e procesit të rekrutimit, ne synojmë të fuqizojmë atletët dhe familjet me informacion të vlefshëm për udhëtimin e tyre në atletikën e kolegjeve amerikane.",
+      "viewAllBlogs": "Shiko të Gjitha Blogjet"
+    }
+  },
+  "players": {
+    "title": "Balkan Sport Scholars - Atletët",
+    "header": {
+      "h1": "Lojtarët",
+      "p": "Faqja jonë e Lojtarëve të tanishëm paraqet atletët e talentuar që po i mbështesim me krenari në udhëtimin e tyre drejt sportit të kolegjeve amerikane. Këta individë janë të përkushtuar, të motivuar dhe gati të bëjnë dallimin e tyre, dhe ne jemi nderuar të ndihmojmë ata të arrijnë qëllimet e tyre përmes udhëzimeve të personalizuara dhe mbështetjes.",
+      "contact": "Kontakto"
+    },
+    "overviewTitle": "Lojtarët Aktualë",
+    "noPlayersFound": "Asnjë Atlet Nuk u Gjet",
+    "playerDetails": {
+      "dob": "Dita e lindjes",
+      "sport": "Sporti",
+      "position": "Pozicioni",
+      "nationality": "Kombësia"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Politika e Privatësisë",
+    "sections": {
+      "introduction": {
+        "h2": "1. Prezantimi",
+        "p": "Mirësevini në Balkan Sport Scholars! Ne respektojmë privatësinë tuaj dhe jemi të përkushtuar për të mbrojtur informacionin personal që ju jepni gjatë përdorimit të faqes sonë të internetit. Kjo politikë privatësie shpjegon se si ne mbledhim, përdorim, ndajmë dhe mbrojmë të dhënat tuaja."
+      },
+      "informationWeCollect": {
+        "h2": "2. Informacioni që Ne Mblidhen",
+        "p": "Ne mund të mbledhim lloje të ndryshme informacioni nga përdoruesit tanë, duke përfshirë por jo vetëm:",
+        "ul": [
+          "Informacion personal si emri, emaili dhe numri i telefonit kur regjistroheni ose na kontaktoni.",
+          "Informacion teknik si adresa IP, llojet e shfletuesit dhe pajisjet e përdorura për të qasur faqen tonë.",
+          "Informacion i ofruar përmes formave të kontaktit, komenteve në blog, ose pjesëmarrjes në aktivitete interaktive."
+        ]
+      },
+      "useOfInformation": {
+        "h2": "3. Përdorimi i Informacionit",
+        "p": "Informacioni që mbledhim përdoret për qëllime të ndryshme, duke përfshirë:",
+        "ul": [
+          "Menaxhimi dhe përmirësimi i faqes tonë të internetit.",
+          "Ofrojnë shërbime dhe produkte të personalizuara.",
+          "Komunikimi me përdoruesit për çështje të rëndësishme, duke përfshirë ndryshimet në politikat.",
+          "Analiza e trendeve dhe sjelljes së përdoruesve për qëllime marketingu."
+        ]
+      },
+      "sharingOfInformation": {
+        "h2": "4. Ndërlidhja e Informacionit",
+        "p": "Ne nuk do të ndajmë informacionin tuaj personal me palë të treta përveç rasteve në vijim:",
+        "ul": [
+          "Kur është e nevojshme për të përmbushur kërkesat ligjore ose rregullatore.",
+          "Me partnerët tanë të besueshëm që na ndihmojnë në operacionet e biznesit, duke përfshirë përpunimin e pagesave dhe shërbimet IT.",
+          "Në raste të transferimit të pronësisë së kompanisë sonë."
+        ]
+      },
+      "cookiesAndSimilarTechnologies": {
+        "h2": "5. Cookies dhe Teknologjitë e Ngjashme",
+        "p1": "Ne përdorim cookies dhe teknologji të ngjashme për të përmirësuar përvojën tuaj në faqen tonë të internetit. Cookies janë skedarë të vegjël të ruajtur në pajisjen tuaj për të ndjekur preferencat dhe veprimet tuaja gjatë përdorimit të faqes sonë.",
+        "p2": "Ju keni opsionin të menaxhoni ose fshini cookies përmes cilësimeve të shfletuesit tuaj, por ju lutemi vini re se disa pjesë të faqes mund të mos funksionojnë siç duhet pa tyre."
+      },
+      "dataSecurity": {
+        "h2": "6. Siguria e të Dhënave",
+        "p": "Ne marrim masat e nevojshme për të mbrojtur informacionin tuaj personal nga qasje, përdorim ose zbulim i paautorizuar. Këto masa përfshijnë teknologji të avancuara sigurie dhe procedura administrative të rrepta."
+      },
+      "userRights": {
+        "h2": "7. Të Drejtat e Përdoruesit",
+        "p": "Ju keni të drejtën të kërkoni akses, korrigjim ose fshirje të informacionit tuaj personal që ne e kemi në regjistrat tanë. Për të ushtruar këto të drejta, ju lutemi na kontaktoni duke përdorur informacionin e kontaktit të ofruar më poshtë."
+      },
+      "changesToPrivacyPolicy": {
+        "h2": "8. Ndryshime në Politikën e Privatësisë",
+        "p": "Ne ruajmë të drejtën të përditësojmë këtë politikë privatësie në çdo kohë. Çdo ndryshim do të postohet në këtë faqe dhe do të marrë efekt menjëherë pasi të postohet. Ju inkurajojmë të rishikoni këtë politikë rregullisht për të qëndruar të informuar se si po mbrojmë informacionin tuaj."
+      },
+      "contactUs": {
+        "h2": "9. Kontaktoni Ne",
+        "p": "Nëse keni ndonjë pyetje ose shqetësim në lidhje me këtë politikë privatësie, ju lutemi na kontaktoni në:",
+        "ul": [
+          "<strong>Email:</strong> <a style=\"color:var(--color-primary)\" href=\"mailto:contact@balkansportscholars.com\">contact@balkansportscholars.com</a>",
+          "<strong>Adresa:</strong> North Carolina, Shtetet e Bashkuara të Amerikës",
+          "<strong>Telefon:</strong> +1 (252) 373-8698"
+        ]
+      }
+    }
+  },
+  "services": {
+    "title": "Balkan Sport Scholars - Shërbimet",
+    "header": {
+      "h1": "Shërbimet",
+      "p": "Shërbimet tona në Balkan Sport Scholars janë dizajnuar për të mbështetur çdo hap të udhëtimit të një atleti nga Ballkani në sportet e kolegjeve amerikane.",
+      "contact": "Kontakto"
+    },
+    "servicesContainer": {
+      "intro": {
+        "h1": "Shërbimet",
+        "p": "Nga rekrutimi i personalizuar dhe asistenca për bursat deri te udhëzimi për përshtatshmëri dhe mentorimi, ne ofrojmë burimet që nevojiten atletëve për të pasur sukses akademik dhe atletik në mjediset e tyre të reja."
+      },
+      "serviceItems": [
+        {
+          "h1": "Vlerësimi dhe Profilimi i Atletëve",
+          "p": "Ne vlerësojmë aftësitë, pozicionin akademik dhe potencialin atletik të çdo atleti për të krijuar një profil të personalizuar që nxjerr në pah fuqitë e tyre për rekrutimin në kolegje.",
+          "imgAlt": "Football"
+        },
+        {
+          "h1": "Përshtatja dhe Vendosja në Kolegje",
+          "p": "Ekipi ynë lidh atletët me kolegje që përputhen më së miri me qëllimet e tyre akademike, nivelin atletik dhe aspiratat e karrierës, duke maksimizuar mundësitë e tyre për bursat dhe suksesin.",
+          "imgAlt": "Basketball"
+        },
+        {
+          "h1": "Udhëzimi për Bursat",
+          "p": "Ne udhëzojmë atletët nëpër procesin e aplikimit për bursat, duke i ndihmuar ata të sigurojnë paketat më të mira të ndihmës financiare dhe bursat atletike.",
+          "imgAlt": "Volleyball"
+        },
+        {
+          "h1": "Mbështetja për Përshtatshmëri në NCAA/NAIA/NJCAA",
+          "p": "Ne ndihmojmë atletët në përmbushjen e kërkesave të përshtatshmërisë për programet NCAA dhe NAIA, duke siguruar që ata janë të përgatitur për të konkurruar në nivelin kolegjor në përputhje me rregulloret e sportit të kolegjeve amerikane.",
+          "imgAlt": "Rugby"
+        },
+        {
+          "h1": "Ndihma për Aplikimet dhe Vizat",
+          "p": "Ne ofrojmë mbështetje me tërë procesin e aplikimit në kolegje, duke përfshirë udhëzimin për ese, përgatitjen e dokumenteve dhe aplikimet për vizën studentore F-1.",
+          "imgAlt": "Tennis"
+        },
+        {
+          "h1": "Rrjetëzimi dhe Mentorimi",
+          "p": "Përmes një rrjeti atletësh të mëparshëm, trajnerëve të kolegjit dhe ekspertëve të industrisë sportive, ne ofrojmë mentorim dhe udhëzim për karrierën, duke ndihmuar atletët të ndërtojnë lidhje të vlefshme në ekosistemin sportiv të SHBA.",
+          "imgAlt": "ESports"
+        }
+      ]
+    }
+  },
+  "transfers": {
+    "dashboardTitle": "Paneli i Transferimeve",
+    "noTransfers": "Nuk keni asnjë transferim ende!",
+    "pageTitle": "Transferimet",
+    "headerTitle": "Transferimet",
+    "headerDescription": "Faqja jonë e Transferimeve feston historitë e suksesit të sportistëve të Balkan Sport Scholars që janë transferuar në kolegje në SHBA. Çdo histori thekson arritjet, rritjen dhe mundësitë e reja që këta sportistë kanë përqafuar, duke treguar ndikimin e punës së tyre të palodhur dhe mbështetjen tonë të përkushtuar.",
+    "sectionTitle": "Transferimet",
+    "highlights": "Video Përmbledhëse",
+    "playerName": "Emri i Atletit",
+    "previousClub": "Klubi i Mëparshëm",
+    "currentClub": "Klubi Aktual",
+    "description": "Përshkrim",
+    "videoTitle": "Video {{number}}",
+    "createTransfer": "Krijo Transfer",
+    "editTransfer": "Redakto Transfer",
+    "fullName": "Emri i Plotë",
+    "previousClub": "Klubi i Mëparshëm",
+    "currentClub": "Klubi Aktual",
+    "description": "Përshkrim",
+    "addTranslation": "Shto përkthim në Anglisht",
+    "descriptionEn": "Përshkrim në Anglisht",
+    "youtubeLink": "Lidhje YouTube",
+    "create": "Krijo",
+    "update": "Përditëso",
+    "noTransfersAvailable": "Nuk ka transferime në dispozicion.",
+    "dashboardTitle": "Paneli i Transferimeve",
+    "imageAlt": "Imazhi i {{name}}"
+  },
+  "posts": {
+    "title": "Postimet",
+    "noPosts": "Nuk u gjetën postime",
+    "readMore": "Lexo Më Shumë"
+  },
+  "categories": {
+    "title": "Kategori",
+    "noPosts": "Nuk u gjetën postime",
+    "Football": "Futboll",
+    "Basketball": "Basketboll",
+    "Volleyball": "Volejboll",
+    "Tennis": "Tenis",
+    "Rugby": "Futboll Amerikan",
+    "ESports": "Sporte Elektronike",
+    "Other": "Të Tjera"
+  },
+  "Player Dashboard": "Paneli i Lojtarëve",
+  "You have no players yet!": "Së fundmi, nuk keni lojtarë!",
+  "View": "Shiko",
+  "Edit": "Redakto",
+  "Delete": "Fshije",
+  "Please provide both names for each document.": "Ju lutem, jepni të dy emrat për çdo dokument.",
+  "Failed to fetch player details.": "Dështoi marrja e detajeve të lojtarit.",
+  "No response received from the server. Please try again.": "Nuk u mor përgjigje nga serveri. Ju lutem, provoni përsëri.",
+  "An error occurred while updating the player.": "Ndodhi një gabim gjatë përditësimit të lojtarit.",
+  "Player Highlights": "Përmbledhje e Lojtarit",
+  "Players": "Lojtarët",
+  "No Players Found": "Nuk u Gjetën Lojtarë",
+  "About": "Përshkrimi",
+  "Highlights": "Video Përmbledhëse",
+  "No video available": "Nuk ka video të disponueshme",
+  "Player does not exist": "Lojtari nuk ekziston",
+  "Player Details": "Detajet e Lojtarit",
+  "Submit": "Dërgo",
+  "Remove Document": "Hiq Dokumentin",
+  "error": {
+    "anErrorOccurred": "Ndodhi një gabim"
   }
-  
+}

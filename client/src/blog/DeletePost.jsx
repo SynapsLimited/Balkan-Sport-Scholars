@@ -2,8 +2,10 @@ import React, { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const DeletePost = ({ postId: id }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
   const token = currentUser?.token;
@@ -21,18 +23,24 @@ const DeletePost = ({ postId: id }) => {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` }
       });
-      console.log('Delete response:', response); // Debugging log
+      console.log(`${t('deletePost.deleteResponse')}`, response); // Debugging log
       if (response.status === 200) {
-        console.log('Post deleted successfully. Reloading page...'); // Debugging log
+        console.log(t('deletePost.deleteSuccess')); // Debugging log
         window.location.reload(); // Refresh the page after deletion
       }
     } catch (error) {
-      console.log("Couldn't delete post.", error); // Debugging log
+      console.log(`${t('deletePost.deleteError')}`, error); // Debugging log
     }
   };
 
   return (
-    <button className='btn btn-secondary' style={{fontFamily: 'Inter-Bold, sans-serif'}} onClick={removePost}>Delete</button>
+    <button
+      className='btn btn-secondary'
+      style={{ fontFamily: 'Inter-Bold, sans-serif' }}
+      onClick={removePost}
+    >
+      {t('deletePost.deleteButton')}
+    </button>
   );
 };
 

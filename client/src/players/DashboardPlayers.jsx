@@ -4,9 +4,11 @@ import { UserContext } from '../context/userContext';
 import axios from 'axios';
 import Loader from '../components/Loader';
 import DeletePlayer from './DeletePlayer';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const PlayerDashboard = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Destructure t from useTranslation
   const [players, setPlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
@@ -45,7 +47,7 @@ const PlayerDashboard = () => {
   return (
     <section className="dashboard">
       <div className="blog-title-filtered">
-        <h1>Player Dashboard</h1>
+        <h1>{t('Player Dashboard')}</h1>
       </div>
 
       {isLoading ? (
@@ -63,10 +65,10 @@ const PlayerDashboard = () => {
               </div>
               <div className="dashboard-post-actions">
                 <Link to={`/players/${player._id}`} className="btn btn-background">
-                  View
+                  {t('View')}
                 </Link>
                 <Link to={`/players/${player._id}/edit`} className="btn btn-primary">
-                  Edit
+                  {t('Edit')}
                 </Link>
                 <DeletePlayer playerId={player._id} />
               </div>
@@ -74,7 +76,7 @@ const PlayerDashboard = () => {
           ))}
         </div>
       ) : (
-        <h2 className="center">You have no players yet!</h2>
+        <h2 className="center">{t('You have no players yet!')}</h2>
       )}
     </section>
   );

@@ -59,7 +59,7 @@ const DashboardTransfer = () => {
             <article key={transfer._id} className="dashboard-transfer">
               <div className="dashboard-transfer-info">
                 <div className="dashboard-transfer-thumbnail">
-                  <img src={transfer.image} alt="" />
+                  <img src={transfer.image} alt={t('transfers.imageAlt', { name: transfer.fullName })} />
                 </div>
                 <h4>
                   {transfer.fullName}

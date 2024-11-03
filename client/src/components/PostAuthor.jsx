@@ -39,7 +39,7 @@ const PostAuthor = ({ authorID, createdAt }) => {
         />
       </div>
       <div className="post-author-details">
-        <h5>By: {author?.name || 'Unknown Author'}</h5>
+        <h5>By: {author?.name || 'BSS'}</h5>
         {createdAt && (
           <small>
             <ReactTimeAgo date={new Date(createdAt)} locale="en-US" />

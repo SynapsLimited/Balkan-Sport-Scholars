@@ -1,5 +1,4 @@
 // src/components/EditPlayer.jsx
-
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
@@ -120,7 +119,7 @@ const EditPlayer = () => {
     };
     getPlayer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, token]);
+  }, [id, token, t]);
 
   const handleDocumentChange = (index, field, value) => {
     setDocuments((prevDocs) =>

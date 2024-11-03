@@ -1,3 +1,5 @@
+// src/pages/Transfers.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
@@ -14,7 +16,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import './../css/transfers.css';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Transfers = () => {
   const { t, i18n } = useTranslation();
@@ -55,14 +57,14 @@ const Transfers = () => {
   return (
     <div>
       <Helmet>
-        <title>Balkan Sport Scholars - {t('transfers.pageTitle')}</title>
+        <title>{t('transfers.pageTitle')}</title>
       </Helmet>
-      <header className="hero-container hero-container header-transfers" id="intro">
+      <header className="hero-container header-transfers" id="intro">
         <div className="">
           <div className="center header-template">
-            <h1 className="margin-bottom">{t('transfers.headerTitle')}</h1>
+            <h1 className="margin-bottom">{t('transfers.header.h1')}</h1>
             <p className="margin-bottom hero-p">
-              {t('transfers.headerDescription')}
+              {t('transfers.header.p')}
             </p>
             <a href="/contact" className="btn btn-secondary">
               {t('common.contact')}
@@ -71,7 +73,7 @@ const Transfers = () => {
         </div>
         <img
           src={`${process.env.PUBLIC_URL}/assets/Hero Image Transfers-500w.png`}
-          alt="Hero Image Transfers"
+          alt={t('transfers.header.h1')}
           style={{ display: 'none' }}
         />
       </header>
@@ -167,7 +169,7 @@ const Transfers = () => {
               <div className="video-slide">
                 <iframe
                   src={video.youtubeLink}
-                  title={`Video ${index + 1}`}
+                  title={`${t('transfers.videoTitle', { number: index + 1 })}`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

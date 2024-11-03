@@ -2,8 +2,10 @@ import React, { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const DeleteTransfer = ({ transferId: id }) => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const { currentUser } = useContext(UserContext);
     const token = currentUser?.token;
@@ -29,7 +31,13 @@ const DeleteTransfer = ({ transferId: id }) => {
     };
 
     return (
-        <button className='btn btn-secondary' style={{ fontFamily: 'Inter-Bold, sans-serif' }} onClick={removeTransfer}>Delete</button>
+        <button 
+            className='btn btn-secondary' 
+            style={{ fontFamily: 'Inter-Bold, sans-serif' }} 
+            onClick={removeTransfer}
+        >
+            {t('common.delete')}
+        </button>
     );
 };
 

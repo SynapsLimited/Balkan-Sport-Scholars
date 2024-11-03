@@ -18,26 +18,26 @@ import './../css/home.css';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import PostItem from './../components/PostItem';
-import { motion } from 'framer-motion'; // Import motion
-import { useTranslation } from 'react-i18next'; // Import useTranslation
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const stats = [
   { title: "Sports", value: 24 },
   { title: "Agents", value: 3 },
   { title: "Transfers", value: 10 },
-  { title: "Locations", value: 2 },
+  { title: "Locations", value: 2 }
 ];
 
 const Home = () => {
-  const { t } = useTranslation(); // Initialize translation
+  const { t } = useTranslation();
   const [transfers, setTransfers] = useState([]);
   const [players, setPlayers] = useState([]);
   const [posts, setPosts] = useState([]);
   const [domLoaded, setDomLoaded] = useState(false);
-  const [isVisible, setIsVisible] = useState(false); // Define isVisible
-  const [latestPost, setLatestPost] = useState(null); // Optional: For blog posts
-  const [isLoading, setIsLoading] = useState(false); // Optional: For blog posts
-  const [error, setError] = useState(null); // Optional: For blog posts
+  const [isVisible, setIsVisible] = useState(false);
+  const [latestPost, setLatestPost] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
@@ -144,7 +144,7 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Balkan Sport Scholars</title>
+        <title>{t('home.title')}</title>
       </Helmet>
 
       {/* Header Section */}
@@ -152,14 +152,13 @@ const Home = () => {
         <div className="">
           <div className="center header-template">
             <h1 style={{ marginBottom: '19px', fontSize: '3rem' }}>
-              Balkan Sport Scholars
+              {t('home.header.h1')}
             </h1>
             <p className="hero-p margin-bottom">
-              “Empowering Balkan Athletes to reach new heights by connecting
-              them with educational opportunities in the US.”
+              {t('home.header.p')}
             </p>
             <a href="tel:+12523738698" className="btn btn-secondary">
-              Call Us
+              {t('common.callUs')}
             </a>
           </div>
         </div>
@@ -173,19 +172,9 @@ const Home = () => {
       {/* Information Section */}
       <section className="info-section container">
         <div className="info-left">
-          <h2>What is Balkan Sport Scholars?</h2>
-          <p>
-            Balkan Sport Scholars is a recruitment agency dedicated to bridging
-            the gap for talented athletes from the Balkans, a region with limited
-            sports resources, by connecting them with academic and athletic
-            opportunities at top-tier colleges in the United States. We aim to
-            empower athletes to achieve their dreams, unlocking pathways to both
-            educational excellence and athletic advancement in competitive
-            college programs across the US.
-          </p>
-          <a href="/about" className="btn btn-primary">
-            About
-          </a>
+          <h1 className='margin-bottom'>{t('home.infoSection.h2')}</h1>
+          <p>{t('home.infoSection.p')}</p>
+          <a href="/about" className="btn btn-primary">{t('home.infoSection.about')}</a>
         </div>
         <div className="info-right">
           <img
@@ -197,7 +186,7 @@ const Home = () => {
 
       {/* Stats Section */}
       <div id="stats-section" className="stats-section-container">
-        <h1 className="stats-title">Facts about BSS</h1>
+        <h1 className="stats-title">{t('home.statsSection.title')}</h1>
         <div className="stats-blobs">
           {stats.map((stat, index) => (
             <motion.div
@@ -208,7 +197,7 @@ const Home = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="stat-title-container">
-                <h3 className="stat-title">{stat.title}</h3>
+                <h3 className="stat-title">{t(`home.statsSection.stats.${stat.title}`)}</h3>
                 <div className="stat-underline"></div>
               </div>
               <motion.span
@@ -227,70 +216,48 @@ const Home = () => {
       {/* Services Overview Section */}
       <section className="container services-overview-section">
         <div className="services-overview-title">
-          <h1>Services</h1>
-          <p>
-            Our comprehensive services at Balkan Sport Scholars are designed to
-            guide athletes from the Balkans through every step of their journey
-            to US college sports. From personalized placement and scholarship
-            support to eligibility preparation and mentorship, we ensure each
-            athlete has the tools and resources to succeed academically and
-            athletically.
-          </p>
+          <h1>{t('home.servicesOverview.title')}</h1>
+          <p>{t('home.servicesOverview.p')}</p>
         </div>
         <div className="services-overview-blobs">
-          <a href="services" className="service-overview-blob-art">
-            <span>Athlete Assessment & 
-            Profiling</span>
-            <img src="/assets/Football.png" alt="Athlete Assessment & 
-Profiling" />
+          <a href="/services" className="service-overview-blob-art">
+            <span>{t('home.servicesOverview.serviceBlobs.athleteAssessment')}</span>
+            <img src="/assets/Football.png" alt={t('services.serviceItems[0].imgAlt')} />
           </a>
-          <a href="services" className="service-overview-blob-art">
-            <span>College Matching & 
-Placement</span>
-            <img src="/assets/Basketball.png" alt="College Matching & 
-Placement" />
+          <a href="/services" className="service-overview-blob-art">
+            <span>{t('home.servicesOverview.serviceBlobs.collegeMatching')}</span>
+            <img src="/assets/Basketball.png" alt={t('services.serviceItems[1].imgAlt')} />
           </a>
-          <a href="services" className="service-overview-blob-art">
-            <span>Scholarship Guidance</span>
-            <img src="/assets/Rugby.png" alt="Scholarship Guidance" />
+          <a href="/services" className="service-overview-blob-art">
+            <span>{t('home.servicesOverview.serviceBlobs.scholarshipGuidance')}</span>
+            <img src="/assets/Rugby.png" alt={t('services.serviceItems[2].imgAlt')} />
           </a>
-          <a href="services" className="service-overview-blob-art">
-            <span>NCAA/NAIA/NJCAA 
-Eligibility Support</span>
-            <img src="/assets/Volleyball.png" alt="NCAA/NAIA/NJCAA 
-Eligibility Support" />
+          <a href="/services" className="service-overview-blob-art">
+            <span>{t('home.servicesOverview.serviceBlobs.eligibilitySupport')}</span>
+            <img src="/assets/Volleyball.png" alt={t('services.serviceItems[3].imgAlt')} />
           </a>
-          <a href="services" className="service-overview-blob-art">
-            <span>Application & 
-Visa Assistance</span>
-            <img src="/assets/Tennis.png" alt="Application & 
-Visa Assistance" />
+          <a href="/services" className="service-overview-blob-art">
+            <span>{t('home.servicesOverview.serviceBlobs.applicationVisa')}</span>
+            <img src="/assets/Tennis.png" alt={t('services.serviceItems[4].imgAlt')} />
           </a>
-          <a href="services" className="service-overview-blob-art">
-            <span>Networking &
-Mentorship</span>
-            <img src="/assets/ESports.png" alt="Networking &
-Mentorship" />
+          <a href="/services" className="service-overview-blob-art">
+            <span>{t('home.servicesOverview.serviceBlobs.networkingMentorship')}</span>
+            <img src="/assets/ESports.png" alt={t('services.serviceItems[5].imgAlt')} />
           </a>
         </div>
         <div className="services-button">
           <a href="/services" className="btn btn-background">
-            Services
+            {t('home.servicesOverview.servicesButton')}
           </a>
         </div>
       </section>
 
       {/* Image Slider Section for Transfers */}
       <section className="container image-slider-section-home">
-        <div className=" services-overview-title">
-          <h1>Transfers</h1>
+        <div className="services-overview-title">
+          <h1>{t('home.transfersSection.title')}</h1>
           <p style={{ padding: '20px' }}>
-            At Balkan Sport Scholars, we're proud to share the journeys of our
-            athletes who've made the leap from the Balkans to top US colleges.
-            Each success story reflects hard work, resilience, and a dream
-            realized, with our athletes now competing at high levels, earning
-            scholarships, and making the most of their college experience both
-            on and off the field.
+            {t('home.transfersSection.p')}
           </p>
         </div>
         <div className="image-slider-container">
@@ -302,9 +269,9 @@ Mentorship" />
               navigation
               pagination={{ clickable: true }}
               autoplay={{
-                delay: 3000, // Slide every 3 seconds
-                disableOnInteraction: false, // Disable autoplay when user interacts
-                pauseOnMouseEnter: true, // Pause autoplay on hover
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
               }}
               loop={true}
               className="swiper-container"
@@ -326,21 +293,17 @@ Mentorship" />
         </div>
         <div className="services-button center margin-top">
           <a href="/transfers" className="btn btn-primary">
-            Transfers
+            {t('common.transfersButton')}
           </a>
         </div>
       </section>
 
-  {/* Players Slider Section */}
-  <section className="container players-slider-section">
+      {/* Players Slider Section */}
+      <section className="container players-slider-section">
         <div className="services-overview-title">
-          <h1>Players</h1>
+          <h1>{t('home.playersSection.title')}</h1>
           <p style={{ padding: '20px' }}>
-            Our Current Players page features the talented athletes we're
-            proudly supporting on their journey to US college sports. These
-            individuals are dedicated, driven, and ready to make their mark, and
-            we're honored to help them reach their goals through tailored
-            guidance and support.
+            {t('home.playersSection.p')}
           </p>
         </div>
         <div className="players-slider-container">
@@ -354,7 +317,7 @@ Mentorship" />
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
-                pauseOnMouseEnter: true,
+                pauseOnMouseEnter: true
               }}
               loop={true}
             >
@@ -372,24 +335,23 @@ Mentorship" />
                       <h2>{currentLanguage === 'en' ? player.clubname_en || player.clubname : player.clubname}</h2>
                       <ul>
                         <li>
-                          <strong>{t('Date of Birth')}:</strong>{' '}
-                          {new Date(player.dob).toLocaleDateString()}
+                          <strong>{t('players.playerDetails.dob')}:</strong> {new Date(player.dob).toLocaleDateString()}
                         </li>
                         <li>
-                          <strong>{t('Sport')}:</strong> {currentLanguage === 'en' ? player.sport_en || player.sport : player.sport}
+                          <strong>{t('players.playerDetails.sport')}:</strong> {currentLanguage === 'en' ? player.sport_en || player.sport : player.sport}
                         </li>
                         <li>
-                          <strong>{t('Position')}:</strong> {currentLanguage === 'en' ? player.position_en || player.position : player.position}
+                          <strong>{t('players.playerDetails.position')}:</strong> {currentLanguage === 'en' ? player.position_en || player.position : player.position}
                         </li>
                         <li>
-                          <strong>{t('Nationality')}:</strong> {currentLanguage === 'en' ? player.nationality_en || player.nationality : player.nationality}
+                          <strong>{t('players.playerDetails.nationality')}:</strong> {currentLanguage === 'en' ? player.nationality_en || player.nationality : player.nationality}
                         </li>
                       </ul>
                       <Link
                         to={`/players/${player._id}`}
                         className="btn btn-secondary"
                       >
-                        {t('Read more')}
+                        {t('common.readMore')}
                       </Link>
                     </div>
                   </div>
@@ -400,7 +362,7 @@ Mentorship" />
         </div>
         <div className="services-button center">
           <a href="/players" style={{ marginTop: '50px' }} className="btn btn-primary">
-            {t('Players')}
+            {t('common.playersButton')}
           </a>
         </div>
       </section>
@@ -408,12 +370,10 @@ Mentorship" />
       {/* Blog Section */}
       <section className="home-blog-section container">
         <div className="blog-text-section">
-          <h1>Blog</h1>
-          <p>
-          Our Blog page offers insights, advice, and updates on the world of college sports recruiting. From success stories to tips on navigating the recruitment process, we aim to empower athletes and families with valuable information for their journey to US college athletics."
-          </p>
+          <h1 className='margin-bottom'>{t('home.blogSection.h1')}</h1>
+          <p>{t('home.blogSection.p')}</p>
           <a href="/blog" className="btn btn-primary">
-            View All Blogs
+            {t('home.blogSection.viewAllBlogs')}
           </a>
         </div>
         <div className="blog-slider-section">

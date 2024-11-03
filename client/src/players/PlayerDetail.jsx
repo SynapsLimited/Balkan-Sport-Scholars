@@ -1,3 +1,4 @@
+// src/components/PlayerDetail.jsx
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Loader from '../components/Loader';

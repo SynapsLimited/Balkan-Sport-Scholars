@@ -2,9 +2,11 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const DeletePlayer = ({ playerId: id }) => {
     const navigate = useNavigate();
+    const { t } = useTranslation(); // Destructure t from useTranslation
     const { currentUser } = useContext(UserContext);
     const token = currentUser?.token;
 
@@ -24,12 +26,14 @@ const DeletePlayer = ({ playerId: id }) => {
                 window.location.href = '/players'; // Redirect to players list after deletion
             }
         } catch (error) {
-            console.log("Couldn't delete player.", error);
+            console.log(t("Couldn't delete player."), error);
         }
     };
 
     return (
-        <button className='btn btn-secondary' onClick={removePlayer}>Delete</button>
+        <button className='btn btn-secondary' onClick={removePlayer}>
+            {t('Delete')}
+        </button>
     );
 };
 

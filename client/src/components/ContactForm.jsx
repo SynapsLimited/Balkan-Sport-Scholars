@@ -1,8 +1,12 @@
+// src/components/ContactForm.jsx
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import './../css/contact.css'; // Assuming you have a corresponding CSS file for styling
+import { useTranslation } from 'react-i18next';
 
 const ContactForm = () => {
+  const { t } = useTranslation();
+  
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -52,22 +56,22 @@ const ContactForm = () => {
     )
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
-        alert('Form submitted!');
+        alert(t('contactForm.alerts.formSubmitted'));
       }, (err) => {
         console.error('FAILED...', err);
-        alert('Failed to send the form. Please try again later.');
+        alert(t('contactForm.alerts.formFailed'));
       });
   };
 
   return (
     <section className="container contact-form-section">
-      <p className='center'>Fill in the form below and we'll get back to you as soon as possible.</p>
+      <p className='center'>{t('contactForm.description')}</p>
       <form className="container contact-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <input
             type="text"
             name="name"
-            placeholder="Name *"
+            placeholder={t('contactForm.placeholders.name')}
             value={formData.name}
             onChange={handleChange}
             required
@@ -75,7 +79,7 @@ const ContactForm = () => {
           <input
             type="text"
             name="surname"
-            placeholder="Surname *"
+            placeholder={t('contactForm.placeholders.surname')}
             value={formData.surname}
             onChange={handleChange}
             required
@@ -85,7 +89,7 @@ const ContactForm = () => {
           <input
             type="text"
             name="country"
-            placeholder="Country *"
+            placeholder={t('contactForm.placeholders.country')}
             value={formData.country}
             onChange={handleChange}
             required
@@ -93,7 +97,7 @@ const ContactForm = () => {
           <input
             type="email"
             name="email"
-            placeholder="Email *"
+            placeholder={t('contactForm.placeholders.email')}
             value={formData.email}
             onChange={handleChange}
             required
@@ -103,7 +107,7 @@ const ContactForm = () => {
           <input
             type="text"
             name="phoneNumber"
-            placeholder="Phone number *"
+            placeholder={t('contactForm.placeholders.phoneNumber')}
             value={formData.phoneNumber}
             onChange={handleChange}
             required
@@ -111,7 +115,7 @@ const ContactForm = () => {
           <input
             type="text"
             name="clubName"
-            placeholder="Club name (Optional)"
+            placeholder={t('contactForm.placeholders.clubName')}
             value={formData.clubName}
             onChange={handleChange}
           />
@@ -119,13 +123,15 @@ const ContactForm = () => {
         <div className="form-group">
           <textarea
             name="message"
-            placeholder="Message *"
+            placeholder={t('contactForm.placeholders.message')}
             value={formData.message}
             onChange={handleChange}
             required
           />
         </div>
-        <button type="submit" className="btn btn-secondary btn-submit-form">Submit</button>
+        <button type="submit" className="btn btn-secondary btn-submit-form">
+          {t('contactForm.submitButton')}
+        </button>
       </form>
     </section>
   );

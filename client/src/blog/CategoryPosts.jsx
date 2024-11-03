@@ -7,30 +7,30 @@ import './../css/blog.css';
 import Authors from '../blog/Authors';
 import Loader from './../components/Loader';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const CategoryPosts = () => {
+  const { t } = useTranslation();
   const [posts, setPosts] = useState([]);
-  const [authorName, setAuthorName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { category } = useParams();
 
   // Mapping from English category names to Albanian translations
   const categoryTranslationMap = {
-    "Futboll": "Football",
-    "Basketboll": "Basketball",
-    "Vollejboll": "Volleyball",
-    "Futboll Amerikan": "Rugby",
-    "Tenis": "Tennis",
-    "Sporte Elektronike": "E-Sports",
-    "Të Tjera": "Other",
+    "Football": "Futboll",
+    "Basketball": "Basketboll",
+    "Volleyball": "Vollejboll",
+    "Rugby": "Futboll Amerikan",
+    "Tennis": "Tenis",
+    "ESports": "Sporte Elektronike",
+    "Other": "Të Tjera"
   };
 
-  // Get the display name in Albanian
-  const categoryDisplayName =
-    categoryTranslationMap[category] || category;
+  // Get the display name based on the current language
+  const categoryDisplayName = t(`categories.${category}`, categoryTranslationMap[category] || category);
 
   useEffect(() => {
-    const fetchAuthorAndPosts = async () => {
+    const fetchPosts = async () => {
       setIsLoading(true);
       try {
         // Fetch posts for the current category
@@ -41,7 +41,7 @@ const CategoryPosts = () => {
       }
       setIsLoading(false);
     };
-    fetchAuthorAndPosts();
+    fetchPosts();
   }, [category]);
 
   if (isLoading) {
@@ -61,22 +61,22 @@ const CategoryPosts = () => {
           ))}
         </div>
       ) : (
-        <h1 className="error-blog-not-found">Nuk u gjetën postime</h1>
+        <h1 className="error-blog-not-found">{t('categories.noPosts')}</h1>
       )}
 
       {/* Blog Categories Section */}
       <section data-aos="fade-up" className="container blog-categories-section">
         <div className="blog-title">
-          <h1>Kategori</h1>
+          <h1>{t('categories.title')}</h1>
         </div>
         <ul className="blog-categories">
-          <li className="btn btn-secondary"><Link to="/posts/categories/Football">Football</Link></li>
-          <li className="btn btn-secondary"><Link to="/posts/categories/Basketball">Basketball</Link></li>
-          <li className="btn btn-secondary"><Link to="/posts/categories/Volleyball">Volleyball</Link></li>
-          <li className="btn btn-secondary"><Link to="/posts/categories/Tennis">Tennis</Link></li>
-          <li className="btn btn-secondary"><Link to="/posts/categories/Rugby">Rugby</Link></li>
-          <li className="btn btn-secondary"><Link to="/posts/categories/ESports">ESports</Link></li>
-          <li className="btn btn-secondary"><Link to="/posts/categories/Other">Other</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Football">{t('categories.Football')}</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Basketball">{t('categories.Basketball')}</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Volleyball">{t('categories.Volleyball')}</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Tennis">{t('categories.Tennis')}</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Rugby">{t('categories.Rugby')}</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/ESports">{t('categories.ESports')}</Link></li>
+          <li className="btn btn-secondary"><Link to="/posts/categories/Other">{t('categories.Other')}</Link></li>
         </ul>
       </section>
     </section>

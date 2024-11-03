@@ -1,9 +1,10 @@
+// src/components/PlayerItem.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const PlayerItem = ({ player }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
   const { _id, name, name_en, clubname, clubname_en, image, position, position_en, sport, sport_en } = player;
@@ -20,10 +21,10 @@ const PlayerItem = ({ player }) => {
         <p>
           {currentLanguage === 'en' ? clubname_en || clubname : clubname} - {currentLanguage === 'en' ? position_en || position : position}
         </p>
-        <p>Sport: {currentLanguage === 'en' ? sport_en || sport : sport}</p>
+        <p>{t('Sport')}: {currentLanguage === 'en' ? sport_en || sport : sport}</p>
 
         <Link to={`/players/${_id}`} className="btn btn-secondary" style={{ marginTop: '30px' }}>
-          Player Details
+          {t('Player Details')}
         </Link>
       </div>
     </article>

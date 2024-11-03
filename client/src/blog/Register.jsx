@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './../css/blog.css'; 
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const Register = () => {
+  const { t } = useTranslation();
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -31,24 +33,24 @@ const Register = () => {
       if (response && response.data) {
         const newUser = response.data;
         if (!newUser) {
-          setError("Couldn't register user. Please try again.");
+          setError(t('register.unexpectedError'));
         } else {
           navigate('/login');
         }
       } else {
-        setError("Unexpected error. Please try again.");
+        setError(t('register.unexpectedError'));
       }
     } catch (err) {
       if (err.response) {
         if (err.response.data && err.response.data.message) {
           setError(err.response.data.message);
         } else {
-          setError(`Error: ${err.response.status} ${err.response.statusText}`);
+          setError(`${t('common.error')}: ${err.response.status} ${err.response.statusText}`);
         }
       } else if (err.request) {
-        setError('No response received from server. Please check your network connection.');
+        setError(t('common.networkError'));
       } else {
-        setError(`An unexpected error occurred: ${err.message}`);
+        setError(`${t('userProfile.unexpectedError')}: ${err.message}`);
       }
     }
   };
@@ -57,13 +59,13 @@ const Register = () => {
     <section className="register">
       <div className="container">
         <div className="blog-title">
-          <h1>Sign Up</h1>
+          <h1>{t('register.signUp')}</h1>
         </div>
         <form className="form register-form" onSubmit={registerUser}>
           {error && <p className="form-error-message">{error}</p>}
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder={t('register.fullName')}
             name="name"
             value={userData.name}
             onChange={changeInputHandler}
@@ -71,30 +73,32 @@ const Register = () => {
           />
           <input
             type="text"
-            placeholder="Email"
+            placeholder={t('register.email')}
             name="email"
             value={userData.email}
             onChange={changeInputHandler}
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder={t('register.password')}
             name="password"
             value={userData.password}
             onChange={changeInputHandler}
           />
           <input
             type="password"
-            placeholder="Confirm Password"
+            placeholder={t('register.confirmPassword')}
             name="password2"
             value={userData.password2}
             onChange={changeInputHandler}
           />
           <button type="submit" className="btn btn-secondary btn-submit">
-            Register
+            {t('register.registerButton')}
           </button>
         </form>
-        <small>Already have an account? <Link to="/login">Sign In</Link></small>
+        <small>
+          {t('register.haveAccount')} <Link to="/login">{t('login.signIn')}</Link>
+        </small>
       </div>
     </section>
   );

@@ -4,8 +4,10 @@ import { FaEdit, FaCheck } from "react-icons/fa";
 import './../css/blog.css';
 import { UserContext } from '../context/userContext';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const UserProfile = () => {
+  const { t } = useTranslation();
   const [avatar, setAvatar] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -41,10 +43,11 @@ const UserProfile = () => {
         setAvatarPreview(avatar);
       } catch (error) {
         console.log(error);
+        setError(t('userProfile.authorNotFound'));
       }
     };
     getUser();
-  }, [currentUser.id, token]);
+  }, [currentUser.id, token, t]);
 
   const changeAvatarHandler = async () => {
     try {
@@ -62,9 +65,11 @@ const UserProfile = () => {
       });
 
       setError('');
+      setIsAvatarTouched(false);
+      // Optionally, refresh user data
     } catch (error) {
-      console.error('Error changing avatar:', error);
-      setError('Failed to update avatar.');
+      console.error(`${t('userProfile.errorChangingAvatar')}`, error);
+      setError(t('userProfile.failedToUpdateAvatar'));
     }
   };
 
@@ -86,7 +91,7 @@ const UserProfile = () => {
         navigate('/logout');
       }
     } catch (error) {
-      setError(error.response?.data?.message || 'An error occurred');
+      setError(error.response?.data?.message || t('userProfile.unexpectedError'));
     }
   };
 
@@ -106,7 +111,7 @@ const UserProfile = () => {
         <div className="profile-details">
           <div className="avatar-wrapper">
             <div className="profile-avatar">
-              <img src={avatarPreview} alt="User Avatar" />
+              <img src={avatarPreview} alt={t('userProfile.updateAvatar')} />
             </div>
             {/* Form to update avatar */}
             <form className="avatar-form">
@@ -137,12 +142,39 @@ const UserProfile = () => {
           {/* Form to update user details */}
           <form className="form profile-form" onSubmit={updateUserDetails}>
             {error && <p className="form-error-message">{error}</p>}
-            <input type="text" placeholder="Full Name" value={name} onChange={e => setName(e.target.value)} />
-            <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-            <input type="password" placeholder="Current Password" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} />
-            <input type="password" placeholder="New Password" value={newPassword} onChange={e => setNewPassword(e.target.value)} />
-            <input type="password" placeholder="Confirm New Password" value={confirmNewPassword} onChange={e => setConfirmNewPassword(e.target.value)} />
-            <button type="submit" className='btn btn-primary btn-submit-profile'> Update my details </button>
+            <input
+              type="text"
+              placeholder={t('userProfile.fullName')}
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder={t('userProfile.email')}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder={t('userProfile.currentPassword')}
+              value={currentPassword}
+              onChange={e => setCurrentPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder={t('userProfile.newPassword')}
+              value={newPassword}
+              onChange={e => setNewPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder={t('userProfile.confirmNewPassword')}
+              value={confirmNewPassword}
+              onChange={e => setConfirmNewPassword(e.target.value)}
+            />
+            <button type="submit" className='btn btn-primary btn-submit-profile'>
+              {t('userProfile.updateDetails')}
+            </button>
           </form>
         </div>
       </div>

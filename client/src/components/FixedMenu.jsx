@@ -1,4 +1,4 @@
-// FixedMenu.jsx
+// src/components/FixedMenu.jsx
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -15,9 +15,10 @@ import {
 } from 'lucide-react';
 import './../css/fixedmenu.css';
 import { UserContext } from '../context/userContext';
-
+import { useTranslation } from 'react-i18next';
 
 const FixedMenu = () => {
+  const { t } = useTranslation();
   const [activeMenu, setActiveMenu] = useState(null);
   const menuRef = useRef(null);
   const { currentUser } = useContext(UserContext);
@@ -45,38 +46,38 @@ const FixedMenu = () => {
   const menuItems = [
     {
       icon: <User className="menu-icon" />,
-      label: 'Profile',
+      label: t('fixedMenu.menu.profile'),
       submenu: [
-        { icon: <User className="submenu-icon" />, label: 'Profile', link: `/profile/${currentUser.id}` },
-        { icon: <LogOut className="submenu-icon" />, label: 'Logout', link: `/logout` },
+        { icon: <User className="submenu-icon" />, label: t('fixedMenu.menu.profile'), link: `/profile/${currentUser.id}` },
+        { icon: <LogOut className="submenu-icon" />, label: t('fixedMenu.menu.logout'), link: `/logout` },
       ],
     },
     {
       icon: <BookOpen className="menu-icon" />,
-      label: 'Blog',
+      label: t('fixedMenu.menu.blog'),
       submenu: [
-        { icon: <BookOpen className="submenu-icon" />, label: 'All Posts', link: `/posts` },
-        { icon: <Users className="submenu-icon" />, label: 'Authors', link: `/authors` },
-        { icon: <PenTool className="submenu-icon" />, label: 'Create', link: `/create` },
-        { icon: <LayoutDashboard className="submenu-icon" />, label: 'Dashboard', link: `/myposts/${currentUser.id}` },
+        { icon: <BookOpen className="submenu-icon" />, label: t('fixedMenu.menu.allPosts'), link: `/posts` },
+        { icon: <Users className="submenu-icon" />, label: t('fixedMenu.menu.authors'), link: `/authors` },
+        { icon: <PenTool className="submenu-icon" />, label: t('fixedMenu.menu.create'), link: `/create` },
+        { icon: <LayoutDashboard className="submenu-icon" />, label: t('fixedMenu.menu.dashboard'), link: `/myposts/${currentUser.id}` },
       ],
     },
     {
       icon: <Repeat className="menu-icon" />, // Changed from Package to Repeat
-      label: 'Transfers',
+      label: t('fixedMenu.menu.transfers'),
       submenu: [
-        { icon: <ShoppingBag className="submenu-icon" />, label: 'All Transfers', link: `/transfers` },
-        { icon: <PlusCircle className="submenu-icon" />, label: 'Create', link: `/transfers/create` },
-        { icon: <LayoutDashboard className="submenu-icon" />, label: 'Dashboard', link: `/transfers/dashboard` },
+        { icon: <ShoppingBag className="submenu-icon" />, label: t('fixedMenu.menu.allTransfers'), link: `/transfers` },
+        { icon: <PlusCircle className="submenu-icon" />, label: t('fixedMenu.menu.create'), link: `/transfers/create` },
+        { icon: <LayoutDashboard className="submenu-icon" />, label: t('fixedMenu.menu.dashboard'), link: `/transfers/dashboard` },
       ],
     },
     {
       icon: <Users className="menu-icon" />, // Changed from Package to Users
-      label: 'Players',
+      label: t('fixedMenu.menu.players'),
       submenu: [
-        { icon: <ShoppingBag className="submenu-icon" />, label: 'All Players', link: `/players` },
-        { icon: <PlusCircle className="submenu-icon" />, label: 'Create', link: `/players/create` },
-        { icon: <LayoutDashboard className="submenu-icon" />, label: 'Dashboard', link: `/players/dashboard` },
+        { icon: <ShoppingBag className="submenu-icon" />, label: t('fixedMenu.menu.allPlayers'), link: `/players` },
+        { icon: <PlusCircle className="submenu-icon" />, label: t('fixedMenu.menu.create'), link: `/players/create` },
+        { icon: <LayoutDashboard className="submenu-icon" />, label: t('fixedMenu.menu.dashboard'), link: `/players/dashboard` },
       ],
     },
   ];

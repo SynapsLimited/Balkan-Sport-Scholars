@@ -1,10 +1,11 @@
 // src/components/Navbar.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './../css/navbar.css';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -36,7 +37,7 @@ const Navbar = () => {
           <Link to="/" onClick={handleMenuClose}>
             <img
               src="/assets/BSS Logo transparent 1.png"
-              alt="BSS Logo"
+              alt={t('altTexts.bssLogo')}
               className={isScrolled ? 'scrolled' : ''}
             />
           </Link>
@@ -58,12 +59,12 @@ const Navbar = () => {
           >
             <li className="nav-item">
               <Link to="/" className={isScrolled ? 'scrolled' : ''} onClick={handleMenuClose}>
-                Home
+                {t('navbar.links.home')}
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/about" className={isScrolled ? 'scrolled' : ''} onClick={handleMenuClose}>
-                About
+                {t('navbar.links.about')}
               </Link>
             </li>
             <li className="nav-item">
@@ -72,7 +73,7 @@ const Navbar = () => {
                 className={isScrolled ? 'scrolled' : ''}
                 onClick={handleMenuClose}
               >
-                Services
+                {t('navbar.links.services')}
               </Link>
             </li>
             <li className="nav-item">
@@ -81,7 +82,7 @@ const Navbar = () => {
                 className={isScrolled ? 'scrolled' : ''}
                 onClick={handleMenuClose}
               >
-                Transfers
+                {t('navbar.links.transfers')}
               </Link>
             </li>
             <li className="nav-item">
@@ -90,12 +91,12 @@ const Navbar = () => {
                 className={isScrolled ? 'scrolled' : ''}
                 onClick={handleMenuClose}
               >
-                Players
+                {t('navbar.links.players')}
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/blog" className={isScrolled ? 'scrolled' : ''} onClick={handleMenuClose}>
-                Blog
+                {t('navbar.links.blog')}
               </Link>
             </li>
             <li className="nav-item">
@@ -104,7 +105,7 @@ const Navbar = () => {
                 className={isScrolled ? 'scrolled' : ''}
                 onClick={handleMenuClose}
               >
-                Contact
+                {t('navbar.links.contact')}
               </Link>
             </li>
           </ul>

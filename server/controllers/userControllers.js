@@ -29,10 +29,13 @@ const uploadToVercelBlob = async (fileBuffer, fileName) => {
 
 
 
-// Define allowed emails
-const allowedEmails = [
-    "info@synapslimited.eu"
-];
+// Define allowed emails from .env
+const allowedEmailsEnv = process.env.REACT_APP_ALLOWED_EMAILS;
+
+// Split the comma-separated string into an array and trim any whitespace
+const allowedEmails = allowedEmailsEnv
+  ? allowedEmailsEnv.split(',').map(email => email.trim())
+  : [];
 
 
 
