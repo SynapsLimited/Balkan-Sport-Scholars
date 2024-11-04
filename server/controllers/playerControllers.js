@@ -325,43 +325,36 @@ const editPlayer = async (req, res, next) => {
 // PROTECTED
 const deletePlayer = async (req, res, next) => {
   try {
-    const playerId = req.params.id;
-    console.log(`Attempting to delete player with ID: ${playerId}`);
+      const playerId = req.params.id;
+      if (!playerId) {
+          return next(new HttpError("Player unavailable.", 400));
+      }
 
-    if (!playerId) {
-      console.log('No player ID provided.');
-      return next(new HttpError('Player unavailable.', 400));
-    }
+      const player = await Player.findById(playerId);
+      if (!player) {
+          return next(new HttpError("Player not found.", 404));
+      }
 
-    // Check user authentication
-    if (!req.user) {
-      console.log('No authenticated user.');
-      return next(new HttpError('Authentication required.', 403));
-    }
+      // Delete image
+      const imagePath = path.join(__dirname, '..', 'uploads', player.image);
+      if (fs.existsSync(imagePath)) {
+          fs.unlinkSync(imagePath);
+      }
 
-    // Proceed without role-based authorization
-    // If you want to restrict deletion to specific users, implement the logic here
+      // Delete documents
+      player.documents.forEach(doc => {
+          const docPath = path.join(__dirname, '..', 'uploads', doc);
+          if (fs.existsSync(docPath)) {
+              fs.unlinkSync(docPath);
+          }
+      });
 
-    // Find the player by ID
-    const player = await Player.findById(playerId);
-    if (!player) {
-      console.log(`Player with ID ${playerId} not found.`);
-      return next(new HttpError('Player not found.', 404));
-    }
+      await Player.findByIdAndDelete(playerId);
 
-    console.log(`Player found: ${player.name}`);
+      res.status(200).json({ message: 'Player deleted successfully' });
 
-    // Optionally, you can remove references to image and documents if not deleting from Vercel Blob
-    // For example, set image and document URLs to null or leave them as is
-
-    // Delete the player from the database
-    await Player.findByIdAndDelete(playerId);
-    console.log(`Player with ID ${playerId} deleted successfully.`);
-
-    res.status(200).json({ message: 'Player deleted successfully' });
   } catch (error) {
-    console.error('Error in deletePlayer:', error);
-    return next(new HttpError(`Couldn't delete player. ${error.message}`, 400));
+      return next(new HttpError("Couldn't delete player.", 400));
   }
 };
 
