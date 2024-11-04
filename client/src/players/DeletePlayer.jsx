@@ -16,12 +16,9 @@ const DeletePlayer = ({ playerId: id }) => {
             console.log("Deleting player with ID:", id); // Debugging line
             const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/players/${id}`);
             if (response.status === 200) {
-                alert("Player deleted successfully.");
                 window.location.reload(); // Refresh the page or redirect as needed
             }
         } catch (error) {
-            console.error("Delete Player Error:", error);
-            alert("Couldn't delete player.");
         }
     };
 

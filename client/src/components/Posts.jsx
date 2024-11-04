@@ -44,7 +44,7 @@ const Posts = ({ limit }) => {
           ))}
         </div>
       ) : (
-        <h1 className="error-blog-not-found">{t('posts.noPosts')}</h1>
+        <h1 className="error-blog-not-found">{t('noPostsFound')}</h1>
       )}
       {limit && posts.length > limit && (
         <div className="read-more-container">

@@ -583,5 +583,8 @@
   "Remove Document": "Hiq Dokumentin",
   "error": {
     "anErrorOccurred": "Ndodhi një gabim"
-  }
+  },
+
+    "post": "Postim",
+  "postss": "Postime"
 }

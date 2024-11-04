@@ -55,7 +55,7 @@ const Authors = () => {
               </div>
               <div className="author-info">
                 <h4>{name}</h4>
-                <p>{posts} {posts === 1 ? t('post') : t('posts')}</p>
+                <p>{posts} {posts === 1 ? t('post') : t('postss')}</p>
               </div>
             </Link>
           ))}
