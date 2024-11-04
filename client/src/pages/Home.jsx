@@ -157,7 +157,7 @@ const Home = () => {
             <p className="hero-p margin-bottom">
               {t('home.header.p')}
             </p>
-            <a href="tel:+12523738698" className="btn btn-secondary">
+            <a href="tel:+13472781736" className="btn btn-secondary">
               {t('common.callUs')}
             </a>
           </div>

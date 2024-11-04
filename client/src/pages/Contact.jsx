@@ -19,7 +19,7 @@ const Contact = () => {
           <div className="center header-template">
             <h1 className='margin-bottom'>{t('contact.header.h1')}</h1>
             <p className='margin-bottom hero-p'>{t('contact.header.p')}</p>
-            <a href="tel:+12523738698" className="btn btn-secondary">{t('contact.header.callUs')}</a>
+            <a href="tel:+13472781736" className="btn btn-secondary">{t('contact.header.callUs')}</a>
           </div>
         </div>
         <img
@@ -43,7 +43,7 @@ const Contact = () => {
         <div className="blob phone-mail-blob">
           <h2>{t('contact.sections.contactInfo.h2')}</h2>
           <img src="/assets/phone-call.png" alt={t('contact.sections.contactInfo.altPhone')} />
-          <a href="tel:+12523738698"><h4>{t('contact.sections.contactInfo.phone')}</h4></a>
+          <a href="tel:+13472781736"><h4>{t('contact.sections.contactInfo.phone')}</h4></a>
           <img src="/assets/email.png" alt={t('contact.sections.contactInfo.altEmail')} />
           <a href="mailto:balkansportscholars@gmail.com"><h4>{t('contact.sections.contactInfo.email')}</h4></a>
         </div>

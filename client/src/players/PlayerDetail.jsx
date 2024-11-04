@@ -163,7 +163,7 @@ const PlayerDetail = () => {
             <Link to="/players" className="btn btn-primary">
               {t('Back to Players')}
             </Link>
-            <a href="tel:+12523738698" className="btn btn-background">
+            <a href="tel:+13472781736" className="btn btn-background">
               {t('Contact Agent')}
             </a>
             {player.videoLink && (

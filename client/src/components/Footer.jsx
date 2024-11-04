@@ -33,7 +33,11 @@ const Footer = () => {
             <div className="socials-container">
               <div className="social-row">
                 <img src={`${process.env.PUBLIC_URL}/assets/phone-call.png`} alt={t('altTexts.phoneNumber')} />
-                <a href="tel:+12523738698" className="footer-link">{t('footer.contactInfo.phone')}</a>
+                <a href="tel:+13472781736" className="footer-link">{t('footer.contactInfo.phone')}</a>
+              </div>
+              <div className="social-row">
+                <img src={`${process.env.PUBLIC_URL}/assets/phone-call.png`} alt={t('altTexts.phoneNumber')} />
+                <a href="tel:+12523738698" className="footer-link">+1 (252) 373 8698</a>
               </div>
               <div className="social-row">
                 <img src={`${process.env.PUBLIC_URL}/assets/email.png`} alt={t('altTexts.email')} />

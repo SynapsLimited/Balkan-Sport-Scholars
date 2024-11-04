@@ -333,6 +333,16 @@ const deletePlayer = async (req, res, next) => {
       return next(new HttpError('Player unavailable.', 400));
     }
 
+    // Check user authentication
+    if (!req.user) {
+      console.log('No authenticated user.');
+      return next(new HttpError('Authentication required.', 403));
+    }
+
+    // Proceed without role-based authorization
+    // If you want to restrict deletion to specific users, implement the logic here
+
+    // Find the player by ID
     const player = await Player.findById(playerId);
     if (!player) {
       console.log(`Player with ID ${playerId} not found.`);
@@ -341,25 +351,8 @@ const deletePlayer = async (req, res, next) => {
 
     console.log(`Player found: ${player.name}`);
 
-    // Delete image
-    if (player.image) {
-      console.log(`Deleting image: ${player.image}`);
-      await deleteFromVercelBlob(player.image);
-    } else {
-      console.log('No image to delete.');
-    }
-
-    // Delete documents
-    if (player.documentUrls && player.documentUrls.length > 0) {
-      for (let url of player.documentUrls) {
-        if (url) {
-          console.log(`Deleting document: ${url}`);
-          await deleteFromVercelBlob(url);
-        }
-      }
-    } else {
-      console.log('No documents to delete.');
-    }
+    // Optionally, you can remove references to image and documents if not deleting from Vercel Blob
+    // For example, set image and document URLs to null or leave them as is
 
     // Delete the player from the database
     await Player.findByIdAndDelete(playerId);
@@ -371,6 +364,7 @@ const deletePlayer = async (req, res, next) => {
     return next(new HttpError(`Couldn't delete player. ${error.message}`, 400));
   }
 };
+
 
 
 
