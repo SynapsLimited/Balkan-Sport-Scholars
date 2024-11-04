@@ -325,36 +325,35 @@ const editPlayer = async (req, res, next) => {
 // PROTECTED
 const deletePlayer = async (req, res, next) => {
   try {
-      const playerId = req.params.id;
-      if (!playerId) {
-          return next(new HttpError("Player unavailable.", 400));
-      }
+    const playerId = req.params.id;
+    console.log(`Attempting to delete player with ID: ${playerId}`);
 
-      const player = await Player.findById(playerId);
-      if (!player) {
-          return next(new HttpError("Player not found.", 404));
-      }
+    if (!playerId) {
+      console.log('No player ID provided.');
+      return next(new HttpError('Player unavailable.', 400));
+    }
 
-      // Delete image
-      const imagePath = path.join(__dirname, '..', 'uploads', player.image);
-      if (fs.existsSync(imagePath)) {
-          fs.unlinkSync(imagePath);
-      }
+    // Find the player by ID
+    const player = await Player.findById(playerId);
+    if (!player) {
+      console.log(`Player with ID ${playerId} not found.`);
+      return next(new HttpError('Player not found.', 404));
+    }
 
-      // Delete documents
-      player.documents.forEach(doc => {
-          const docPath = path.join(__dirname, '..', 'uploads', doc);
-          if (fs.existsSync(docPath)) {
-              fs.unlinkSync(docPath);
-          }
-      });
+    console.log(`Player found: ${player.name}`);
 
-      await Player.findByIdAndDelete(playerId);
+    // If you have files stored locally, handle their deletion here
+    // Otherwise, if files are stored elsewhere (e.g., Vercel Blob), handle accordingly
+    // For this example, we'll assume files are managed elsewhere or no longer needed
 
-      res.status(200).json({ message: 'Player deleted successfully' });
+    // Delete the player from the database
+    await Player.findByIdAndDelete(playerId);
+    console.log(`Player with ID ${playerId} deleted successfully.`);
 
+    res.status(200).json({ message: 'Player deleted successfully' });
   } catch (error) {
-      return next(new HttpError("Couldn't delete player.", 400));
+    console.error('Error in deletePlayer:', error);
+    return next(new HttpError(`Couldn't delete player. ${error.message}`, 400));
   }
 };
 

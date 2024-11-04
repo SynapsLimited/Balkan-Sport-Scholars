@@ -45,6 +45,6 @@ router.patch(
 );
 
 // Delete Player
-router.delete('/:id', authMiddleware, deletePlayer);
+router.delete('/:id', deletePlayer);
 
 module.exports = router;
