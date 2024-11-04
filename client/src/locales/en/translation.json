@@ -540,7 +540,9 @@
     "create": "Create",
     "update": "Update",
     "noTransfersAvailable": "No transfers available.",
-    "imageAlt": "{{name}}'s image"
+    "imageAlt": "{{name}}'s image",
+    "title": "Transfers",
+    "header": "Our Transfers page celebrates the success stories of Balkan Sport Scholars athletes who have transitioned to US colleges. Each story highlights the achievements, growth, and new opportunities these athletes have embraced, showcasing the impact of their hard work and our dedicated support."
   },
   "posts": {
     "title": "Posts",

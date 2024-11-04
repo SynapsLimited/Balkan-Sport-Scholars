@@ -27,12 +27,15 @@ const uploadToVercelBlob = async (fileBuffer, fileName) => {
 const deleteFromVercelBlob = async (fileUrl) => {
   try {
     if (!fileUrl) {
-      console.log('No file to delete.');
+      console.log("No file to delete.");
       return;
     }
 
-    const fileName = fileUrl.split('/').pop();
-    const response = await fetch(`https://api.vercel.com/v2/blob/files/${fileName}`, {
+    const url = new URL(fileUrl);
+    let filePath = url.pathname.startsWith('/') ? url.pathname.slice(1) : url.pathname; // Remove leading '/'
+    
+    // Ensure the file path includes directories, e.g., 'players/images/filename'
+    const response = await fetch(`https://api.vercel.com/v2/blob/files/${filePath}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${process.env.VERCEL_ACCESS_TOKEN}`,
@@ -40,15 +43,17 @@ const deleteFromVercelBlob = async (fileUrl) => {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to delete from Vercel Blob Storage');
+      const errorText = await response.text();
+      throw new Error(`Failed to delete from Vercel Blob Storage: ${errorText}`);
     }
 
-    console.log(`Deleted successfully from Vercel Blob: ${fileName}`);
+    console.log(`Deleted successfully from Vercel Blob: ${filePath}`);
   } catch (error) {
     console.error('Error deleting file from Vercel Blob:', error);
     throw new Error('Failed to delete file from Vercel Blob');
   }
 };
+
 
 // ======================== Create a Player
 // POST: /api/players
@@ -328,7 +333,6 @@ const deletePlayer = async (req, res, next) => {
       return next(new HttpError('Player unavailable.', 400));
     }
 
-    // Find the player by ID
     const player = await Player.findById(playerId);
     if (!player) {
       console.log(`Player with ID ${playerId} not found.`);
@@ -364,9 +368,10 @@ const deletePlayer = async (req, res, next) => {
     res.status(200).json({ message: 'Player deleted successfully' });
   } catch (error) {
     console.error('Error in deletePlayer:', error);
-    return next(new HttpError("Couldn't delete player.", 400));
+    return next(new HttpError(`Couldn't delete player. ${error.message}`, 400));
   }
 };
+
 
 
 // ======================== Get all Players

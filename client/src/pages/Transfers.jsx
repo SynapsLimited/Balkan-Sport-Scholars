@@ -62,9 +62,9 @@ const Transfers = () => {
       <header className="hero-container header-transfers" id="intro">
         <div className="">
           <div className="center header-template">
-            <h1 className="margin-bottom">{t('transfers.header.h1')}</h1>
+            <h1 className="margin-bottom">{t('transfers.title')}</h1>
             <p className="margin-bottom hero-p">
-              {t('transfers.header.p')}
+              {t('transfers.header')}
             </p>
             <a href="/contact" className="btn btn-secondary">
               {t('common.contact')}

@@ -48,7 +48,7 @@
     "headerTitle": "Transferimet",
     "headerDescription": "Faqja jonë e Transferimeve feston historitë e suksesit të sportistëve të Balkan Sport Scholars që janë transferuar në kolegje në SHBA. Çdo histori thekson arritjet, rritjen dhe mundësitë e reja që këta sportistë kanë përqafuar, duke treguar ndikimin e punës së tyre të palodhur dhe mbështetjen tonë të përkushtuar.",
     "sectionTitle": "Transferimet",
-    "highlights": "Thekson",
+    "highlights": "Video Përmbledhëse",
     "createTransfer": "Krijo Transfer",
     "editTransfer": "Redakto Transfer",
     "fullName": "Emri i Plotë",
@@ -61,7 +61,11 @@
     "create": "Krijo",
     "update": "Përditëso",
     "noTransfersAvailable": "Nuk ka transferime në dispozicion.",
-    "imageAlt": "Imazhi i {{name}}"
+    "imageAlt": "Imazhi i {{name}}",
+    "title": "Transfertat",
+    "header": "Faqja jonë e Transferimeve feston historitë e suksesit të atletëve të Balkan Sport Scholars që janë transferuar në kolegjet në SHBA. Çdo histori thekson arritjet, zhvillimin dhe mundësitë e reja që këta atletë kanë përqafuar, duke treguar ndikimin e punës së tyre të palodhur dhe mbështetjen tonë të dedikuar.",
+    "playerName": "Emri i Atletit",
+    "videoTitle": "Video {{number}}"
   },
   "productNotFound": "Produkti nuk u gjet",
   "categoryLabel": "Kategoria",
@@ -541,34 +545,6 @@
         }
       ]
     }
-  },
-  "transfers": {
-    "dashboardTitle": "Paneli i Transferimeve",
-    "noTransfers": "Nuk keni asnjë transferim ende!",
-    "pageTitle": "Transferimet",
-    "headerTitle": "Transferimet",
-    "headerDescription": "Faqja jonë e Transferimeve feston historitë e suksesit të sportistëve të Balkan Sport Scholars që janë transferuar në kolegje në SHBA. Çdo histori thekson arritjet, rritjen dhe mundësitë e reja që këta sportistë kanë përqafuar, duke treguar ndikimin e punës së tyre të palodhur dhe mbështetjen tonë të përkushtuar.",
-    "sectionTitle": "Transferimet",
-    "highlights": "Video Përmbledhëse",
-    "playerName": "Emri i Atletit",
-    "previousClub": "Klubi i Mëparshëm",
-    "currentClub": "Klubi Aktual",
-    "description": "Përshkrim",
-    "videoTitle": "Video {{number}}",
-    "createTransfer": "Krijo Transfer",
-    "editTransfer": "Redakto Transfer",
-    "fullName": "Emri i Plotë",
-    "previousClub": "Klubi i Mëparshëm",
-    "currentClub": "Klubi Aktual",
-    "description": "Përshkrim",
-    "addTranslation": "Shto përkthim në Anglisht",
-    "descriptionEn": "Përshkrim në Anglisht",
-    "youtubeLink": "Lidhje YouTube",
-    "create": "Krijo",
-    "update": "Përditëso",
-    "noTransfersAvailable": "Nuk ka transferime në dispozicion.",
-    "dashboardTitle": "Paneli i Transferimeve",
-    "imageAlt": "Imazhi i {{name}}"
   },
   "posts": {
     "title": "Postimet",
