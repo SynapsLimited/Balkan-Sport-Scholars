@@ -1,3 +1,9 @@
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 @font-face {
   font-family: 'Inter-Black';
   src: url('./../public/fonts/Inter-Black.ttf') format('truetype');
