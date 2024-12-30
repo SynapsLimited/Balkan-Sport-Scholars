@@ -74,9 +74,9 @@ const PlayerDetail = () => {
             <p>{currentLanguage === 'en' ? player.clubname_en || player.clubname : player.clubname}</p>
           </div>
 
-          <div className="player-detail-thumbnail">
+          <div className="object-cover flex justify-center mb-16">
             {player.image ? (
-              <img src={player.image} alt={player.name} />
+              <img src={player.image} alt={player.name} className='object-contain w-3/4 h-auto rounded-lg' />
             ) : (
               <p>{t('No image available.')}</p>
             )}

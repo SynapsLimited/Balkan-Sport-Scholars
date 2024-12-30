@@ -1,25 +1,12 @@
-// src/components/Home.jsx
-
 import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  Pagination,
-  Navigation,
-  EffectCoverflow,
-  Autoplay,
-} from 'swiper/modules';
 import axios from 'axios';
-import 'swiper/swiper-bundle.css';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
 import './../css/home.css';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import PostItem from './../components/PostItem';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const stats = [
   { title: "Sports", value: 24 },
@@ -33,11 +20,12 @@ const Home = () => {
   const [transfers, setTransfers] = useState([]);
   const [players, setPlayers] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [domLoaded, setDomLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [latestPost, setLatestPost] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentTransferIndex, setCurrentTransferIndex] = useState(0);
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
 
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
@@ -136,10 +124,25 @@ const Home = () => {
     });
   }, []);
 
-  // Ensure Swiper initializes only on the client-side
+  // Auto-play sliders
   useEffect(() => {
-    setDomLoaded(true);
-  }, []);
+    const transferInterval = setInterval(() => {
+      setCurrentTransferIndex((prevIndex) =>
+        prevIndex === transfers.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000);
+
+    const playerInterval = setInterval(() => {
+      setCurrentPlayerIndex((prevIndex) =>
+        prevIndex === players.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000);
+
+    return () => {
+      clearInterval(transferInterval);
+      clearInterval(playerInterval);
+    };
+  }, [transfers.length, players.length]);
 
   return (
     <div>
@@ -190,7 +193,7 @@ const Home = () => {
         <div className="stats-blobs">
           {stats.map((stat, index) => (
             <motion.div
-              key={index}
+              key={stat.title} // Use stat.title as key if unique
               className="stat-box"
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -220,150 +223,181 @@ const Home = () => {
           <p>{t('home.servicesOverview.p')}</p>
         </div>
         <div className="services-overview-blobs">
-          <a href="/services" className="service-overview-blob-art">
+          <Link to="/services" className="service-overview-blob-art">
             <span>{t('home.servicesOverview.serviceBlobs.athleteAssessment')}</span>
             <img src="/assets/Football.png" alt={t('services.serviceItems[0].imgAlt')} />
-          </a>
-          <a href="/services" className="service-overview-blob-art">
+          </Link>
+          <Link to="/services" className="service-overview-blob-art">
             <span>{t('home.servicesOverview.serviceBlobs.collegeMatching')}</span>
             <img src="/assets/Basketball.png" alt={t('services.serviceItems[1].imgAlt')} />
-          </a>
-          <a href="/services" className="service-overview-blob-art">
+          </Link>
+          <Link to="/services" className="service-overview-blob-art">
             <span>{t('home.servicesOverview.serviceBlobs.scholarshipGuidance')}</span>
             <img src="/assets/Rugby.png" alt={t('services.serviceItems[2].imgAlt')} />
-          </a>
-          <a href="/services" className="service-overview-blob-art">
+          </Link>
+          <Link to="/services" className="service-overview-blob-art">
             <span>{t('home.servicesOverview.serviceBlobs.eligibilitySupport')}</span>
             <img src="/assets/Volleyball.png" alt={t('services.serviceItems[3].imgAlt')} />
-          </a>
-          <a href="/services" className="service-overview-blob-art">
+          </Link>
+          <Link to="/services" className="service-overview-blob-art">
             <span>{t('home.servicesOverview.serviceBlobs.applicationVisa')}</span>
             <img src="/assets/Tennis.png" alt={t('services.serviceItems[4].imgAlt')} />
-          </a>
-          <a href="/services" className="service-overview-blob-art">
+          </Link>
+          <Link to="/services" className="service-overview-blob-art">
             <span>{t('home.servicesOverview.serviceBlobs.networkingMentorship')}</span>
             <img src="/assets/ESports.png" alt={t('services.serviceItems[5].imgAlt')} />
-          </a>
+          </Link>
         </div>
         <div className="services-button">
-          <a href="/services" className="btn btn-background">
+          <Link to="/services" className="btn btn-background">
             {t('home.servicesOverview.servicesButton')}
-          </a>
+          </Link>
         </div>
       </section>
 
       {/* Image Slider Section for Transfers */}
-      <section className="container image-slider-section-home">
-        <div className="services-overview-title">
-          <h1>{t('home.transfersSection.title')}</h1>
-          <p style={{ padding: '20px' }}>
-            {t('home.transfersSection.p')}
-          </p>
+      <section className="container mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold mb-4">{t('home.transfersSection.title')}</h1>
+          <p className="text-md">{t('home.transfersSection.p')}</p>
         </div>
-        <div className="image-slider-container">
-          {domLoaded && (
-            <Swiper
-              modules={[Pagination, Navigation, EffectCoverflow, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true
-              }}
-              loop={true}
-              className="swiper-container"
-            >
-              {transfers.map((transfer, index) => (
-                <SwiperSlide key={index}>
-                  <div className="image-slide-wrapper">
-                    <img
-                      src={transfer.image}
-                      alt={`Slide ${index + 1}`}
-                      className="slide-image"
-                      loading="lazy"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
+        <div className="relative w-full md:w-[70%] h-[500px] mx-auto justify-center">
+          <AnimatePresence initial={false} mode='wait'>
+            {transfers.map((transfer, index) => (
+              <motion.div
+                key={transfer._id} // Use transfer._id if unique
+                className="absolute w-full h-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: index === currentTransferIndex ? 1 : 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <img
+                  src={transfer.image}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          <button
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2"
+            onClick={() => setCurrentTransferIndex((prevIndex) => (prevIndex === 0 ? transfers.length - 1 : prevIndex - 1))}
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2"
+            onClick={() => setCurrentTransferIndex((prevIndex) => (prevIndex === transfers.length - 1 ? 0 : prevIndex + 1))}
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            {transfers.map((_, index) => (
+              <button
+                key={index}
+                className={`w-3 h-3 rounded-full ${
+                  index === currentTransferIndex ? 'bg-white' : 'bg-gray-400'
+                }`}
+                onClick={() => setCurrentTransferIndex(index)}
+              />
+            ))}
+          </div>
         </div>
-        <div className="services-button center margin-top">
-          <a href="/transfers" className="btn btn-primary">
+        <div className="text-center mt-8 mb-12">
+          <Link to="/transfers" className="btn btn-primary">
             {t('common.transfersButton')}
-          </a>
+          </Link>
         </div>
       </section>
 
       {/* Players Slider Section */}
-      <section className="container players-slider-section">
-        <div className="services-overview-title">
-          <h1>{t('home.playersSection.title')}</h1>
-          <p style={{ padding: '20px' }}>
-            {t('home.playersSection.p')}
-          </p>
+      <section className="container mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold mb-4 text-center">{t('home.playersSection.title')}</h1>
+          <p className="text-md text-center mb-4">{t('home.playersSection.p')}</p>
         </div>
-        <div className="players-slider-container">
-          {domLoaded && (
-            <Swiper
-              modules={[Pagination, Navigation, EffectCoverflow, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true
-              }}
-              loop={true}
-            >
-              {players.map((player, index) => (
-                <SwiperSlide key={index}>
-                  <div className="player-slide-wrapper">
-                    <img
-                      src={player.image}
-                      alt={player.name}
-                      className="player-img"
-                      loading="lazy"
-                    />
-                    <div className="player-info">
-                      <h1>{currentLanguage === 'en' ? player.name_en || player.name : player.name}</h1>
-                      <h2>{currentLanguage === 'en' ? player.clubname_en || player.clubname : player.clubname}</h2>
-                      <ul>
-                        <li>
-                          <strong>{t('players.playerDetails.dob')}:</strong> {new Date(player.dob).toLocaleDateString()}
-                        </li>
-                        <li>
-                          <strong>{t('players.playerDetails.sport')}:</strong> {currentLanguage === 'en' ? player.sport_en || player.sport : player.sport}
-                        </li>
-                        <li>
-                          <strong>{t('players.playerDetails.position')}:</strong> {currentLanguage === 'en' ? player.position_en || player.position : player.position}
-                        </li>
-                        <li>
-                          <strong>{t('players.playerDetails.nationality')}:</strong> {currentLanguage === 'en' ? player.nationality_en || player.nationality : player.nationality}
-                        </li>
-                      </ul>
-                      <Link
-                        to={`/players/${player._id}`}
-                        className="btn btn-secondary"
-                      >
-                        {t('common.readMore')}
-                      </Link>
-                    </div>
+        <div className="relative w-full h-[44rem] md:h-[24rem]">
+          <AnimatePresence initial={false} mode='wait'>
+            {players.length > 0 && (
+              <motion.div
+                key={players[currentPlayerIndex]._id} // Use unique key for AnimatePresence
+                className="absolute w-full h-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="flex flex-col md:flex-row h-full center bg-white-transparent backdrop-blur-md rounded-xl overflow-hidden">
+                  <img
+                    src={players[currentPlayerIndex].image}
+                    alt={players[currentPlayerIndex].name}
+                    className="w-full h-[300px] md:w-1/3 h-48 md:h-full object-cover"
+                  />
+                  <div className="w-full md:w-2/3 p-6 pl-4">
+                    <h1 className="text-2xl font-bold mb-2">
+                      {currentLanguage === 'en'
+                        ? players[currentPlayerIndex].name_en || players[currentPlayerIndex].name
+                        : players[currentPlayerIndex].name}
+                    </h1>
+                    <h2 className="text-xl mb-4">
+                      {currentLanguage === 'en'
+                        ? players[currentPlayerIndex].clubname_en || players[currentPlayerIndex].clubname
+                        : players[currentPlayerIndex].clubname}
+                    </h2>
+                    <ul className="space-y-2 mb-6">
+                      <li>
+                        <strong>{t('players.playerDetails.dob')}:</strong> {new Date(players[currentPlayerIndex].dob).toLocaleDateString()}
+                      </li>
+                      <li>
+                        <strong>{t('players.playerDetails.sport')}:</strong> {currentLanguage === 'en' ? players[currentPlayerIndex].sport_en || players[currentPlayerIndex].sport : players[currentPlayerIndex].sport}
+                      </li>
+                      <li>
+                        <strong>{t('players.playerDetails.position')}:</strong> {currentLanguage === 'en' ? players[currentPlayerIndex].position_en || players[currentPlayerIndex].position : players[currentPlayerIndex].position}
+                      </li>
+                      <li>
+                        <strong>{t('players.playerDetails.nationality')}:</strong> {currentLanguage === 'en' ? players[currentPlayerIndex].nationality_en || players[currentPlayerIndex].nationality : players[currentPlayerIndex].nationality}
+                      </li>
+                    </ul>
+                    <Link
+                      to={`/players/${players[currentPlayerIndex]._id}`}
+                      className="btn btn-secondary"
+                    >
+                      {t('common.readMore')}
+                    </Link>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <button
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2"
+            onClick={() => setCurrentPlayerIndex((prevIndex) => (prevIndex === 0 ? players.length - 1 : prevIndex - 1))}
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2"
+            onClick={() => setCurrentPlayerIndex((prevIndex) => (prevIndex === players.length - 1 ? 0 : prevIndex + 1))}
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
         </div>
-        <div className="services-button center">
-          <a href="/players" style={{ marginTop: '50px' }} className="btn btn-primary">
+        <div className="flex justify-center mt-4">
+          {players.map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full mx-1 ${
+                index === currentPlayerIndex ? 'bg-primary' : 'bg-primary-transparent'
+              }`}
+              onClick={() => setCurrentPlayerIndex(index)}
+            />
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link to="/players" className="btn btn-primary">
             {t('common.playersButton')}
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -372,9 +406,9 @@ const Home = () => {
         <div className="blog-text-section">
           <h1 className='margin-bottom'>{t('home.blogSection.h1')}</h1>
           <p>{t('home.blogSection.p')}</p>
-          <a href="/blog" className="btn btn-primary">
+          <Link to="/blog" className="btn btn-primary">
             {t('home.blogSection.viewAllBlogs')}
-          </a>
+          </Link>
         </div>
         <div className="blog-slider-section">
           {isLoading ? (
