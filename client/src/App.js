@@ -2,6 +2,8 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from "@vercel/analytics/react"
+
 
 
 
@@ -92,6 +94,7 @@ const App = () => {
   return (
     <HelmetProvider>
     <div className={`App ${getBackgroundClass(location.pathname)}`}>
+      <Analytics />
       <LoadingScreen />
       <ScrollToTop />
       <Navbar />
