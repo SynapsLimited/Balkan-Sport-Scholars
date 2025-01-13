@@ -5,13 +5,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Analytics } from "@vercel/analytics/react"
 
 
-
-
-
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
-
 
 
 import Home from './pages/Home';
