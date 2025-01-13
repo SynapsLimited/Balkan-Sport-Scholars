@@ -93,8 +93,9 @@ const App = () => {
 
   return (
     <HelmetProvider>
+    <Analytics />
+
     <div className={`App ${getBackgroundClass(location.pathname)}`}>
-      <Analytics />
       <LoadingScreen />
       <ScrollToTop />
       <Navbar />
