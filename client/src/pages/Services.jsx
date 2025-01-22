@@ -29,7 +29,7 @@ const Services = () => {
           style={{ display: 'none' }}
         />
       </header>
-      <div className="services-container container">
+      <div className="container">
         {/* Services Introduction */}
         <div className="services-intro">
           <h1>{t('services.servicesContainer.intro.h1')}</h1>
