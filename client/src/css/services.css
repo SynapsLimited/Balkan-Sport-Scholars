@@ -79,6 +79,9 @@
   .service-img img {
     margin-left: 0; /* Remove any left margin */
   }
+  .item-right img {
+    margin-left: 0px;
+  }
 }
 
 /* Mobile view */
@@ -112,5 +115,9 @@
   .service-img img {
     max-width: 80%; /* Increase the image size for better visibility */
     margin-left: 0; /* Ensure the image is centered */
+  }
+
+  .item-right img {
+    margin-left: 0px;
   }
 }

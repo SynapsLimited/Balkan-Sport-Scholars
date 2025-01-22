@@ -406,6 +406,12 @@
   .player-info h2 {
     text-align: center;
   }
+
+  .info-right img {
+
+    margin-left: 0px;
+  }
+  
 }
 
 @media screen and (max-width: 768px) {
@@ -558,4 +564,10 @@
   .slide-image {
     width: 420px;
   }
+
+  .info-right img {
+
+    margin-left: 0px;
+  }
+  
 }
