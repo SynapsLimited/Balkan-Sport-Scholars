@@ -31,7 +31,7 @@ const About = () => {
         <div className="presentation-text">
           <h1 className='margin-bottom'>
             <Trans i18nKey="about.presentationSection.h2">
-              What about <strong>Balkan Sports Scholars?</strong>
+              What about <strong>Balkan Sport Scholars?</strong>
             </Trans>
           </h1>
           <p>{t('about.presentationSection.p')}</p>
